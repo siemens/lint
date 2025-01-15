@@ -7,6 +7,7 @@ import typescriptEslint from 'typescript-eslint';
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import preferArrowPlugin from 'eslint-plugin-prefer-arrow';
+import stylisticPlugin from '@stylistic/eslint-plugin';
 
 // Keep in sync with eslint-config-angular (except Angular stuff).
 
@@ -15,7 +16,8 @@ export const configBase = typescriptEslint.config({
   plugins: {
     'import': importPlugin,
     'jsdoc': jsdocPlugin,
-    'prefer-arrow': preferArrowPlugin
+    'prefer-arrow': preferArrowPlugin,
+    '@stylistic': stylisticPlugin
   },
   languageOptions: {
     parserOptions: {
@@ -39,12 +41,6 @@ export const configBase = typescriptEslint.config({
     'space-before-blocks': ['off'],
 
     '@typescript-eslint/array-type': ['error'],
-    '@typescript-eslint/brace-style': ['error', '1tbs', { allowSingleLine: true }],
-    '@typescript-eslint/comma-dangle': ['error'],
-    '@typescript-eslint/comma-spacing': ['error'],
-    '@typescript-eslint/func-call-spacing': ['error'],
-    '@typescript-eslint/indent': ['error', 2, { SwitchCase: 1 }],
-    '@typescript-eslint/keyword-spacing': ['error'],
     '@typescript-eslint/member-ordering': ['off'],
     '@typescript-eslint/naming-convention': ['off'],
     '@typescript-eslint/no-non-null-asserted-optional-chain': ['error'],
@@ -56,10 +52,6 @@ export const configBase = typescriptEslint.config({
       { vars: 'all', args: 'none', ignoreRestSiblings: false }
     ],
     '@typescript-eslint/no-var-requires': ['error'],
-    '@typescript-eslint/space-infix-ops': ['error'],
-    '@typescript-eslint/space-before-blocks': ['error'],
-    '@typescript-eslint/type-annotation-spacing': ['error'],
-    '@typescript-eslint/object-curly-spacing': ['error', 'always'],
     '@typescript-eslint/no-explicit-any': ['off'],
     '@typescript-eslint/no-empty-function': ['off'],
     '@typescript-eslint/no-inferrable-types': ['error', { ignoreParameters: true }],
@@ -69,6 +61,17 @@ export const configBase = typescriptEslint.config({
     '@typescript-eslint/prefer-for-of': ['error'],
     '@typescript-eslint/prefer-function-type': ['error'],
     '@typescript-eslint/unified-signatures': ['error'],
+
+    '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
+    '@stylistic/comma-dangle': ['error'],
+    '@stylistic/comma-spacing': ['error'],
+    '@stylistic/func-call-spacing': ['error'],
+    '@stylistic/indent': ['error', 2, { SwitchCase: 1 }],
+    '@stylistic/keyword-spacing': ['error'],
+    '@stylistic/space-infix-ops': ['error'],
+    '@stylistic/space-before-blocks': ['error'],
+    '@stylistic/type-annotation-spacing': ['error'],
+    '@stylistic/object-curly-spacing': ['error', 'always'],
 
     'array-bracket-spacing': ['error'],
     'arrow-parens': ['error', 'as-needed'],
@@ -154,7 +157,7 @@ export const configRecommended = typescriptEslint.config({
       }
     ],
 
-    '@typescript-eslint/no-extra-semi': ['error'],
+    '@stylistic/no-extra-semi': ['error'],
     '@typescript-eslint/no-for-in-array': ['error'],
     '@typescript-eslint/no-implied-eval': ['error'],
     '@typescript-eslint/no-loop-func': ['error'],
