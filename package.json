@@ -26,8 +26,8 @@
     "eslint": "9.9.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-headers": "^1.1.2",
-    "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsdoc": "50.2.2",
+    "eslint-plugin-perfectionist": "^4.6.0",
     "eslint-plugin-prefer-arrow": "1.2.3",
     "eslint-plugin-tsdoc": "^0.3.0",
     "husky": "^9.1.5",
@@ -39,11 +39,6 @@
     "tsx": "^4.19.1",
     "typescript": "^5.5.4",
     "typescript-eslint": "8.6.0"
-  },
-  "overrides": {
-    "eslint-plugin-import": {
-      "eslint": "$eslint"
-    }
   },
   "scripts": {
     "build": "rimraf dist && tsc -p eslint-plugin-defaultvalue/tsconfig.json && cpy \"./**/{package.json,*.js,*.mjs,*.cjs,*.yml,*.md,.prettierrc.json}\" '!{node_modules,dist,tsconfig.*}' '!**/tests/**' '!./*' ./dist/ && npm run build:copy",

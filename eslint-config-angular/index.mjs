@@ -5,8 +5,8 @@
 import eslintJs from '@eslint/js';
 import typescriptEslint from 'typescript-eslint';
 import angularEslint from 'angular-eslint';
-import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
+import perfectionist from 'eslint-plugin-perfectionist';
 import preferArrowPlugin from 'eslint-plugin-prefer-arrow';
 
 // Keep in sync with eslint-config-typescript (except Angular stuff).
@@ -18,9 +18,9 @@ export const configBase = typescriptEslint.config({
     ...angularEslint.configs.tsRecommended
   ],
   plugins: {
-    'import': importPlugin,
     'jsdoc': jsdocPlugin,
-    'prefer-arrow': preferArrowPlugin
+    'prefer-arrow': preferArrowPlugin,
+    perfectionist
   },
   languageOptions: {
     parserOptions: {
@@ -109,17 +109,18 @@ export const configRecommended = typescriptEslint.config({
     'no-implied-eval': ['off'],
     'no-loop-func': ['off'],
     'no-useless-constructor': ['off'],
-    'import/order': [
+    'perfectionist/sort-imports': [
       'error',
       {
-        groups: ['builtin', 'external'],
-        alphabetize: {
-          order: 'asc'
-        },
-        'newlines-between': 'always'
+        type: 'alphabetical',
+        order: 'asc',
+        newlinesBetween: 'always',
+        groups: [
+          ['builtin', 'external'],
+          ['parent', 'sibling', 'index']
+        ]
       }
     ],
-
     '@angular-eslint/component-max-inline-declarations': ['off'],
     '@angular-eslint/prefer-on-push-component-change-detection': ['off'],
     '@angular-eslint/use-component-selector': ['off'],

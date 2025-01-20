@@ -4,8 +4,8 @@
  */
 import eslintJs from '@eslint/js';
 import typescriptEslint from 'typescript-eslint';
-import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
+import perfectionist from 'eslint-plugin-perfectionist';
 import preferArrowPlugin from 'eslint-plugin-prefer-arrow';
 
 // Keep in sync with eslint-config-angular (except Angular stuff).
@@ -13,9 +13,9 @@ import preferArrowPlugin from 'eslint-plugin-prefer-arrow';
 export const configBase = typescriptEslint.config({
   extends: [eslintJs.configs.recommended, ...typescriptEslint.configs.recommended],
   plugins: {
-    'import': importPlugin,
     'jsdoc': jsdocPlugin,
-    'prefer-arrow': preferArrowPlugin
+    'prefer-arrow': preferArrowPlugin,
+    perfectionist
   },
   languageOptions: {
     parserOptions: {
@@ -99,14 +99,16 @@ export const configRecommended = typescriptEslint.config({
     }
   },
   rules: {
-    'import/order': [
+    'perfectionist/sort-imports': [
       'error',
       {
-        groups: ['builtin', 'external'],
-        alphabetize: {
-          order: 'asc'
-        },
-        'newlines-between': 'always'
+        type: 'alphabetical',
+        order: 'asc',
+        newlinesBetween: 'always',
+        groups: [
+          ['builtin', 'external'],
+          ['parent', 'sibling', 'index']
+        ]
       }
     ],
     '@typescript-eslint/naming-convention': [
