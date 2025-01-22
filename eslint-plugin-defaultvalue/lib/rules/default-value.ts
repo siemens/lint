@@ -194,8 +194,16 @@ const extractCallExpression = (
         // This will never have a defaultValue.
         return undefined;
       }
+      // Should not be documented.
+      if (readonly) {
+        return undefined;
+      }
       return sourceCode.getText(callExpression);
     default:
+      // Should not be documented.
+      if (readonly) {
+        return undefined;
+      }
       return sourceCode.getText(callExpression);
   }
 };

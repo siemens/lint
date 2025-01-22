@@ -70,7 +70,12 @@ class Test {
   /** @internal */
   internal = 'internal';
 
+  private tempFunc: () => any = () => {};
+  private tempFuncObj = { sub: tempFunc } as const;
+
   readonly dontDefaultValueMe = 42;
+  readonly dontDefaultValueThisCall = this.temp();
+  readonly dontDefaultValueThisMemberCall = this.sub.temp();
   signalValue = input.required<number>();
   modelValue = model<string>();
 }
