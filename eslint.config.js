@@ -7,7 +7,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import typescriptEslint from 'typescript-eslint';
 import angularTypescriptConfig from '@siemens/eslint-config-angular';
-import prettier from 'eslint-config-prettier';
 import tsdocPlugin from 'eslint-plugin-tsdoc';
 import eslintPluginHeaders from 'eslint-plugin-headers';
 
@@ -32,7 +31,7 @@ export default [
   },
   ...typescriptEslint.config({
     name: 'typescript-eslint',
-    extends: [...angularTypescriptConfig, prettier],
+    extends: [...angularTypescriptConfig],
     files: ['**/*.ts'],
     languageOptions: {
       parserOptions: {

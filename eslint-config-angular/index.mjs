@@ -49,12 +49,6 @@ export const configBase = typescriptEslint.config({
     'space-before-blocks': ['off'],
 
     '@typescript-eslint/array-type': ['error'],
-    '@typescript-eslint/brace-style': ['error', '1tbs', { allowSingleLine: true }],
-    '@typescript-eslint/comma-dangle': ['error'],
-    '@typescript-eslint/comma-spacing': ['error'],
-    '@typescript-eslint/func-call-spacing': ['error'],
-    '@typescript-eslint/indent': ['error', 2, { SwitchCase: 1 }],
-    '@typescript-eslint/keyword-spacing': ['error'],
     '@typescript-eslint/member-ordering': ['off'],
     '@typescript-eslint/naming-convention': ['off'],
     '@typescript-eslint/no-non-null-asserted-optional-chain': ['error'],
@@ -66,10 +60,6 @@ export const configBase = typescriptEslint.config({
       { vars: 'all', args: 'none', ignoreRestSiblings: false }
     ],
     '@typescript-eslint/no-var-requires': ['error'],
-    '@typescript-eslint/space-infix-ops': ['error'],
-    '@typescript-eslint/space-before-blocks': ['error'],
-    '@typescript-eslint/type-annotation-spacing': ['error'],
-    '@typescript-eslint/object-curly-spacing': ['error', 'always'],
     '@typescript-eslint/no-explicit-any': ['off'],
     '@typescript-eslint/no-empty-function': ['off'],
     '@typescript-eslint/no-inferrable-types': ['error', { ignoreParameters: true }],
@@ -93,7 +83,6 @@ export const configBase = typescriptEslint.config({
     'no-multi-spaces': ['error'],
     'no-multiple-empty-lines': ['error'],
     'prefer-arrow/prefer-arrow-functions': ['off'],
-    'quote-props': ['error', 'consistent'],
     'semi-spacing': ['error'],
     'space-in-parens': ['error'],
     'space-unary-ops': ['error'],
@@ -171,7 +160,6 @@ export const configRecommended = typescriptEslint.config({
       }
     ],
 
-    '@typescript-eslint/no-extra-semi': ['error'],
     '@typescript-eslint/no-for-in-array': ['error'],
     '@typescript-eslint/no-implied-eval': ['error'],
     '@typescript-eslint/no-loop-func': ['error'],

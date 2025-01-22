@@ -40,6 +40,10 @@ will get changed in the patch releases._
 
 ### ESLint
 
+Our ESLint configurations does not include any formatting rules.
+Please use a formatter like [Prettier](https://prettier.io/)
+or add a formatting ruleset for ESLint like [ESLint Stylistic](https://eslint.style/).
+
 #### TypeScript
 
 Include the ESLint preset in your root `eslint.config.mjs`:
@@ -86,7 +90,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const tsConfig = typescriptEslint.config({
-  extends: [...angularTypescriptConfig, prettier],
+  extends: [...angularTypescriptConfig],
   files: ['**/*.ts'],
   languageOptions: {
     parserOptions: {
@@ -115,7 +119,7 @@ export const tsConfig = typescriptEslint.config({
 });
 
 export const templateConfig = typescriptEslint.config({
-  extends: [...angularTemplateConfig, prettier],
+  extends: [...angularTemplateConfig],
   files: ['**/*.html']
 });
 
