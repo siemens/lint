@@ -5,7 +5,6 @@
 import eslintJs from '@eslint/js';
 import typescriptEslint from 'typescript-eslint';
 import angularEslint from 'angular-eslint';
-import jsdocPlugin from 'eslint-plugin-jsdoc';
 import perfectionist from 'eslint-plugin-perfectionist';
 import preferArrowPlugin from 'eslint-plugin-prefer-arrow';
 
@@ -18,7 +17,6 @@ export const configBase = typescriptEslint.config({
     ...angularEslint.configs.tsRecommended
   ],
   plugins: {
-    'jsdoc': jsdocPlugin,
     perfectionist
   },
   languageOptions: {

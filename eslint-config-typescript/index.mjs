@@ -4,7 +4,6 @@
  */
 import eslintJs from '@eslint/js';
 import typescriptEslint from 'typescript-eslint';
-import jsdocPlugin from 'eslint-plugin-jsdoc';
 import perfectionist from 'eslint-plugin-perfectionist';
 import preferArrowPlugin from 'eslint-plugin-prefer-arrow';
 
@@ -13,7 +12,6 @@ import preferArrowPlugin from 'eslint-plugin-prefer-arrow';
 export const configBase = typescriptEslint.config({
   extends: [eslintJs.configs.recommended, ...typescriptEslint.configs.recommended],
   plugins: {
-    'jsdoc': jsdocPlugin,
     perfectionist
   },
   languageOptions: {

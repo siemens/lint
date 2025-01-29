@@ -34,7 +34,6 @@
     "@eslint/js": "^9.9.1",
     "angular-eslint": "^18.1.0 || ^19.0.0",
     "eslint": "^9.9.1",
-    "eslint-plugin-jsdoc": "^50.2.2",
     "eslint-plugin-perfectionist": "^4.6.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "typescript-eslint": "^8.0.0"
