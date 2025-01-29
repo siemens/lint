@@ -19,7 +19,6 @@ export const configBase = typescriptEslint.config({
   ],
   plugins: {
     'jsdoc': jsdocPlugin,
-    'prefer-arrow': preferArrowPlugin,
     perfectionist
   },
   languageOptions: {
@@ -48,6 +47,9 @@ export const configBase = typescriptEslint.config({
     'space-infix-ops': ['off'],
     'space-before-blocks': ['off'],
 
+    // Disable the recommended formatting rules.
+    'no-unexpected-multiline': ['off'],
+
     '@typescript-eslint/array-type': ['error'],
     '@typescript-eslint/member-ordering': ['off'],
     '@typescript-eslint/naming-convention': ['off'],
@@ -70,34 +72,26 @@ export const configBase = typescriptEslint.config({
     '@typescript-eslint/prefer-function-type': ['error'],
     '@typescript-eslint/unified-signatures': ['error'],
 
-    'array-bracket-spacing': ['error'],
-    'arrow-parens': ['error', 'as-needed'],
-    'arrow-spacing': ['error'],
-    'block-spacing': ['error'],
-    'curly': ['error'],
-    'jsdoc/newline-after-description': ['off'],
-    'key-spacing': ['error'],
     'no-duplicate-imports': ['error'],
     'no-empty': ['error'],
     'no-irregular-whitespace': ['error'],
-    'no-multi-spaces': ['error'],
-    'no-multiple-empty-lines': ['error'],
-    'prefer-arrow/prefer-arrow-functions': ['off'],
-    'semi-spacing': ['error'],
-    'space-in-parens': ['error'],
-    'space-unary-ops': ['error'],
     'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }]
   }
 });
 
 export const configRecommended = typescriptEslint.config({
   extends: [...angularEslint.configs.tsAll, ...configBase],
+  plugins: {
+    'prefer-arrow': preferArrowPlugin
+  },
   rules: {
     camelcase: ['off'],
     'no-extra-semi': ['off'],
     'no-implied-eval': ['off'],
     'no-loop-func': ['off'],
     'no-useless-constructor': ['off'],
+    'sort-imports': ['off'],
+
     'perfectionist/sort-imports': [
       'error',
       {
@@ -110,6 +104,7 @@ export const configRecommended = typescriptEslint.config({
         ]
       }
     ],
+
     '@angular-eslint/component-max-inline-declarations': ['off'],
     '@angular-eslint/prefer-on-push-component-change-detection': ['off'],
     '@angular-eslint/use-component-selector': ['off'],
@@ -160,7 +155,6 @@ export const configRecommended = typescriptEslint.config({
         format: null
       }
     ],
-
     '@typescript-eslint/no-for-in-array': ['error'],
     '@typescript-eslint/no-implied-eval': ['error'],
     '@typescript-eslint/no-loop-func': ['error'],
@@ -176,6 +170,7 @@ export const configRecommended = typescriptEslint.config({
       }
     ],
     '@typescript-eslint/prefer-optional-chain': ['error'],
+
     'prefer-arrow/prefer-arrow-functions': ['error']
   }
 });
