@@ -2,13 +2,13 @@
   "name": "@siemens/prettier-config",
   "version": "0.0.0-development",
   "description": "Configuration for Prettier.",
-  "files": [
-    "*.json",
-    "*.md"
-  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/siemens/lint.git"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./prettierrc.json": "./.prettierrc.json"
   },
   "author": {
     "name": "Siemens",
@@ -24,7 +24,11 @@
     "access": "public"
   },
   "license": "MIT",
+  "type": "module",
   "peerDependencies": {
     "prettier": "^3.0.0"
+  },
+  "devDependencies": {
+    "prettier": "3.4.2"
   }
 }

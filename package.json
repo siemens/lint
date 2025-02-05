@@ -56,7 +56,7 @@
       "./commitlint-config/.commitlintrc.js"
     ]
   },
-  "prettier": "./prettier-config/.prettierrc.json",
+  "prettier": "./prettier-config/index.js",
   "workspaces": [
     "commitlint-config",
     "eslint-config-angular",

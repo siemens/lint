@@ -251,7 +251,7 @@ Include the commitlint preset in your `package.json`:
 Include the shared Prettier config in your `package.json`:
 
 ```json
-"prettier": "@siemens/prettier-config/.prettierrc.json",
+"prettier": "@siemens/prettier-config",
 ```
 
 ### ESLint Plugin
