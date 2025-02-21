@@ -8,7 +8,7 @@
   },
   "exports": {
     ".": "./index.js",
-    "./prettierrc.json": "./.prettierrc.json"
+    "./.prettierrc.json": "./.prettierrc.json"
   },
   "author": {
     "name": "Siemens",
