@@ -15,7 +15,8 @@ export const configRecommended = typescriptEslint.config({
     '@angular-eslint/template/cyclomatic-complexity': ['off'],
     '@angular-eslint/template/i18n': ['off'],
     '@angular-eslint/template/mouse-events-have-key-events': ['off'],
-    '@angular-eslint/template/no-call-expression': ['off']
+    '@angular-eslint/template/no-call-expression': ['off'],
+    '@angular-eslint/no-experimental': ['off']
   }
 });
 
