@@ -7,7 +7,7 @@
   "singleQuote": true,
   "overrides": [
     {
-      "files": "*.html",
+      "files": "**/*.html",
       "options": {
         "parser": "angular"
       }
@@ -19,7 +19,7 @@
       }
     },
     {
-      "files": "*.json5",
+      "files": "**/*.json5",
       "options": {
         "singleQuote": false
       }

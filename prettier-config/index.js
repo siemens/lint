@@ -16,7 +16,7 @@ const config = {
   singleQuote: true,
   overrides: [
     {
-      files: '*.html',
+      files: '**/*.html',
       options: {
         parser: 'angular'
       }
@@ -28,7 +28,7 @@ const config = {
       }
     },
     {
-      files: '*.json5',
+      files: '**/*.json5',
       options: {
         singleQuote: false
       }
