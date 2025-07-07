@@ -1,0 +1,57 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "group:allNonMajor",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)",
+    ":prHourlyLimitNone",
+    ":prConcurrentLimitNone"
+  ],
+  "addLabels": ["dep-bump"],
+  "packageRules": [
+    {
+      "description": [
+        "Prevent Angular related major and minor updates. Those should be manually done"
+      ],
+      "matchPackageNames": [
+        "@angular/**",
+        "@angular-devkit/**",
+        "@angular-eslint/**",
+        "@angular-architects/**",
+        "@angular-builders/**",
+        "ng-packagr",
+        "rxjs",
+        "typescript",
+        "zone.js",
+        "tslib"
+      ],
+      "matchUpdateTypes": ["major", "minor"],
+      "enabled": false
+    },
+    {
+      "groupName": "Angular dependencies",
+      "description": ["Update Angular packages"],
+      "matchPackageNames": [
+        "@angular/**",
+        "@angular-devkit/**",
+        "@angular-eslint/**",
+        "@angular-architects/**",
+        "@angular-builders/**",
+        "ng-packagr",
+        "rxjs",
+        "typescript",
+        "zone.js",
+        "tslib"
+      ],
+      "matchUpdateTypes": ["patch"],
+      "enabled": true
+    },
+    {
+      "description": ["Node LTS gitlab-ci update"],
+      "matchPackageNames": ["node"],
+      "matchDatasources": ["docker"],
+      "enabled": true
+    }
+  ]
+}
