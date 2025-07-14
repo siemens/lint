@@ -58,6 +58,7 @@ export const configBase = typescriptEslint.config({
     '@typescript-eslint/no-unused-expressions': ['error'],
     '@typescript-eslint/prefer-for-of': ['error'],
     '@typescript-eslint/prefer-function-type': ['error'],
+    '@typescript-eslint/prefer-nullish-coalescing': ['error', { ignorePrimitives: true }],
     '@typescript-eslint/unified-signatures': ['error'],
 
     'no-duplicate-imports': ['error'],
