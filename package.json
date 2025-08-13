@@ -22,7 +22,7 @@
     "@typescript-eslint/rule-tester": "8.6.0",
     "@typescript-eslint/utils": "8.6.0",
     "angular-eslint": "20.1.1",
-    "cpy-cli": "^5.0.0",
+    "cpy-cli": "^6.0.0",
     "eslint": "9.9.1",
     "eslint-plugin-headers": "^1.1.2",
     "eslint-plugin-perfectionist": "^4.6.0",
