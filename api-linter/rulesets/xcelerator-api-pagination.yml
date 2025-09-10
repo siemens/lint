@@ -1,0 +1,85 @@
+functions:
+  - get-resources-has-pagination
+  - get-resources-has-pagination-strategies
+  - get-resources-has-pagination-strategies-meta
+
+rules:
+
+  Siemens-API-[600]-1:
+    message: '{{error}}'
+    description: A server MAY provide links to traverse a paginated data set
+    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/pagination.html#paginationrule600
+    severity: info
+    given: $.paths..get
+    then:
+      function: get-resources-has-pagination
+      functionOptions: A
+
+  Siemens-API-[600]-2:
+    message: '{{error}}'
+    description: Pagination links SHOULD appear in the top-level links object.
+    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/pagination.html#paginationrule600
+    severity: warn
+    given: $.paths..get
+    then:
+      function: get-resources-has-pagination
+      functionOptions: B
+  
+  Siemens-API-[600]-3:
+    message: '{{error}}'
+    description: Naming convention MUST be used for pagination keys
+    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/pagination.html#paginationrule600
+    severity: hint
+    given: $.paths..get
+    then:
+      function: get-resources-has-pagination
+      functionOptions: D
+  
+  Siemens-API-[601]:
+    message: '{{error}}'
+    description: Pagination SHOULD be implemented using query parameters
+    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/pagination.html#paginationrule601
+    severity: warn
+    given: $.paths..get
+    then:
+      function: get-resources-has-pagination-strategies
+  
+  Siemens-API-[601.1.1]:
+    message: '{{error}}'
+    description: Server MAY provide pagination meta information to the client
+    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/pagination.html#paginationrule601.1.1
+    severity: info
+    given: $.paths..get
+    then:
+      function: get-resources-has-pagination-strategies-meta
+      functionOptions: cursor
+  
+  Siemens-API-[601.2.1]:
+    message: '{{error}}'
+    description: Server MAY provide pagination meta information to the client
+    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/pagination.html#paginationrule601.2.1
+    severity: info
+    given: $.paths..get
+    then:
+      function: get-resources-has-pagination-strategies-meta
+      functionOptions: offset
+  
+  Siemens-API-[601.3.1]-1:
+    message: '{{error}}'
+    description: Server MAY provide pagination meta information to the client
+    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/pagination.html#paginationrule601.3.1
+    severity: info
+    given: $.paths..get
+    then:
+      function: get-resources-has-pagination-strategies-meta
+      functionOptions: index1
+
+  Siemens-API-[601.3.1]-2:
+    message: '{{error}}'
+    description: Server MAY provide pagination meta information to the client
+    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/pagination.html#paginationrule601.3.1
+    severity: info
+    given: $.paths..get
+    then:
+      function: get-resources-has-pagination-strategies-meta
+      functionOptions: index2

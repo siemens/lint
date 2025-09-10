@@ -1,0 +1,10 @@
+extends:
+  - ./xcelerator-api-media-type.yml
+  - ./xcelerator-api-error-reporting.yml
+  - ./xcelerator-api-filtering.yml
+  - ./xcelerator-api-sparse-fieldsets.yml
+  - ./xcelerator-api-pagination.yml
+  - ./xcelerator-api-sorting.yml
+  - ./xcelerator-api-common-operation.yml
+  - ./semantic-versioning.yml
+  - "spectral:oas"

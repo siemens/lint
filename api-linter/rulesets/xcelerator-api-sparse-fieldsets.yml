@@ -1,0 +1,16 @@
+functions:
+  - get-resources-has-parameter
+
+rules:
+
+  Siemens-API-[500]:
+    message: '{{error}}'
+    description: API MAY provide projection of fieldset in response
+    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/sparse-fieldsets.html#sparsefieldsetrule500
+    severity: info
+    given: $.paths..get
+    then:
+      function: get-resources-has-parameter
+      functionOptions: fields
+  
+

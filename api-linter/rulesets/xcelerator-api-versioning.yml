@@ -1,0 +1,3 @@
+extends:
+  - ./semantic-versioning.yml
+  - ./xcelerator-api-versioning.js
