@@ -130,6 +130,20 @@ rules:
   Siemens-API-[401]: false
 ```
 
+### Define rule dependency relations
+> Sometimes, if you don't want to follow a ruleC that under a high level ruleP, which means when ruleP failed, you don't want to check ruleC.
+Then we can define the rules with `"x-dependsOn"` attribute.
+```yaml
+#e.g. Siemens-API-[101.8.1] depends on Siemens-API-[101.8]
+extends:
+  - "@xcelerator/api-linter/rulesets/xcelerator-api.yml"
+
+rules:
+  Siemens-API-[101.8.1]: 
+    x-dependsOn:
+      - Siemens-API-[101.8]
+```
+
 ## Integration Using JavaScript
 > In case you want to handle the linting results by yourself
 ```javascript

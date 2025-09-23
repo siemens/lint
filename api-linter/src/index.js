@@ -203,17 +203,74 @@ const getSeverityMsgMap = () => {
     return severityMap;
 }
 
+const resolveRuleDependencyResult = (rules, results) => {
+  const dependsOnMap = {};
+  for (const [ruleName, ruleDef] of Object.entries(rules)) {
+    const deps = ruleDef?.definition?.['x-dependsOn'];
+    if (deps) {
+      dependsOnMap[ruleName] = Array.isArray(deps) ? deps : [deps];
+    }
+  }
+
+  const allDepsCache = {};
+  const getAllDependencies = (ruleName, visited = new Set()) => {
+    if (allDepsCache[ruleName]) return allDepsCache[ruleName];
+    const directDeps = dependsOnMap[ruleName] || [];
+    const deps = new Set();
+
+    for (const dep of directDeps) {
+      if (visited.has(dep)) continue; // 防止循环依赖
+      deps.add(dep);
+      const transitiveDeps = getAllDependencies(dep, new Set(visited).add(ruleName));
+      for (const d of transitiveDeps) {
+        deps.add(d);
+      }
+    }
+
+    allDepsCache[ruleName] = deps;
+    return deps;
+  };
+
+  const issuesByLocation = new Map();
+  for (const issue of results) {
+    const locationKey = issue.path?.join('.') || '';
+    if (!issuesByLocation.has(locationKey)) {
+      issuesByLocation.set(locationKey, []);
+    }
+    issuesByLocation.get(locationKey).push(issue);
+  }
+
+  const filteredResults = [];
+
+  for (const [locationKey, issues] of issuesByLocation.entries()) {
+    const failedRules = new Set(issues.map(i => i.code));
+
+    for (const issue of issues) {
+      const ruleCode = issue.code;
+      const allDeps = getAllDependencies(ruleCode);
+      const hasFailedAncestor = [...allDeps].some(dep => failedRules.has(dep));
+
+      if (!hasFailedAncestor) {
+        filteredResults.push(issue);
+      }
+    }
+  }
+
+  return filteredResults;
+};
+
 linter(specFilePath, rulesetFilepath, resolveRefs).then(linterResult => {
+    const spectralResult = resolveRuleDependencyResult(linterResult.rules, linterResult.results);
+
     const spectralReport = path.resolve(jsonFile);
-    const spectralResult = linterResult.results;
     fs.writeFileSync(spectralReport, JSON.stringify(spectralResult), { encoding: "utf8" });
     
-    const jsonResult = formatJSON(linterResult.rules, linterResult.results);
+    const jsonResult = formatJSON(linterResult.rules, spectralResult);
     generateReport(jsonResult);
     const reportFilePath = path.resolve(reportFileName);
     const isErrorSeverity = mapSeverity(failSeverity) === DiagnosticSeverity.Error;
-    const failed = severeEnoughToFail(linterResult.results, failSeverity);
-    const consolePart = consoleMsgPart(linterResult.results, consoleSeverity);
+    const failed = severeEnoughToFail(spectralResult, failSeverity);
+    const consolePart = consoleMsgPart(spectralResult, consoleSeverity);
     const consoleMsg = consolePart.map(error=>
         `--------------------------------------------------
 ${getSeverityMsgMap()[error.severity]}:
@@ -241,5 +298,3 @@ Detailed report: ` + reportFilePath + '\n',
         process.exit(0);
     }
 });
-
-
