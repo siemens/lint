@@ -7,7 +7,7 @@
         "name": "Siemens",
         "email": "opensource@siemens.com"
     },
-    "license": "Apache-2.0",
+    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "git+ssh://git@github.com/siemens/lint.git"
