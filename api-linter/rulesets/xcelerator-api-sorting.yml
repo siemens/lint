@@ -1,0 +1,15 @@
+functions:
+  - get-resources-has-parameter
+
+rules:
+
+  Siemens-API-[700]:
+    message: '{{error}}'
+    description: API MAY provide projection of sort in response
+    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/sorting.html#sortingrule700
+    severity: info
+    given: $.paths..get
+    then:
+      function: get-resources-has-parameter
+      functionOptions: sort
+  

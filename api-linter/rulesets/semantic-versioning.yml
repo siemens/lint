@@ -1,0 +1,14 @@
+rules:
+
+  Semantic-Versioning-[2.0.0]:
+    message: '{{error}}'
+    description: Semantic versioning MUST be used to version individual APIs
+    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/versioning.html#api-version-numbering
+    severity: error
+    given: $.info.version
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: string
+          match: '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9a-zA-Z-]+(\.[0-9a-zA-Z-]+)*)?$'
