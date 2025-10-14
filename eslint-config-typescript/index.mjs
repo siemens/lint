@@ -6,10 +6,11 @@ import eslintJs from '@eslint/js';
 import typescriptEslint from 'typescript-eslint';
 import perfectionist from 'eslint-plugin-perfectionist';
 import preferArrowPlugin from 'eslint-plugin-prefer-arrow';
+import { defineConfig } from 'eslint/config';
 
 // Keep in sync with eslint-config-angular (except Angular stuff).
 
-export const configBase = typescriptEslint.config({
+export const configBase = defineConfig({
   extends: [eslintJs.configs.recommended, ...typescriptEslint.configs.recommended],
   plugins: {
     perfectionist
@@ -68,7 +69,7 @@ export const configBase = typescriptEslint.config({
   }
 });
 
-export const configRecommended = typescriptEslint.config({
+export const configRecommended = defineConfig({
   extends: [...configBase],
   plugins: {
     'prefer-arrow': preferArrowPlugin
