@@ -5,7 +5,7 @@
 import eslintJs from '@eslint/js';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import typescriptEslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 import angularTypescriptConfig from '@siemens/eslint-config-angular';
 import tsdocPlugin from 'eslint-plugin-tsdoc';
 import eslintPluginHeaders from 'eslint-plugin-headers';
@@ -29,7 +29,7 @@ export default [
       ]
     }
   },
-  ...typescriptEslint.config({
+  ...defineConfig({
     name: 'typescript-eslint',
     extends: [...angularTypescriptConfig],
     files: ['**/*.ts'],
