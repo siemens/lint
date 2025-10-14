@@ -2,12 +2,12 @@
  * Copyright Siemens 2024.
  * SPDX-License-Identifier: MIT
  */
-import typescriptEslint from 'typescript-eslint';
 import angularEslint from 'angular-eslint';
+import { defineConfig } from 'eslint/config';
 
-export const configBase = typescriptEslint.config(...angularEslint.configs.templateRecommended);
+export const configBase = defineConfig(...angularEslint.configs.templateRecommended);
 
-export const configRecommended = typescriptEslint.config({
+export const configRecommended = defineConfig({
   extends: [...angularEslint.configs.templateAll, ...configBase],
   rules: {
     '@angular-eslint/template/click-events-have-key-events': ['off'],

@@ -51,14 +51,14 @@ Include the ESLint preset in your root `eslint.config.mjs`:
 ```js
 import path from 'path';
 import { fileURLToPath } from 'url';
-import typescriptEslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 import typescriptConfig from '@siemens/eslint-config-typescript';
 
 // mimic CommonJS variables
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default typescriptEslint.config({
+export default defineConfig({
   extends: [...baseTypescriptConfig, prettier],
   files: ['**/*.ts'],
   languageOptions: {
@@ -80,7 +80,7 @@ Include the ESLint preset in your root `eslint.config.mjs`:
 ```js
 import path from 'path';
 import { fileURLToPath } from 'url';
-import typescriptEslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 import angularTypescriptConfig from '@siemens/eslint-config-angular';
 import angularTemplateConfig from '@siemens/eslint-config-angular/template';
 
@@ -88,7 +88,7 @@ import angularTemplateConfig from '@siemens/eslint-config-angular/template';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const tsConfig = typescriptEslint.config({
+const tsConfig = defineConfig({
   extends: [...angularTypescriptConfig],
   files: ['**/*.ts'],
   languageOptions: {
@@ -117,22 +117,22 @@ const tsConfig = typescriptEslint.config({
   }
 });
 
-const templateConfig = typescriptEslint.config({
+const templateConfig = defineConfig({
   extends: [...angularTemplateConfig],
   files: ['**/*.html']
 });
 
-export default typescriptEslint.config(...tsConfig, ...templateConfig);
+export default defineConfig(...tsConfig, ...templateConfig);
 ```
 
 For libraries and other things in the `projects` directory,
 create an additional `eslint.config.mjs` for each project that looks like this:
 
 ```js
-import typescriptEslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 import { tsConfig, templateConfig } from '../../eslint.config.mjs';
 
-export default typescriptEslint.config(
+export default defineConfig(
   {
     extends: [...tsConfig],
     files: ['**/*.ts'],
