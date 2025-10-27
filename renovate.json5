@@ -52,6 +52,28 @@
       "matchPackageNames": ["node"],
       "matchDatasources": ["docker"],
       "enabled": true
+    },
+    {
+      "description": "Trigger major release from major renovate release",
+      "matchDepTypes": ["peerDependencies"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "major renovate version",
+      "semanticCommitType": "feat",
+      "commitBody": "BREAKING CHANGE: Major renovate update"
+    },
+    {
+      "description": "Trigger minor release from minor renovate release",
+      "matchDepTypes": ["peerDependencies"],
+      "matchUpdateTypes": ["minor"],
+      "groupName": "minor renovate version",
+      "semanticCommitType": "feat"
+    },
+    {
+      "description": "Trigger patch release from patch renovate release",
+      "matchDepTypes": ["peerDependencies"],
+      "matchUpdateTypes": ["patch"],
+      "groupName": "patch renovate version",
+      "semanticCommitType": "fix"
     }
   ]
 }
