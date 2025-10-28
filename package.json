@@ -18,7 +18,7 @@
     "@commitlint/config-conventional": "20.0.0",
     "@microsoft/tsdoc": "^0.15.0",
     "@microsoft/tsdoc-config": "^0.17.0",
-    "@types/node": "^22.4.1",
+    "@types/node": "^24.0.0",
     "@typescript-eslint/rule-tester": "8.46.2",
     "@typescript-eslint/utils": "8.46.2",
     "angular-eslint": "20.4.0",
