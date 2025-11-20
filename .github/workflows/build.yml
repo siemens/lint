@@ -1,11 +1,6 @@
 name: Build
 
 on:
-  push:
-    branches:
-      - main
-      - release/*
-      - next
   pull_request:
 jobs:
   build-and-test:
@@ -25,30 +20,3 @@ jobs:
       - run: npm run lint:commit
       - run: npm run lint
       - run: npm run plugin:test
-
-  release:
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/next' || startsWith(github.ref, 'refs/heads/release/')
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for npm provenance
-    needs: build-and-test
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.workflow_run.head_branch }}
-      - name: Use Node.js 22.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.x
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build
-      - name: Semantic Release
-        run: npx semantic-release --debug
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
