@@ -21,7 +21,7 @@ In order to include the rulesets and provide linting within your project, you ca
       "test": "api-linter -s reference-api-specs/openapi.yml -r reference-api-specs/.spectral.yml"
   },
   "devDependencies": {
-      "@xcelerator/api-linter": "^0.8.4"
+      "@siemens/api-linter": "^0.8.4"
   }
 }
 ```
@@ -136,7 +136,7 @@ Then we can define the rules with `"x-dependsOn"` attribute.
 ```yaml
 #e.g. Siemens-API-[101.8.1] depends on Siemens-API-[101.8]
 extends:
-  - "@xcelerator/api-linter/rulesets/siemens-api.yml"
+  - "@siemens/api-linter/rulesets/siemens-api.yml"
 
 rules:
   Siemens-API-[101.8.1]: 
