@@ -21,7 +21,7 @@ In order to include the rulesets and provide linting within your project, you ca
       "test": "api-linter -s reference-api-specs/openapi.yml -r reference-api-specs/.spectral.yml"
   },
   "devDependencies": {
-      "@xcelerator/api-linter": "^0.8.0"
+      "@xcelerator/api-linter": "^0.8.4"
   }
 }
 ```
@@ -93,36 +93,36 @@ build:
 
 ### Selection of rulesets
 
-The package provides several rulesets according to Siemens Xcelerator REST API guidelines.<br>
+The package provides several rulesets according to Siemens REST API guidelines.<br>
 > They can be included as needed by providing a project specific `.spectral.yml` file on the projects root directory as follows:
 ```yaml
 extends:
-  - "@siemens/api-linter/rulesets/xcelerator-api-media-type.yml"
-  - "@siemens/api-linter/rulesets/xcelerator-api-versioning.yml"
-  - "@siemens/api-linter/rulesets/xcelerator-api-error-reporting.yml"
-  - "@siemens/api-linter/rulesets/xcelerator-api-filtering.yml"
-  - "@siemens/api-linter/rulesets/xcelerator-api-sparse-fieldsets.yml"
-  - "@siemens/api-linter/rulesets/xcelerator-api-pagination.yml"
-  - "@siemens/api-linter/rulesets/xcelerator-api-sorting.yml"
-  - "@siemens/api-linter/rulesets/xcelerator-api-common-operation.yml"
-  - "@siemens/api-linter/rulesets/xcelerator-api-security.yml"
+  - "@siemens/api-linter/rulesets/siemens-api-media-type.yml"
+  - "@siemens/api-linter/rulesets/siemens-api-versioning.yml"
+  - "@siemens/api-linter/rulesets/siemens-api-error-reporting.yml"
+  - "@siemens/api-linter/rulesets/siemens-api-filtering.yml"
+  - "@siemens/api-linter/rulesets/siemens-api-sparse-fieldsets.yml"
+  - "@siemens/api-linter/rulesets/siemens-api-pagination.yml"
+  - "@siemens/api-linter/rulesets/siemens-api-sorting.yml"
+  - "@siemens/api-linter/rulesets/siemens-api-common-operation.yml"
+  - "@siemens/api-linter/rulesets/siemens-api-security.yml"
 ```
 > You MAY use as below to achieve this for guidline linting `WITHOUT` `"spectral:oas"`.
 ```yaml
 extends:
-  - "@siemens/api-linter/rulesets/xcelerator-api-express.yml"
+  - "@siemens/api-linter/rulesets/siemens-api-express.yml"
 ```
 > `OR` just extends the `ALL-IN-ONE` ruleset which with `"spectral:oas"` enabled.
 ```yaml
 extends:
-  - "@siemens/api-linter/rulesets/xcelerator-api.yml"
+  - "@siemens/api-linter/rulesets/siemens-api.yml"
 ```
 ### Disable any Ruleset or Rules
 > You can disable any rules/rulesets as you wish by [Stoplight Spectral](https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview).
 ```yaml
 #e.g. disable spectral:oas ruleset and disable Siemens-API-[400] rules from the extended ruleset
 extends:
-  - "@siemens/api-linter/rulesets/xcelerator-api.yml"
+  - "@siemens/api-linter/rulesets/siemens-api.yml"
   - ["spectral:oas", "off"]
 
 rules:
@@ -136,7 +136,7 @@ Then we can define the rules with `"x-dependsOn"` attribute.
 ```yaml
 #e.g. Siemens-API-[101.8.1] depends on Siemens-API-[101.8]
 extends:
-  - "@xcelerator/api-linter/rulesets/xcelerator-api.yml"
+  - "@xcelerator/api-linter/rulesets/siemens-api.yml"
 
 rules:
   Siemens-API-[101.8.1]: 

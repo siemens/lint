@@ -6,5 +6,5 @@ extends:
   - ./siemens-api-pagination.yml
   - ./siemens-api-sorting.yml
   - ./siemens-api-common-operation.yml
-  - ./semantic-versioning.yml
-  - "spectral:oas"
+  - ./siemens-api-versioning.yml
+  - ./siemens-api-security.yml

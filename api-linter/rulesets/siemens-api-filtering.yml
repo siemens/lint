@@ -6,7 +6,7 @@ rules:
   Siemens-API-[400]:
     message: '{{error}}'
     description: An API provider SHOULD NOT support more than 4 parameters at once for selecting resources
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/filtering.html#queryingrule400
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/filtering.html#queryingrule400
     severity: hint
     given: $.paths..get.parameters
     then:
@@ -17,7 +17,7 @@ rules:
   Siemens-API-[401]:
     message: '{{error}}'
     description: The query parameter filter SHOULD be used to filter or query data
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/filtering.html#queryingrule401
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/filtering.html#queryingrule401
     severity: hint
     given: $.paths..get.parameters
     then:

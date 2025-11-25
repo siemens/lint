@@ -30,7 +30,7 @@ switch (apiSecurity.toLowerCase()){
          "Siemens-API-Security": {
             message: "{{error}}",
             description: "When calling a secured REST API, the request header Authorization with the value Bearer <your JWT> MUST be present.",
-            documentationUrl: "https://developer.internal.siemens.com/guidelines/api-guidelines/rest/security.html",
+            documentationUrl: "https://developer.siemens.com/guidelines/api-guidelines/rest/security.html",
             severity: "error",
             given: [
                "$.paths.*"

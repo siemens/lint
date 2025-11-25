@@ -6,7 +6,15 @@ exports.argument = () => {
 
     program.name("api-linter")
         .requiredOption("-s, --specPath <openapi spec>", "path to openapi specification")
-        .requiredOption("-r, --rulesetPath <rule file>", "path to ruleset file")
+        .requiredOption("-r, --rulesetPath <rule file>", "path to ruleset file",(value, previous) => {
+                if (!Array.isArray(previous)) {
+                    return [value];             
+                }
+                previous.push(value);
+                return previous;
+            },
+            []
+        )
         .addOption(new Option("-f, --failSeverity <fail severity>", "fail severity").default("warn"))
         .addOption(new Option("-c, --consoleSeverity <console severity>", "console output severity").default("warn"))
         .addOption(new Option("-o, --outputFilename <output filename>", "output filename").default("linter-result.html"))

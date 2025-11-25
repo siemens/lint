@@ -10,7 +10,7 @@ rules:
   Siemens-API-[800.1]:
     message: A Successful fetch of individual resources MUST return the status code 200
     description: A server MUST respond to a successful request to fetch an individual resource or resource collection with a 200 status code response.
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops800.1
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops800.1
     severity: error
     given: $.paths.*.get.responses
     then:
@@ -20,7 +20,7 @@ rules:
   Siemens-API-[800.2]:
     message: A successful fetch of resource collection request MUST return a 2xx status code
     description: A successful fetch of resource collection request MUST return a 2xx status code.
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops800.2
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops800.2
     severity: error
     given: $.paths.*.get.responses
     then:
@@ -30,7 +30,7 @@ rules:
   Siemens-API-[800.4]:
     message: '{{error}}'
     description: An API Provider MUST support fetching resource data for provided links.
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops800.4
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops800.4
     severity: error
     given: $.paths..get.responses..content..schema
     then:
@@ -39,7 +39,7 @@ rules:
   Siemens-API-[801]:
     message: The POST request MUST include a single resource object as primary data
     description: The POST request MUST include a single resource object as primary data
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops801
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops801
     severity: error
     given: $.paths..post.requestBody..content..schema
     then:
@@ -48,7 +48,7 @@ rules:
   Siemens-API-[801.4]:
     message: API MUST respond to successful POST creation request with 2xx success status code 
     description: API MUST respond to successful POST creation request with 2xx success status code 
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops801.4
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops801.4
     severity: error
     given: $.paths.*.post.responses
     then:
@@ -57,7 +57,7 @@ rules:
   Siemens-API-[802.3]:
     message: A PATCH request SHOULD address a single resource only 
     description: A PATCH request SHOULD address a single resource only
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops802.3
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops802.3
     severity: warn
     given: $.paths.*.patch.requestBody..content..schema
     then:
@@ -66,7 +66,7 @@ rules:
   Siemens-API-[802.6]:
     message: API MUST respond to successful PATCH update request with 2xx success status code 
     description: API MUST respond to successful PATCH update request with 2xx success status code
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops802.6
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops802.6
     severity: error
     given: $.paths.*.patch.responses
     then:
@@ -75,7 +75,7 @@ rules:
   Siemens-API-[803.1]:
     message: PUT update request SHOULD be provided only for single resource objects
     description: PUT update request SHOULD be provided only for single resource objects
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops803.1
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops803.1
     severity: warn
     given: $.paths.*.put.requestBody..content..schema
     then:
@@ -84,7 +84,7 @@ rules:
   Siemens-API-[803.2]:
     message: API MUST respond to successful PUT update request with 2xx success status code 
     description: API MUST respond to successful PUT update request with 2xx success status code
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops803.2
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops803.2
     severity: error
     given: $.paths.*.put.responses
     then:
@@ -93,7 +93,7 @@ rules:
   Siemens-API-[803.6]:
     message: The API consumer MAY use conditional header information to solve concurrent update requests 
     description: To prevent unnoticed concurrent updates when using PUT, the server endpoint MAY consider to support ETag together with If-Match/If-None-Match header
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops803.6
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops803.6
     severity: info
     given: $.paths.*.put
     then:
@@ -107,7 +107,7 @@ rules:
   Siemens-API-[804.1]:
     message: MUST respond to successful DELETE request with 2xx success status code 
     description: MUST respond to successful DELETE request with 2xx success status code
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops804.1
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/common-operations.html#commonops804.1
     severity: error
     given: $.paths.*.delete.responses
     then:

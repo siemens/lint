@@ -36,7 +36,7 @@ switch (apiVersioning){
          "Siemens-API-[200.1]": {
             message: "The Major version number MUST be specified in the URI as a path segment",
             description: "The Major version number MUST be specified in the URI as a path segment.",
-            documentationUrl: "https://developer.internal.siemens.com/guidelines/api-guidelines/rest/versioning.html#versioningrule200.1",
+            documentationUrl: "https://developer.siemens.com/guidelines/api-guidelines/rest/versioning.html#versioningrule200.1",
             severity: "error",
             given: [
                "$.servers..url"
@@ -56,7 +56,7 @@ switch (apiVersioning){
          "Siemens-API-[200.2]": {
             message: "{{message}}",
             description: "A request HTTP header e.g., Api-Version Should be supported to allow client to specify the version.",
-            documentationUrl: "https://developer.internal.siemens.com/guidelines/api-guidelines/rest/versioning.html#versioningrule200.2",
+            documentationUrl: "https://developer.siemens.com/guidelines/api-guidelines/rest/versioning.html#versioningrule200.2",
             severity: "error",
             given: [
                "$.paths[*]..parameters"
@@ -78,7 +78,7 @@ if (apiVersioning == 'url' || apiVersioning == 'header'){
    ruleset.rules["Siemens-API-[201]"] = {
       message: "{{message}}",
       description: "A header with full semantic version value SHOULD be returned in the response with 'Api-Version: <MAJOR>.<MINOR>.<PATCH>'",
-      documentationUrl: "https://developer.internal.siemens.com/guidelines/api-guidelines/rest/versioning.html#versioningrule201",
+      documentationUrl: "https://developer.siemens.com/guidelines/api-guidelines/rest/versioning.html#versioningrule201",
       severity: "warn",
       given: [
          "$.paths..responses[?(@.content)]"

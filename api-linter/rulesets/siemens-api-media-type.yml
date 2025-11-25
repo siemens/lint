@@ -13,7 +13,7 @@ rules:
   Siemens-API-[100]:
     message: SHOULD use JSON-based media types
     description: Siemens Xcelerator recommends use either the media type application/json for exchanging data, or a more specific media type based on JSON.
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule100
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule100
     severity: info
     given: $.paths.*.*.responses.*.content.*~
     then:
@@ -24,7 +24,7 @@ rules:
   Siemens-API-[101.1]:
     message: 'SHOULD use a top-level JSON object'
     description: The root of every document SHOULD contain a JSON object.
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.1
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.1
     severity: warn
     given: $.paths.*.*[responses,requestBody]..content..schema
     then:
@@ -33,7 +33,7 @@ rules:
   Siemens-API-[101.2]-1:
     message: 'SHOULD use the defined document structure'
     description: A response document SHOULD contain at least one of the following top-level members:data,errors,meta,links.
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.2
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.2
     severity: warn
     given: $.paths.*.*[responses]..content..schema
     then:
@@ -42,7 +42,7 @@ rules:
   Siemens-API-[101.2]-2:
     message: 'SHOULD use the defined document structure'
     description: A request document SHOULD contain at least data.
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.2
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.2
     severity: warn
     given: $.paths.*.*[requestBody]..content..schema
     then:
@@ -51,7 +51,7 @@ rules:
   Siemens-API-[101.4.1]:
     message: The data type MUST be compliant with the types defined
     description: The data type MUST be compliant with the types defined in the OpenAPI specification
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.4.1
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.4.1
     severity: error
     given: $.paths.*.*[responses,requestBody]..content..schema..properties..*..type
     then:
@@ -62,7 +62,7 @@ rules:
   Siemens-API-[101.5]:
     message: A links object SHOULD contain one or more links
     description: A links object SHOULD contain one or more links
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.5
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.5
     severity: warn
     given: $.*..schema..links
     then:
@@ -71,7 +71,7 @@ rules:
   Siemens-API-[101.7]:
     message: A JSON document MAY provide meta information.
     description: Meta information can be used to include additional information to a JSON object.
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.7
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.7
     severity: info
     given: $.*..schema..meta
     then:
@@ -80,7 +80,7 @@ rules:
   Siemens-API-[101.7.2]:
     message: A meta object SHOULD be used to represent meta information as a JSON object.
     description: The value of each meta field MUST be a JSON object
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.7.2
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.7.2
     severity: error
     given: $.*..schema..meta
     then:
@@ -89,7 +89,7 @@ rules:
   Siemens-API-[101.8]:
     message: Field names SHOULD use lower camel case
     description: Field names SHOULD use lower camel case
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.8
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.8
     severity: warn
     given: $.paths.*.*[responses,requestBody]..content..schema..properties.*~
     then:
@@ -100,7 +100,7 @@ rules:
   Siemens-API-[101.8.1]:
     message: Field names MUST use the allowed characters only
     description: Field names MUST use the allowed characters only
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.8.1
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/media-type.html#mediatyperule101.8.1
     severity: error
     given: $.paths.*.*[responses,requestBody]..content..schema..properties.*~
     then:

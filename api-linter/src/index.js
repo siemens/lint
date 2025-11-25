@@ -18,7 +18,7 @@ const {argument} = require('./argument');
 const fetch = spectralRuntime;
 const {Spectral, Document} = spectralCore;
 const {specPath, rulesetPath, failSeverity, consoleSeverity, outputFilename, jsonFile,resolve: resolveRefs } = argument();
-
+const yaml = require('js-yaml');
 
 var reportFileName = outputFilename;
 if (!outputFilename.endsWith(".html")){
@@ -42,9 +42,11 @@ if (!fileExists(specFilePath)){
     throw Error(`Unable to resolve spec file path ${specFilePath}`);
 }
 
-var rulesetFilepath = path.resolve(rulesetPath);
-if (!fileExists(rulesetFilepath)){
-    throw Error(`Unable to resolve ruleset file path ${rulesetFilepath}`);
+for (const filepath of rulesetPath) {
+    const abs_filepath = path.resolve(filepath)
+    if (!fileExists(abs_filepath)){
+        throw Error(`Unable to resolve ruleset file path ${abs_filepath}`);
+    }
 }
 
 const formatJSON = (rules, results) => {
@@ -161,25 +163,50 @@ const generateReport = (jsonObj) => {
     writeToFile(data, reportFileName);
 }
 
-const linter =  async (specFilePath, rulesetFilepath, followRefs) => {
+const linter =  async (specFilePath, rulesetPath, followRefs) => {
     const myDocument = new Document(
         fs.readFileSync(specFilePath, "utf-8").trim(),
         Parsers.Yaml,
-        specFilePath               // <- real location → correct base URI
+        specFilePath
       );
 
     const spectral = new Spectral( { resolver } );
-    spectral.setRuleset(await bundleAndLoadRuleset(rulesetFilepath, { fs, fetch }));
+    var tempFilePath = "";
+    var isMultiRuleFiles = false;
+
+    if (rulesetPath.length > 1) {
+        isMultiRuleFiles = true;
+        const masterRulesetContent = {
+            extends: rulesetPath.map(file => path.resolve(file)),
+        };
+        const contentString = yaml.dump(masterRulesetContent, { indent: 2 });
+        const tempDir = process.cwd();
+        const tempFileName = `.spectral-${Date.now()}.yaml`;
+        tempFilePath = path.join(tempDir, tempFileName);
+        fs.writeFileSync(tempFilePath, contentString, 'utf8');
+    }
+    else {
+        tempFilePath = path.resolve(rulesetPath[0]);
+    }
+    spectral.setRuleset(await bundleAndLoadRuleset(tempFilePath, { fs, fetch }));
     var binded = {};
 
     const runPromise = followRefs
-      ? spectral.run(myDocument, { resolve: true }) // explicit resolving
-      : spectral.run(myDocument);                   // no second arg → default = false
+      ? spectral.run(myDocument, { resolve: true })
+      : spectral.run(myDocument);
 
     await runPromise.then(results => {
         binded.rules = spectral.ruleset.rules;
         binded.results = results;
     });
+    
+    try {
+        if (isMultiRuleFiles && fs.existsSync(tempFilePath)) {
+            fs.unlinkSync(tempFilePath); 
+        }
+    } catch (cleanupErr) {
+        console.error(`Remove temporary file ${tempFilePath} failed. Please delete mannually.`);
+    }
     
     return binded;
 }
@@ -219,7 +246,7 @@ const resolveRuleDependencyResult = (rules, results) => {
     const deps = new Set();
 
     for (const dep of directDeps) {
-      if (visited.has(dep)) continue; // 防止循环依赖
+      if (visited.has(dep)) continue;
       deps.add(dep);
       const transitiveDeps = getAllDependencies(dep, new Set(visited).add(ruleName));
       for (const d of transitiveDeps) {
@@ -259,7 +286,7 @@ const resolveRuleDependencyResult = (rules, results) => {
   return filteredResults;
 };
 
-linter(specFilePath, rulesetFilepath, resolveRefs).then(linterResult => {
+linter(specFilePath, rulesetPath, resolveRefs).then(linterResult => {
     const spectralResult = resolveRuleDependencyResult(linterResult.rules, linterResult.results);
 
     const spectralReport = path.resolve(jsonFile);
@@ -298,3 +325,5 @@ Detailed report: ` + reportFilePath + '\n',
         process.exit(0);
     }
 });
+
+

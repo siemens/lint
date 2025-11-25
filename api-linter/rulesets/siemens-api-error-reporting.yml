@@ -3,7 +3,7 @@ rules:
   Siemens-API-[300]:
     message: '{{property}} is not using an official response code'
     description: API MUST use official HTTP status codes as intended.
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule300
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule300
     severity: error
     given: $.paths.*.*.responses.*~
     then:
@@ -81,7 +81,7 @@ rules:
   Siemens-API-[301]:
     message: '{{property}} is not a standardized response code'
     description: SHOULD only use most common HTTP status codes
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule301
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule301
     severity: warn
     given: $.paths.*.*.responses.*~
     then:
@@ -117,7 +117,7 @@ rules:
   Siemens-API-[302]:
     message: '{{property}} is not using most specific HTTP status code for error'
     description: Xcelerator API SHOULD use the most specific HTTP status code when returning information about the request processing state or reported error situations
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule302
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule302
     severity: warn
     given: $.components.examples..*.errors.*.status
     then:
@@ -142,7 +142,7 @@ rules:
   Siemens-API-[305]-1:
     message: Error object SHOULD be represented according to the defined structure fields
     description: Error object SHOULD be represented according to the defined structure fields
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule305
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule305
     severity: warn
     given: $.components.schemas.Errors..*..errors.*.properties.*~
     then:
@@ -161,7 +161,7 @@ rules:
   Siemens-API-[305]-2:
     message: 'The error links resource object MAY contain the members: about, type'
     description: 'The error links resource object MAY contain the members: about, type'
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule305
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule305
     severity: info
     given: $.components.schemas.Errors..*..links.properties.*~
     then:
@@ -174,7 +174,7 @@ rules:
   Siemens-API-[305]-3:
     message: 'The source object SHOULD include one of the members or be omitted: pointer, parameter, header'
     description: 'The source object SHOULD include one of the members or be omitted: pointer, parameter, header'
-    documentationUrl: https://developer.internal.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule305
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule305
     severity: warn
     given: $.components.schemas.Errors..*..source.properties.*~
     then:
