@@ -11,7 +11,6 @@ const assertLinkSchema = (schema) => {
   const paths = jp.paths(schema, '$..*..links.properties');
 
   for (const path of paths) {
-    const pathString = path.join('.');
     if (path.some(p => p === 'relationships')) {
       continue;
     }

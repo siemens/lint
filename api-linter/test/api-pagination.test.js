@@ -1,5 +1,5 @@
 const { retrieveDocument, setupSpectral} = require('@jamietanna/spectral-test-harness')
-const {resultsForSeverity, getSpecFilePath,assertOnlyErrors, assertOnlyWarnings, assertOnlyInfos, assertOnlyHints } = require("./base.js")
+const {resultsForSeverity, getSpecFilePath, assertOnlyInfos, assertOnlyHints } = require("./base.js")
 
 const path = 'pagination/';
 const rulesetPath = "test/testdata/pagination/.spectral.yml";

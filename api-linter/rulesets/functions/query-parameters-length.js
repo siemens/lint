@@ -11,7 +11,7 @@ export default (targetValue, options) => {
     }
     if (queryParameterCount > options.max && checkField && !hasFilter){
         return [{message: "The query parameter 'filter' SHOULD be used to filter or query data. " + 
-            "(Lint is unable to determine whether the parameters used for filtering or not.) " 
+            "(Linter is unable to determine whether the parameters used for filtering or not.) " 
         }];
     }
 };

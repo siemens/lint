@@ -56,7 +56,7 @@ Usage: api-linter -s "path-to-spec-file" -r "path-to-rule-file" [-f "fail-severi
 
 Options:
   -s, --specPath <openapi spec>        path to openapi specification
-  -r, --rulesetpath <rule file>        path to rules file
+  -r, --rulesetPath <rule file>        path to rules file
   -f, --failSeverity <fail severity>   test fails when met result the severity equal or higher than it (choices: "error", "warn", "info", "hint", default: warn)
   -c, --consoleSeverity <console severity> console output message for linter result no matter job failed or succeeded (choices: "error", "warn", "info", "hint", default: warn)
   -o, --outputFilename <output filename> specify the output filename with or without .html extension (default: linter-result.html)
@@ -107,7 +107,7 @@ extends:
   - "@siemens/api-linter/rulesets/siemens-api-common-operation.yml"
   - "@siemens/api-linter/rulesets/siemens-api-security.yml"
 ```
-> You MAY use as below to achieve this for guidline linting `WITHOUT` `"spectral:oas"`.
+> You MAY use as below to achieve this for guideline linting `WITHOUT` `"spectral:oas"`.
 ```yaml
 extends:
   - "@siemens/api-linter/rulesets/siemens-api-express.yml"

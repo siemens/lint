@@ -1,7 +1,7 @@
 {
     "name": "@siemens/api-linter",
     "version": "0.8.4",
-    "description": "A linter tool with Rulesets follow Siemens RestApi Guidelines",
+    "description": "A linter tool with Rulesets follow Siemens REST API Guidelines",
     "homepage": "https://github.com/siemens/lint",
     "author": {
         "name": "Siemens",

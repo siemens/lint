@@ -106,7 +106,7 @@ const formatJSON = (rules, results) => {
                 break;
             }
         }
-    })
+    });
     let jsonResult = {
         "data": data,
         "timestamp": new Date().toLocaleString(),
@@ -205,7 +205,7 @@ const linter =  async (specFilePath, rulesetPath, followRefs) => {
             fs.unlinkSync(tempFilePath); 
         }
     } catch (cleanupErr) {
-        console.error(`Remove temporary file ${tempFilePath} failed. Please delete mannually.`);
+        console.error(`Remove temporary file ${tempFilePath} failed. Please delete manually.`);
     }
     
     return binded;
@@ -269,7 +269,7 @@ const resolveRuleDependencyResult = (rules, results) => {
 
   const filteredResults = [];
 
-  for (const [locationKey, issues] of issuesByLocation.entries()) {
+  for (const [_, issues] of issuesByLocation.entries()) {
     const failedRules = new Set(issues.map(i => i.code));
 
     for (const issue of issues) {
