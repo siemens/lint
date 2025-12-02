@@ -1,0 +1,2 @@
+extends:
+  - ../../../rulesets/xcelerator-api-common-operation.yml

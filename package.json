@@ -63,6 +63,7 @@
     "eslint-config-typescript",
     "eslint-plugin-defaultvalue",
     "prettier-config",
-    "stylelint-config-scss"
+    "stylelint-config-scss",
+    "api-linter"
   ]
 }
