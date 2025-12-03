@@ -29,6 +29,6 @@
     "prettier": "^3.0.0"
   },
   "devDependencies": {
-    "prettier": "3.7.3"
+    "prettier": "3.7.4"
   }
 }
