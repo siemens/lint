@@ -50,6 +50,11 @@
         "pkgRoot": "dist/stylelint-config-scss"
       }
     ],
-    "@semantic-release/github"
+    [
+      "@semantic-release/github",
+      {
+        "successComment": false
+      }
+    ]
   ]
 }
