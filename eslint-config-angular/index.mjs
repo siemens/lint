@@ -96,7 +96,7 @@ export const configRecommended = typescriptEslint.config({
       {
         type: 'alphabetical',
         order: 'asc',
-        newlinesBetween: 'always',
+        newlinesBetween: 1,
         groups: [
           ['builtin', 'external'],
           ['parent', 'sibling', 'index']
