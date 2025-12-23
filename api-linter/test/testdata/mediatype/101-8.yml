@@ -1,0 +1,81 @@
+openapi: 3.0.1
+info:
+  title: Reference OpenAPI Specification
+  version: 2.0.0
+  contact:
+    name: API Guidance Team
+    url: https://api.siemens.com
+    email: noreply@siemens.com
+  description: |
+    This is an example API specification serving as reference for designing and
+    specifying APIs according to the API guidelines.
+servers:
+  - url: https://api.siemens.com/reference/api
+tags:
+  - name: Rooms
+    description: |
+      Rooms describe the locations where lessons take place. A room can only be
+      deleted when there are no related lessons.
+paths:
+  /rooms:
+    get:
+      summary: Queries Rooms
+      description: |
+        Query a collection of Rooms with the request by this get action.
+      operationId: ReadRooms
+      tags:
+        - Rooms
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomsReadResponse"
+components:
+  schemas:
+    RoomsReadResponse:
+      type: object
+      required:
+        - items
+      properties:
+        data:
+          type: array
+          items:
+            allOf:
+              - $ref: "#/components/schemas/RoomBase"
+              - type: object
+                properties:
+                  links:
+                    type: object
+                    properties:
+                      self:
+                        type: string
+                        example: "https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd"
+                        description: "#servers/url"
+                      lessons:
+                        type: string
+                        example: "https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2"
+                        description: "#servers/url"
+    RoomBase:
+      type: object
+      description: Place where course lessons take place.
+      properties:
+        code:
+          type: string
+          description: Code of the room in a building or site.
+          example: MI 07.02.013
+        address-detail:
+          type: object
+          description: Address of the room.
+          properties:
+            street:
+              type: string
+              example: Boltzmannstr. 3
+            city:
+              type: string
+              example: Garching b. München
+            zip:
+              type: string
+              example: "85748"
+    
