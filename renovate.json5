@@ -58,8 +58,7 @@
       "matchDepTypes": ["peerDependencies"],
       "matchUpdateTypes": ["major"],
       "groupName": "major renovate version",
-      "semanticCommitType": "feat",
-      "commitBody": "BREAKING CHANGE: Major renovate update"
+      "semanticCommitType": "feat"
     },
     {
       "description": "Trigger minor release from minor renovate release",
