@@ -19,8 +19,8 @@
     "@microsoft/tsdoc": "^0.16.0",
     "@microsoft/tsdoc-config": "^0.18.0",
     "@types/node": "^24.0.0",
-    "@typescript-eslint/rule-tester": "8.53.0",
-    "@typescript-eslint/utils": "8.53.0",
+    "@typescript-eslint/rule-tester": "8.53.1",
+    "@typescript-eslint/utils": "8.53.1",
     "angular-eslint": "21.1.0",
     "cpy-cli": "^6.0.0",
     "eslint": "9.39.2",
@@ -37,7 +37,7 @@
     "stylelint-scss": "7.0.0",
     "tsx": "^4.19.1",
     "typescript": "^5.5.4",
-    "typescript-eslint": "8.53.0"
+    "typescript-eslint": "8.53.1"
   },
   "scripts": {
     "build": "rimraf dist && tsc -p eslint-plugin-defaultvalue/tsconfig.json && cpy \"./**/{package.json,*.js,*.mjs,*.cjs,*.yml,*.md,.prettierrc.json}\" '!{node_modules,dist,tsconfig.*}' '!**/tests/**' '!./*' ./dist/ && npm run build:copy",
