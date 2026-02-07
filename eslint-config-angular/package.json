@@ -31,9 +31,9 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "@eslint/js": "^9.9.1",
+    "@eslint/js": "^9.9.1 || ^10.0.0",
     "angular-eslint": "^19.0.0 || ^20.0.0 || ^21.0.0",
-    "eslint": "^9.9.1",
+    "eslint": "^9.9.1 || ^10.0.0",
     "eslint-plugin-perfectionist": "^4.15.0 || ^5.0.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "typescript-eslint": "^8.0.0"
