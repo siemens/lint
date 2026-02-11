@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Siemens Xcelerator-API Linter Report</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <main class="container border-bottom">
+        <div class="container">
+            <h2 class="display-6">Siemens API Linter Report</h2>
+        </div>
+        <div class="container">
+            <hr />
+        </div>
+
+        <div class="container">
+            <h5>Total Rules Count: {{this.enabledCount}}</h5> 
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Severity</th>
+                        <th scope="col">Problems</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-danger">
+                        <th scope="row">Errors</th>
+                        <td>{{this.errorCount}}</td>
+                    </tr>
+                    <tr class="table-warning">
+                        <th scope="row">Warnings</th>
+                        <td>{{this.warnCount}}</td>
+                    </tr>
+                    <tr class="table-info">
+                        <th scope="row">Info</th>
+                        <td>{{this.infoCount}}</td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row">Hints</th>
+                        <td>{{this.hintCount}}</td>
+                    </tr>
+                    <tr class="table-light">
+                        <th scope="row"></th>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container">
+            <h3>Detailed report</h3>
+        </div>
+        
+        <div class="table-responsive">
+            <table>
+                <thead></thead>
+                <tbody>
+                    {{#each this.data}}
+                    <tr data-toggle="collapse" data-target="#detail{{index}}" class="accordion-toggle collapsed {{class}}" >
+                        <td style="width: 40px; text-align: center;">
+                            {{#if hasDetails}}
+                            <button class="btn btn-icon">
+                                <i class="fas fa-angle-down"></i>
+                                <i class="fas fa-angle-up"></i>
+                          </button>
+                          {{/if}}
+                        </td>
+                        <td style="width: 230px; text-align: left;"> <a href="{{documentUrl}}">{{ruleName}}</a></td>
+                        <td> {{ruleDescription}}</td>
+                        {{#if hasDetails}}
+                            <td style="width: 80px; font-weight: bold ;text-align: center;"> {{message}} </td>
+                        {{else}}    
+                            <td style="width: 80px; text-align: center;"> {{message}} </td>
+                        {{/if}}
+                    </tr>
+                    <tr class="collapse" id="detail{{index}}">
+                        <td colspan="4">
+                            {{#if hasDetails}}
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr> 
+                                            <th scope="col">#</th>
+                                            <th scope="col">Line</th>
+                                            <th scope="col">Severity</th>
+                                            <th scope="col">Path</th>
+                                            <th scope="col">message</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each details}}
+                                        <tr title='{{message}}'>
+                                            <td>{{inc @index}}</th>
+                                            <td>{{line}}</td>
+                                            <td>{{severity}}</td>
+                                            <td style="word-wrap: break-word; word-break: break-all;">{{path}}</td>
+                                            <td>{{message}}</th>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            {{/if}}
+                        </td>
+                    </tr>
+                    <tr style="background-color: black; height: 2px;" ></tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-left">
+                <span class="text-muted">Generated using <a href="https://code.siemens.com/xcelerator/api-tools/siemens-api-linter"
+                    style="text-decoration: none;">siemens-xcelerator-api-linter</a>
+                    on {{timestamp}}.</span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+          $(".accordion-toggle").click(function() {
+            $(this).toggleClass("collapsed");
+          });
+        });
+      </script>
+</body>
+<style>
+.btn-icon {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    padding: 0;
+    font-size: 16px;
+}
+.accordion-toggle .fa-angle-down {
+    display: inline;
+}
+.accordion-toggle .fa-angle-up {
+    display: none;
+}
+.accordion-toggle.collapsed .fa-angle-down {
+    display: none;
+}
+.accordion-toggle.collapsed .fa-angle-up {
+    display: inline;
+}
+body {
+    font-size: 12px;
+}
+</style>
+</html>

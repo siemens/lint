@@ -1,0 +1,2 @@
+extends:
+  - ./siemens-api-security.js
