@@ -40,7 +40,7 @@
     "typescript-eslint": "8.56.0"
   },
   "scripts": {
-    "build": "rimraf dist && tsc -p eslint-plugin-defaultvalue/tsconfig.json && cpy \"./**/{package.json,*.js,*.mjs,*.cjs,*.yml,*.md,.prettierrc.json}\" '!{node_modules,dist,tsconfig.*}' '!**/tests/**' '!./*' ./dist/ && npm run build:copy",
+    "build": "rimraf dist && tsc -p eslint-plugin-defaultvalue/tsconfig.json && cpy \"./**/{package.json,*.js,.commitlintrc.js,*.mjs,*.cjs,*.yml,*.md,.prettierrc.json}\" '!{node_modules,dist,tsconfig.*}' '!**/tests/**' '!./*' ./dist/ && npm run build:copy",
     "build:copy": "cpy \"{LICENSE.md,README.md}\" ./dist/stylelint-config-scss && cpy \"{LICENSE.md,README.md}\" ./dist/commitlint-config && cpy \"{LICENSE.md,README.md}\" ./dist/prettier-config && cpy \"{LICENSE.md,README.md}\" ./dist/eslint-config-typescript && cpy \"{LICENSE.md,README.md}\" ./dist/eslint-config-angular && cpy \"LICENSE.md\" ./dist/eslint-plugin-defaultvalue",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
