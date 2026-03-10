@@ -1,5 +1,5 @@
 /**
- * Copyright Siemens 2024.
+ * Copyright Siemens 2026.
  * SPDX-License-Identifier: MIT
  */
 import { RuleTester } from '@typescript-eslint/rule-tester';
