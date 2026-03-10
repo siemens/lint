@@ -312,6 +312,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-Code and documentation Copyright (c) Siemens 2018 - 2024.
+Code and documentation Copyright (c) Siemens 2018 - 2026.
 
 See [LICENSE.md](LICENSE.md).

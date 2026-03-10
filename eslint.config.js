@@ -1,5 +1,5 @@
 /**
- * Copyright Siemens 2024.
+ * Copyright Siemens 2026.
  * SPDX-License-Identifier: MIT
  */
 import eslintJs from '@eslint/js';
@@ -24,7 +24,7 @@ export default [
         'error',
         {
           'source': 'string',
-          'content': 'Copyright Siemens 2024.\nSPDX-License-Identifier: MIT'
+          'content': 'Copyright Siemens 2026.\nSPDX-License-Identifier: MIT'
         }
       ]
     }
@@ -67,7 +67,7 @@ export default [
         'error',
         {
           'source': 'string',
-          'content': 'Copyright Siemens 2024.\nSPDX-License-Identifier: MIT'
+          'content': 'Copyright Siemens 2026.\nSPDX-License-Identifier: MIT'
         }
       ]
     }
