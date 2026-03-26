@@ -19,11 +19,11 @@
     "@microsoft/tsdoc": "^0.16.0",
     "@microsoft/tsdoc-config": "^0.18.0",
     "@types/node": "^24.0.0",
-    "@typescript-eslint/rule-tester": "8.57.1",
-    "@typescript-eslint/utils": "8.57.1",
+    "@typescript-eslint/rule-tester": "8.57.2",
+    "@typescript-eslint/utils": "8.57.2",
     "angular-eslint": "21.3.1",
     "cpy-cli": "^7.0.0",
-    "eslint": "10.0.3",
+    "eslint": "10.1.0",
     "eslint-plugin-headers": "^1.1.2",
     "eslint-plugin-perfectionist": "^5.0.0",
     "eslint-plugin-prefer-arrow": "1.2.3",
@@ -33,11 +33,11 @@
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1",
     "semantic-release": "^25.0.0",
-    "stylelint": "17.5.0",
+    "stylelint": "17.6.0",
     "stylelint-scss": "7.0.0",
     "tsx": "^4.19.1",
     "typescript": "^5.5.4",
-    "typescript-eslint": "8.57.1"
+    "typescript-eslint": "8.57.2"
   },
   "scripts": {
     "build": "rimraf dist && tsc -p eslint-plugin-defaultvalue/tsconfig.json && cpy \"./**/{package.json,*.js,.commitlintrc.js,*.mjs,*.cjs,*.yml,*.md,.prettierrc.json}\" '!{node_modules,dist,tsconfig.*}' '!**/tests/**' '!./*' ./dist/ && npm run build:copy",
