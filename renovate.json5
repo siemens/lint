@@ -1,20 +1,23 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: [
+    "config:best-practices",
     "group:allNonMajor",
     ":semanticCommits",
     ":semanticCommitTypeAll(chore)",
     ":prHourlyLimitNone",
-    ":prConcurrentLimitNone"
+    ":prConcurrentLimitNone",
+    ":maintainLockFilesMonthly"
   ],
-  "addLabels": ["dep-bump"],
-  "packageRules": [
+  addLabels: ["dep-bump"],
+  schedule: ["before 7am on Wednesday"],
+  timezone: "Etc/UTC",
+  packageRules: [
     {
-      "description": [
+      description: [
         "Prevent Angular related major and minor updates. Those should be manually done"
       ],
-      "matchPackageNames": [
+      matchPackageNames: [
         "@angular/**",
         "@angular-devkit/**",
         "@angular-eslint/**",
@@ -26,13 +29,13 @@
         "zone.js",
         "tslib"
       ],
-      "matchUpdateTypes": ["major", "minor"],
-      "enabled": false
+      matchUpdateTypes: ["major", "minor"],
+      enabled: false
     },
     {
-      "groupName": "Angular dependencies",
-      "description": ["Update Angular packages"],
-      "matchPackageNames": [
+      groupName: "Angular dependencies",
+      description: ["Update Angular packages"],
+      matchPackageNames: [
         "@angular/**",
         "@angular-devkit/**",
         "@angular-eslint/**",
@@ -44,35 +47,29 @@
         "zone.js",
         "tslib"
       ],
-      "matchUpdateTypes": ["patch"],
-      "enabled": true
+      matchUpdateTypes: ["patch"],
+      enabled: true
     },
     {
-      "description": ["Node LTS gitlab-ci update"],
-      "matchPackageNames": ["node"],
-      "matchDatasources": ["docker"],
-      "enabled": true
+      description: "Trigger major release from major renovate release",
+      matchDepTypes: ["peerDependencies"],
+      matchUpdateTypes: ["major"],
+      groupName: "major renovate version",
+      semanticCommitType: "feat"
     },
     {
-      "description": "Trigger major release from major renovate release",
-      "matchDepTypes": ["peerDependencies"],
-      "matchUpdateTypes": ["major"],
-      "groupName": "major renovate version",
-      "semanticCommitType": "feat"
+      description: "Trigger minor release from minor renovate release",
+      matchDepTypes: ["peerDependencies"],
+      matchUpdateTypes: ["minor"],
+      groupName: "minor renovate version",
+      semanticCommitType: "feat"
     },
     {
-      "description": "Trigger minor release from minor renovate release",
-      "matchDepTypes": ["peerDependencies"],
-      "matchUpdateTypes": ["minor"],
-      "groupName": "minor renovate version",
-      "semanticCommitType": "feat"
-    },
-    {
-      "description": "Trigger patch release from patch renovate release",
-      "matchDepTypes": ["peerDependencies"],
-      "matchUpdateTypes": ["patch"],
-      "groupName": "patch renovate version",
-      "semanticCommitType": "fix"
+      description: "Trigger patch release from patch renovate release",
+      matchDepTypes: ["peerDependencies"],
+      matchUpdateTypes: ["patch"],
+      groupName: "patch renovate version",
+      semanticCommitType: "fix"
     }
   ]
 }
