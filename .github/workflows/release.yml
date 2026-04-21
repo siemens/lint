@@ -13,11 +13,11 @@ jobs:
     permissions:
       id-token: write # to enable use of OIDC for npm provenance
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           fetch-depth: 0 # semantic-release needs this
           token: ${{ secrets.ELEMENT_BOT_GITHUB_TOKEN }} # Otherwise, branch protection rules are not bypassed.
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
           node-version: 24.x
           cache: 'npm'
