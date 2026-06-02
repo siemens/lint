@@ -14,43 +14,6 @@
   timezone: "Etc/UTC",
   packageRules: [
     {
-      description: [
-        "Prevent Angular related major and minor updates. Those should be manually done"
-      ],
-      matchPackageNames: [
-        "@angular/**",
-        "@angular-devkit/**",
-        "@angular-eslint/**",
-        "@angular-architects/**",
-        "@angular-builders/**",
-        "ng-packagr",
-        "rxjs",
-        "typescript",
-        "zone.js",
-        "tslib"
-      ],
-      matchUpdateTypes: ["major", "minor"],
-      enabled: false
-    },
-    {
-      groupName: "Angular dependencies",
-      description: ["Update Angular packages"],
-      matchPackageNames: [
-        "@angular/**",
-        "@angular-devkit/**",
-        "@angular-eslint/**",
-        "@angular-architects/**",
-        "@angular-builders/**",
-        "ng-packagr",
-        "rxjs",
-        "typescript",
-        "zone.js",
-        "tslib"
-      ],
-      matchUpdateTypes: ["patch"],
-      enabled: true
-    },
-    {
       description: "Major peer dep bumps trigger a feat release",
       matchDepTypes: ["peerDependencies"],
       matchUpdateTypes: ["major"],
