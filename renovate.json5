@@ -51,25 +51,34 @@
       enabled: true
     },
     {
-      description: "Trigger major release from major renovate release",
+      description: "Major peer dep bumps trigger a feat release",
       matchDepTypes: ["peerDependencies"],
       matchUpdateTypes: ["major"],
-      groupName: "major renovate version",
       semanticCommitType: "feat"
     },
     {
-      description: "Trigger minor release from minor renovate release",
-      matchDepTypes: ["peerDependencies"],
-      matchUpdateTypes: ["minor"],
-      groupName: "minor renovate version",
-      semanticCommitType: "feat"
+      description: "Shared eslint peers + angular-eslint -> eslint scope",
+      matchPackageNames: [
+        "eslint",
+        "@eslint/js",
+        "typescript-eslint",
+        "eslint-plugin-perfectionist",
+        "eslint-plugin-prefer-arrow",
+        "angular-eslint"
+      ],
+      semanticCommitScope: "eslint"
     },
     {
-      description: "Trigger patch release from patch renovate release",
-      matchDepTypes: ["peerDependencies"],
-      matchUpdateTypes: ["patch"],
-      groupName: "patch renovate version",
-      semanticCommitType: "fix"
+      matchPackageNames: ["@commitlint/cli", "@commitlint/config-conventional"],
+      semanticCommitScope: "commitlint"
+    },
+    {
+      matchPackageNames: ["prettier"],
+      semanticCommitScope: "prettier"
+    },
+    {
+      matchPackageNames: ["postcss-scss", "stylelint", "stylelint-scss"],
+      semanticCommitScope: "stylelint"
     }
   ]
 }
