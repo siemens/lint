@@ -1,10 +1,12 @@
 {
   "exclude": ["tests/**"],
   "compilerOptions": {
+    "rootDir": "./lib",
     "outDir": "../dist/eslint-plugin-defaultvalue/lib",
     "target": "es2022",
     "module": "Node16",
     "moduleResolution": "Node16",
+    "types": ["node"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
