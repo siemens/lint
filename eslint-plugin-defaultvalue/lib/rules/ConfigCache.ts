@@ -46,10 +46,8 @@ export class ConfigCache {
 
     const nowMs: number = ConfigCache.getTimeInMs();
 
-    let cachedConfig: ICachedConfig | undefined = undefined;
-
     // Do we have a cached object?
-    cachedConfig = ConfigCache._cachedConfigs.get(cacheKey);
+    let cachedConfig: ICachedConfig | undefined = ConfigCache._cachedConfigs.get(cacheKey);
 
     if (cachedConfig) {
       // Is the cached object still valid?
