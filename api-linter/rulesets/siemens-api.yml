@@ -1,0 +1,11 @@
+extends:
+  - ./siemens-api-media-type.yml
+  - ./siemens-api-versioning.yml
+  - ./siemens-api-error-reporting.yml
+  - ./siemens-api-filtering.yml
+  - ./siemens-api-sparse-fieldsets.yml
+  - ./siemens-api-pagination.yml
+  - ./siemens-api-sorting.yml
+  - ./siemens-api-common-operation.yml
+  - ./siemens-api-security.yml
+  - "spectral:oas"

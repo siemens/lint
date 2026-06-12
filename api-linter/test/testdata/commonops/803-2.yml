@@ -1,0 +1,111 @@
+openapi: 3.0.1
+info:
+  title: Reference OpenAPI Specification
+  version: 2.0.0
+  contact:
+    name: API Guidance Team
+    url: https://api.siemens.com
+    email: noreply@siemens.com
+  description: |
+    This is an example API specification serving as reference for designing and
+    specifying APIs according to the API guidelines.
+servers:
+  - url: https://api.siemens.com/reference/api/v1
+tags:
+  - name: Rooms
+    description: |
+      Rooms describe the locations where lessons take place. A room can only be
+      deleted when there are no related lessons.
+paths:
+  "/rooms/{id}":
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identifier of a Room resource.
+        schema:
+          type: string
+          example: 7eeea381-872c-4b83-a228-31878e5b8de8
+    put:
+      summary: Updates a Room
+      description: |
+        Update the specified Room according to the id parameter by this put action.
+      operationId: UpdateRoom
+      parameters:
+        - name: If-Match
+          in: header
+        - name: If-None-Match
+          in: header
+      tags:
+        - Rooms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RoomUpdateRequest"
+      responses:
+        "301":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomUpdateResponse"
+components:
+  schemas:
+    RoomUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/Room"
+    RoomUpdateResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/RoomLink"
+    Room:
+      allOf:
+        - required:
+          - id
+        - type: object
+          properties:
+            id:
+              type: string
+              example: 846650de-20fd-4197-867b-00ac7606cffd
+        - $ref: "#/components/schemas/RoomBase"
+    RoomBase:
+      type: object
+      description: Place where course lessons take place.
+      properties:
+        code:
+          type: string
+          description: Code of the room in a building or site.
+          example: MI 07.02.013
+        address:
+          type: object
+          description: Address of the room.
+          properties:
+            street:
+              type: string
+              example: Boltzmannstr. 3
+            city:
+              type: string
+              example: Garching b. München
+            zip:
+              type: string
+              example: "85748"
+    RoomLink:
+      allOf:
+        - $ref: "#/components/schemas/RoomBase"
+        - type: object
+          properties:            
+            links:
+              type: object
+              properties:
+                self: 
+                  type: string
+                  example: "https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd"
+    
