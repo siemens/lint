@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:siemens/lint.git"
+    "url": "git+https://github.com/siemens/lint.git"
   },
   "author": {
     "name": "Siemens",
