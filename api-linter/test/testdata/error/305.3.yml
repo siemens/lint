@@ -1,0 +1,139 @@
+openapi: 3.0.1
+info:
+  title: Reference OpenAPI Specification
+  version: 2.0.0
+  contact:
+    name: API Guidance Team
+    url: https://api.siemens.com
+    email: noreply@siemens.com
+  description: |
+    This is an example API specification serving as reference for designing and
+    specifying APIs according to the API guidelines.
+servers:
+  - url: https://api.siemens.com/reference/api
+tags:
+  - name: Rooms
+    description: |
+      Rooms describe the locations where lessons take place. A room can only be
+      deleted when there are no related lessons.
+paths:
+  /rooms:
+    get:
+      summary: Queries Rooms
+      description: |
+        Query a collection of Rooms with the request by this get action.
+      operationId: ReadRooms
+      tags:
+        - Rooms
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomsReadResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+components:
+  schemas:
+    RoomsReadResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            allOf:
+              - $ref: "#/components/schemas/RoomBase"
+              - type: object
+                properties:
+                  links:
+                    type: object
+                    properties:
+                      self:
+                        type: string
+                        example: "https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd"
+                        description: "#servers/url"
+                      lessons:
+                        type: string
+                        example: "https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2"
+                        description: "#servers/url"
+    RoomBase:
+      type: object
+      description: Place where course lessons take place.
+      properties:
+        code:
+          type: string
+          description: Code of the room in a building or site.
+          example: MI 07.02.013
+        address:
+          type: object
+          description: Address of the room.
+          properties:
+            street:
+              type: string
+              example: Boltzmannstr. 3
+            city:
+              type: string
+              example: Garching b. München
+            zip:
+              type: string
+              example: "85748"
+    Errors:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          items:
+            title: Error
+            type: object
+            properties:
+              id:
+                type: string
+                description: Unique identifier for this particular occurrence of the error.
+                example: df873142-804e-4146-8956-02682c20d23d
+              status:
+                type: string
+                description: HTTP status code applicable to this error.
+                example: "404"
+              code:
+                type: string
+                description: Unique identifier for this type of error.
+                example: exampleError
+              title:
+                type: string
+                description: Short, human-readable summary of the problem associated to exactly one error code. May be localized.
+                example: Example error
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence of the error. May be localized.
+                example: This is an example error which occured for resource of type example.
+              source:
+                type: object
+                properties:
+                  self: 
+                    type: string
+                    example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
+  responses:
+    DefaultErrors:
+      description: Standard errors
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Errors"
+          examples:
+            Forbidden:
+              $ref: "#/components/examples/Forbidden"
+  examples:
+    Forbidden:
+      summary: forbidden
+      value:
+        errors:
+          - id: 5fa91094-7caf-4ce7-85f5-25f7d883a7d4
+            status: "403"
+            code: forbidden
+            title: Forbidden
+            detail: The provided authorization means did not contain suitable permissions.

@@ -1,0 +1,88 @@
+openapi: 3.0.1
+info:
+  title: Reference OpenAPI Specification
+  version: 2.0.0
+  contact:
+    name: API Guidance Team
+    url: https://api.siemens.com
+    email: noreply@siemens.com
+  description: |
+    This is an example API specification serving as reference for designing and
+    specifying APIs according to the API guidelines.
+servers:
+  - url: https://api.siemens.com/reference/api/v1
+tags:
+  - name: Rooms
+    description: |
+      Rooms describe the locations where lessons take place. A room can only be
+      deleted when there are no related lessons.
+paths:
+  "/rooms":
+    post:
+      summary: Creates a Room
+      description: |
+        Create a Room with the request content by this post action.
+      operationId: CreateRoom
+      tags:
+        - Rooms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RoomCreationRequest"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomCreationResponse"
+components:
+  schemas:
+    RoomCreationRequest:
+      type: array
+      required:
+        - content
+      properties:
+        content:
+          $ref: "#/components/schemas/RoomBase"
+    RoomCreationResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/RoomLink"
+    RoomBase:
+      type: object
+      description: Place where course lessons take place.
+      properties:
+        code:
+          type: string
+          description: Code of the room in a building or site.
+          example: MI 07.02.013
+        address:
+          type: object
+          description: Address of the room.
+          properties:
+            street:
+              type: string
+              example: Boltzmannstr. 3
+            city:
+              type: string
+              example: Garching b. München
+            zip:
+              type: string
+              example: "85748"
+    RoomLink:
+      allOf:
+        - $ref: "#/components/schemas/RoomBase"
+        - type: object
+          properties:            
+            links:
+              type: object
+              properties:
+                self: 
+                  type: string
+                  example: "https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd"
+    
