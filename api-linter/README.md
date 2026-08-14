@@ -134,7 +134,7 @@ extends:
 > You can disable any rules/rulesets as you wish by [Stoplight Spectral](https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview).
 
 ```yaml
-#e.g. disable spectral:oas ruleset and disable Siemens-API-[400] rules from the extended ruleset
+# e.g. disable spectral:oas ruleset and disable Siemens-API-[400] rules from the extended ruleset
 extends:
   - '@siemens/api-linter/rulesets/siemens-api.yml'
   - ['spectral:oas', 'off']
@@ -150,7 +150,7 @@ rules:
 > Then we can define the rules with `"x-dependsOn"` attribute.
 
 ```yaml
-#e.g. Siemens-API-[101.8.1] depends on Siemens-API-[101.8]
+# e.g. Siemens-API-[101.8.1] depends on Siemens-API-[101.8]
 extends:
   - '@siemens/api-linter/rulesets/siemens-api.yml'
 
