@@ -1,2 +1,2 @@
 extends:
-  - ../../../rulesets/xcelerator-api-filtering.yml
+  - ../../../rulesets/siemens-api-filtering.yml

@@ -1,2 +1,2 @@
 extends:
-  - ../../../rulesets/xcelerator-api-error-reporting.yml
+  - ../../../rulesets/siemens-api-error-reporting.yml

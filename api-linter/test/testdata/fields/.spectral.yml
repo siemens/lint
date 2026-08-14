@@ -1,2 +1,2 @@
 extends:
-  - ../../../rulesets/xcelerator-api-sparse-fieldsets.yml
+  - ../../../rulesets/siemens-api-sparse-fieldsets.yml
