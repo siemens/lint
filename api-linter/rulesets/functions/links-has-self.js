@@ -2,6 +2,7 @@
  * Copyright Siemens 2026.
  * SPDX-License-Identifier: MIT
  */
+
 'use strict';
 const jp = require('jsonpath');
 
@@ -15,6 +16,7 @@ const assertLinkSchema = schema => {
   const paths = jp.paths(schema, '$..*..links.properties');
 
   for (const path of paths) {
+    const pathString = path.join('.');
     if (path.some(p => p === 'relationships')) {
       continue;
     }

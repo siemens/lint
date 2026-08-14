@@ -2,6 +2,7 @@
  * Copyright Siemens 2026.
  * SPDX-License-Identifier: MIT
  */
+
 export default (targetVal, options) => {
   if (typeof targetVal !== 'object' || targetVal == null) return;
   const results = [];

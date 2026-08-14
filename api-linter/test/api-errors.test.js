@@ -6,6 +6,7 @@ const { retrieveDocument, setupSpectral } = require('@jamietanna/spectral-test-h
 const {
   resultsForSeverity,
   getSpecFilePath,
+  assertOnlyErrors,
   assertOnlyWarnings,
   assertOnlyInfos
 } = require('./base.js');
@@ -60,10 +61,10 @@ test('Error object SHOULD be represented according to the defined structure fiel
   const document = retrieveDocument(specFilePath);
   spectral.run(document).then(results => {
     //Problem in line:110
-    const warnings = resultsForSeverity(results, 'Warning');
-    expect(warnings).toHaveLength(1);
-    expect(warnings[0].code).toBe('Siemens-API-[305]-1');
-    assertOnlyWarnings(results);
+    const errors = resultsForSeverity(results, 'Error');
+    expect(errors).toHaveLength(1);
+    expect(errors[0].code).toBe('Siemens-API-[305]-1');
+    assertOnlyErrors(results);
   });
 });
 

@@ -180,7 +180,7 @@ const linter = async (specFilePath, rulesetPath, followRefs) => {
   );
 
   const spectral = new Spectral({ resolver });
-  let tempFilePath;
+  var tempFilePath = '';
   var isMultiRuleFiles = false;
 
   if (rulesetPath.length > 1) {
@@ -212,8 +212,8 @@ const linter = async (specFilePath, rulesetPath, followRefs) => {
     if (isMultiRuleFiles && fs.existsSync(tempFilePath)) {
       fs.unlinkSync(tempFilePath);
     }
-  } catch {
-    console.error(`Remove temporary file ${tempFilePath} failed. Please delete manually.`);
+  } catch (cleanupErr) {
+    console.error(`Remove temporary file ${tempFilePath} failed. Please delete mannually.`);
   }
 
   return binded;
@@ -279,7 +279,7 @@ const resolveRuleDependencyResult = (rules, results) => {
 
   const filteredResults = [];
 
-  for (const issues of issuesByLocation.values()) {
+  for (const [locationKey, issues] of issuesByLocation.entries()) {
     const failedRules = new Set(issues.map(i => i.code));
 
     for (const issue of issues) {

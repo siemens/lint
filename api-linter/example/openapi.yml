@@ -1426,6 +1426,10 @@ components:
                 type: string
                 description: Human-readable explanation specific to this occurrence of the error. May be localized.
                 example: This is an example error which occured for resource of type example.
+              test:
+                type: string
+                description: Human-readable explanation specific to this occurrence of the error. May be localized.
+                example: This is an example error which occured for resource of type example.
   responses:
     DefaultErrors:
       description: Standard errors

@@ -2,6 +2,7 @@
  * Copyright Siemens 2026.
  * SPDX-License-Identifier: MIT
  */
+
 'use strict';
 
 const extractResourceTypeFromPath = path => {

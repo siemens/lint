@@ -2,6 +2,7 @@
  * Copyright Siemens 2026.
  * SPDX-License-Identifier: MIT
  */
+
 'use strict';
 
 /*
@@ -37,7 +38,7 @@ const assertProblemSchema = schema => {
   }
   const status = (schema.properties || {}).status || {};
   if (status.type !== 'integer' || status.format !== 'int32') {
-    throw "Problem json must have property 'status' with type 'integer' and format 'int32'";
+    throw "Problem json must have property 'status' with type 'integer' and format 'in32'";
   }
   const detail = (schema.properties || {}).detail || {};
   if (detail.type !== 'string') {

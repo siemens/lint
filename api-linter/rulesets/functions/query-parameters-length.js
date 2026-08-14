@@ -2,6 +2,7 @@
  * Copyright Siemens 2026.
  * SPDX-License-Identifier: MIT
  */
+
 export default (targetValue, options) => {
   if (targetValue == null) return;
   var checkField = options.nameCheck != null;
@@ -27,7 +28,7 @@ export default (targetValue, options) => {
       {
         message:
           "The query parameter 'filter' SHOULD be used to filter or query data. " +
-          '(Linter is unable to determine whether the parameters used for filtering or not.) '
+          '(Lint is unable to determine whether the parameters used for filtering or not.) '
       }
     ];
   }

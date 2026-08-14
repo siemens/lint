@@ -138,24 +138,44 @@ rules:
           - '501'
           - '503'
 
-  Siemens-API-[305]-1:
-    message: Error object SHOULD be represented according to the defined structure fields
-    description: Error object SHOULD be represented according to the defined structure fields
-    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule305
+  Siemens-API-[304]:
+    message: 'API SHOULD report problems with an errors object'
+    description: API SHOULD report problems with an errors object
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule304
+    given: $.paths[*][*].responses[4xx,5xx].content[*].schema
     severity: warn
-    given: $.components.schemas.Errors..*..errors.*.properties.*~
     then:
-      function: enumeration
+      - field: properties.errors
+        function: truthy
+
+  Siemens-API-[305]-1:
+    message: 'Each error object within the errors array MUST contain at least one of the attributes'
+    description: Each error object within the errors array MUST contain at least one of the attributes
+    documentationUrl: https://developer.siemens.com/guidelines/api-guidelines/rest/error.html#errorreportingrule305
+    severity: error
+    given: $.components.schemas..*..errors.*.properties
+    then:
+      function: schema
       functionOptions:
-        values:
-          - 'id'
-          - 'code'
-          - 'status'
-          - 'title'
-          - 'detail'
-          - 'links'
-          - 'correlationId'
-          - 'source'
+        schema:
+          type: object
+          anyOf:
+            - required:
+                - id
+            - required:
+                - code
+            - required:
+                - status
+            - required:
+                - title
+            - required:
+                - detail
+            - required:
+                - links
+            - required:
+                - correlationId
+            - required:
+                - source
 
   Siemens-API-[305]-2:
     message: 'The error links resource object MAY contain the members: about, type'

@@ -3,13 +3,13 @@
  * SPDX-License-Identifier: MIT
  */
 const fs = require('fs');
-const { Document } = require('@stoplight/spectral-core');
+const { Spectral, Document } = require('@stoplight/spectral-core');
 const Parsers = require('@stoplight/spectral-parsers');
 
 // 👇   RE-ADD setupSpectral here
-const { setupSpectral } = require('@jamietanna/spectral-test-harness');
+const { setupSpectral, retrieveDocument } = require('@jamietanna/spectral-test-harness');
 
-const { resultsForSeverity } = require('./base.js');
+const { resultsForSeverity, getSpecFilePath } = require('./base.js');
 const { resolver } = require('@stoplight/spectral-ref-resolver');
 const path = require('path');
 
