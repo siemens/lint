@@ -3,11 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 const { retrieveDocument, setupSpectral } = require('@jamietanna/spectral-test-harness');
-const {
-  resultsForSeverity,
-  getSpecFilePath,
-  assertOnlyInfos
-} = require('./base.js');
+const { resultsForSeverity, getSpecFilePath, assertOnlyInfos } = require('./base.js');
 
 const path = 'fields/';
 const rulesetPath = 'test/testdata/fields/.spectral.yml';
