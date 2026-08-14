@@ -9,6 +9,7 @@ import { defineConfig } from 'eslint/config';
 import angularTypescriptConfig from '@siemens/eslint-config-angular';
 import tsdocPlugin from 'eslint-plugin-tsdoc';
 import eslintPluginHeaders from 'eslint-plugin-headers';
+import globals from 'globals';
 
 // mimic CommonJS variables
 const __filename = fileURLToPath(import.meta.url);
@@ -17,6 +18,17 @@ const __dirname = path.dirname(__filename);
 export default [
   { ignores: ['dist', 'eslint-plugin-defaultvalue/lib/rules/**/*.js'] },
   eslintJs.configs.recommended,
+  {
+    name: 'api-linter',
+    files: ['api-linter/**/*.js'],
+    languageOptions: {
+      sourceType: 'module',
+      globals: {
+        ...globals.node,
+        ...globals.jest
+      }
+    }
+  },
   {
     plugins: { 'headers': eslintPluginHeaders },
     rules: {
