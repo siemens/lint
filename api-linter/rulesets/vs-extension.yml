@@ -7,4 +7,4 @@ extends:
   - ./siemens-api-sorting.yml
   - ./siemens-api-common-operation.yml
   - ./semantic-versioning.yml
-  - "spectral:oas"
+  - 'spectral:oas'

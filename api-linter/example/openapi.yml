@@ -62,16 +62,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CourseCreationRequest"
+              $ref: '#/components/schemas/CourseCreationRequest'
       responses:
-        "201":
+        '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CourseCreationResponse"
+                $ref: '#/components/schemas/CourseCreationResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
     get:
       summary: Queries Courses
       description: |
@@ -80,14 +80,14 @@ paths:
       tags:
         - Courses
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CoursesReadResponse"
+                $ref: '#/components/schemas/CoursesReadResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
       parameters:
         - name: fields
           in: query
@@ -117,7 +117,7 @@ paths:
             enum:
               - id
               - name
-  "/courses/{id}":
+  '/courses/{id}':
     parameters:
       - name: id
         in: path
@@ -134,14 +134,14 @@ paths:
       tags:
         - Courses
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CourseReadResponse"
+                $ref: '#/components/schemas/CourseReadResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
       parameters:
         - name: fields
           in: query
@@ -161,16 +161,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CourseUpdateRequest"
+              $ref: '#/components/schemas/CourseUpdateRequest'
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CourseUpdateResponse"
+                $ref: '#/components/schemas/CourseUpdateResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
     delete:
       summary: Deletes a Course
       description: |
@@ -179,11 +179,11 @@ paths:
       tags:
         - Courses
       responses:
-        "204":
+        '204':
           description: No content
         default:
-          $ref: "#/components/responses/DefaultErrors"
-  "/courses/{id}/lessons":
+          $ref: '#/components/responses/DefaultErrors'
+  '/courses/{id}/lessons':
     parameters:
       - name: id
         in: path
@@ -200,15 +200,15 @@ paths:
       tags:
         - Courses
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CourseRelatedLessonsResponse"
+                $ref: '#/components/schemas/CourseRelatedLessonsResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
-  "/courses/{id}/participants":
+          $ref: '#/components/responses/DefaultErrors'
+  '/courses/{id}/participants':
     parameters:
       - name: id
         in: path
@@ -228,12 +228,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CourseParticipantsRequest"
+              $ref: '#/components/schemas/CourseParticipantsRequest'
       responses:
-        "204":
+        '204':
           description: No content
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
     get:
       summary: Returns the Person from the Course
       description: |
@@ -242,14 +242,14 @@ paths:
       tags:
         - Courses
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CourseParticipantsResponse"
+                $ref: '#/components/schemas/CourseParticipantsResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
       parameters:
         - name: number
           in: query
@@ -288,11 +288,11 @@ paths:
       tags:
         - Courses
       responses:
-        "204":
+        '204':
           description: No content
         default:
-          $ref: "#/components/responses/DefaultErrors"
-  "/courses/{id}/teacher":
+          $ref: '#/components/responses/DefaultErrors'
+  '/courses/{id}/teacher':
     parameters:
       - name: id
         in: path
@@ -309,14 +309,14 @@ paths:
       tags:
         - Courses
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CourseRelatedTeacherResponse"
+                $ref: '#/components/schemas/CourseRelatedTeacherResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
     post:
       summary: Adds a Teacher to the Course
       description: |
@@ -328,12 +328,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CourseRelatedTeacherRequest"
+              $ref: '#/components/schemas/CourseRelatedTeacherRequest'
       responses:
-        "204":
+        '204':
           description: No content
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
   /lessons:
     post:
       summary: Creates a Lesson
@@ -346,17 +346,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/LessonCreationRequest"
+              $ref: '#/components/schemas/LessonCreationRequest'
       responses:
-        "201":
+        '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/LessonCreationResponse"
+                $ref: '#/components/schemas/LessonCreationResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
-  "/lessons/{id}":
+          $ref: '#/components/responses/DefaultErrors'
+  '/lessons/{id}':
     parameters:
       - name: id
         in: path
@@ -376,16 +376,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/LessonUpdateRequest"
+              $ref: '#/components/schemas/LessonUpdateRequest'
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/LessonUpdateResponse"
+                $ref: '#/components/schemas/LessonUpdateResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
   /people:
     post:
       summary: Creates a Person
@@ -398,16 +398,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PersonCreationRequest"
+              $ref: '#/components/schemas/PersonCreationRequest'
       responses:
-        "201":
+        '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PersonCreationResponse"
+                $ref: '#/components/schemas/PersonCreationResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
     get:
       summary: Queries People
       description: |
@@ -416,14 +416,14 @@ paths:
       tags:
         - People
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PeopleReadResponse"
+                $ref: '#/components/schemas/PeopleReadResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
       parameters:
         - name: fields
           in: query
@@ -454,7 +454,7 @@ paths:
               - id
               - name
               - email
-  "/people/{id}":
+  '/people/{id}':
     parameters:
       - name: id
         in: path
@@ -471,14 +471,14 @@ paths:
       tags:
         - People
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PersonReadResponse"
+                $ref: '#/components/schemas/PersonReadResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
       parameters:
         - name: fields
           in: query
@@ -498,16 +498,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PersonUpdateRequest"
+              $ref: '#/components/schemas/PersonUpdateRequest'
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PersonUpdateResponse"
+                $ref: '#/components/schemas/PersonUpdateResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
     delete:
       summary: Deletes a Person
       description: |
@@ -516,11 +516,11 @@ paths:
       tags:
         - People
       responses:
-        "204":
+        '204':
           description: No content
         default:
-          $ref: "#/components/responses/DefaultErrors"
-  "/people/{id}/participated-courses":
+          $ref: '#/components/responses/DefaultErrors'
+  '/people/{id}/participated-courses':
     parameters:
       - name: id
         in: path
@@ -537,15 +537,15 @@ paths:
       tags:
         - People
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PersonRelatedParticipatedCoursesResponse"
+                $ref: '#/components/schemas/PersonRelatedParticipatedCoursesResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
-  "/people/{id}/taught-courses":
+          $ref: '#/components/responses/DefaultErrors'
+  '/people/{id}/taught-courses':
     parameters:
       - name: id
         in: path
@@ -562,14 +562,14 @@ paths:
       tags:
         - People
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PersonRelatedTaughtCoursesResponse"
+                $ref: '#/components/schemas/PersonRelatedTaughtCoursesResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
   /rooms:
     post:
       summary: Creates a Room
@@ -582,16 +582,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RoomCreationRequest"
+              $ref: '#/components/schemas/RoomCreationRequest'
       responses:
-        "201":
+        '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RoomCreationResponse"
+                $ref: '#/components/schemas/RoomCreationResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
     get:
       summary: Queries Rooms
       description: |
@@ -600,14 +600,14 @@ paths:
       tags:
         - Rooms
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RoomsReadResponse"
+                $ref: '#/components/schemas/RoomsReadResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
       parameters:
         - name: fields
           in: query
@@ -638,7 +638,7 @@ paths:
               - id
               - code
               - creationDate
-  "/rooms/{id}":
+  '/rooms/{id}':
     parameters:
       - name: id
         in: path
@@ -655,14 +655,14 @@ paths:
       tags:
         - Rooms
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RoomReadResponse"
+                $ref: '#/components/schemas/RoomReadResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
     patch:
       summary: Updates a Room
       description: |
@@ -674,16 +674,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RoomUpdateRequest"
+              $ref: '#/components/schemas/RoomUpdateRequest'
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RoomUpdateResponse"
+                $ref: '#/components/schemas/RoomUpdateResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
     delete:
       summary: Deletes a Room
       description: |
@@ -692,11 +692,11 @@ paths:
       tags:
         - Rooms
       responses:
-        "204":
+        '204':
           description: No content
         default:
-          $ref: "#/components/responses/DefaultErrors"
-  "/rooms/{id}/lessons":
+          $ref: '#/components/responses/DefaultErrors'
+  '/rooms/{id}/lessons':
     parameters:
       - name: id
         in: path
@@ -713,14 +713,14 @@ paths:
       tags:
         - Rooms
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RoomRelatedLessonsResponse"
+                $ref: '#/components/schemas/RoomRelatedLessonsResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
       parameters:
         - name: cursor
           in: query
@@ -758,38 +758,38 @@ components:
     Course:
       allOf:
         - required:
-          - id
+            - id
         - type: object
           properties:
             id:
               type: string
               example: 822a6549-4fd8-478a-b5ed-73bef7a066f4
-        - $ref: "#/components/schemas/CourseBase"
+        - $ref: '#/components/schemas/CourseBase'
     CourseLink:
       allOf:
-        - $ref: "#/components/schemas/CourseBase"
+        - $ref: '#/components/schemas/CourseBase'
         - type: object
           properties:
             links:
               type: object
               properties:
-                self: 
+                self:
                   type: string
-                  example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
+                  example: 'https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
     CourseCreationRequest:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/CourseBase"
+          $ref: '#/components/schemas/CourseBase'
     CourseCreationResponse:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/CourseLink"
+          $ref: '#/components/schemas/CourseLink'
     CourseReadResponse:
       type: object
       required:
@@ -797,7 +797,7 @@ components:
       properties:
         data:
           allOf:
-            - $ref: "#/components/schemas/CourseBase"
+            - $ref: '#/components/schemas/CourseBase'
             - type: object
               properties:
                 links:
@@ -805,36 +805,36 @@ components:
                   properties:
                     self:
                       type: string
-                      example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
+                      example: 'https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
                     participants:
                       type: string
-                      example: "https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032"
-                      description: "#servers/url"
+                      example: 'https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
+                      description: '#servers/url'
                     teacher:
                       type: string
-                      example: "https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032"
-                      description: "#servers/url"
+                      example: 'https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
+                      description: '#servers/url'
     CourseRelatedLessonsResponse:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/LessonLink"
+          $ref: '#/components/schemas/LessonLink'
     CourseRelatedTeacherRequest:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/PersonLink"
+          $ref: '#/components/schemas/PersonLink'
     CourseRelatedTeacherResponse:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/PersonLink"
+          $ref: '#/components/schemas/PersonLink'
     CourseParticipantsRequest:
       type: object
       required:
@@ -843,7 +843,7 @@ components:
         data:
           type: array
           items:
-            $ref: "#/components/schemas/Person"
+            $ref: '#/components/schemas/Person'
     CourseParticipantsResponse:
       type: object
       required:
@@ -852,43 +852,43 @@ components:
         data:
           type: array
           items:
-            $ref: "#/components/schemas/PersonLink"
+            $ref: '#/components/schemas/PersonLink'
         links:
           type: object
           properties:
             self:
               type: string
-              example: "https://api.siemens.com/reference/api/courses/1/participants?number=1&size=1"
+              example: 'https://api.siemens.com/reference/api/courses/1/participants?number=1&size=1'
             first:
               type: string
-              example: "https://api.siemens.com/reference/api/courses/1/participants?number=1&size=1"
+              example: 'https://api.siemens.com/reference/api/courses/1/participants?number=1&size=1'
             last:
               type: string
-              example: "https://api.siemens.com/reference/api/courses/1/participants?number=2&size=1"
+              example: 'https://api.siemens.com/reference/api/courses/1/participants?number=2&size=1'
             next:
               type: string
-              example: "https://api.siemens.com/reference/api/courses/1/participants?page=2&size=1"
+              example: 'https://api.siemens.com/reference/api/courses/1/participants?page=2&size=1'
         meta:
           type: object
           required:
             - page
           properties:
             page:
-              $ref: "#/components/schemas/PageIndex"
+              $ref: '#/components/schemas/PageIndex'
     CourseUpdateRequest:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/Course"
+          $ref: '#/components/schemas/Course'
     CourseUpdateResponse:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/CourseLink"
+          $ref: '#/components/schemas/CourseLink'
     CoursesReadResponse:
       type: object
       required:
@@ -898,8 +898,8 @@ components:
         data:
           type: array
           items:
-             allOf:
-              - $ref: "#/components/schemas/CourseBase"
+            allOf:
+              - $ref: '#/components/schemas/CourseBase'
               - type: object
                 properties:
                   links:
@@ -907,38 +907,38 @@ components:
                     properties:
                       self:
                         type: string
-                        example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
-                        description: "#servers/url"
+                        example: 'https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                        description: '#servers/url'
                       participants:
                         type: string
-                        example: "https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032"
-                        description: "#servers/url"
+                        example: 'https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
+                        description: '#servers/url'
                       teacher:
                         type: string
-                        example: "https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032"
-                        description: "#servers/url"
+                        example: 'https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
+                        description: '#servers/url'
         links:
           type: object
           properties:
             self:
               type: string
-              example: "https://api.siemens.com/reference/api/courses?number=1&size=1"
+              example: 'https://api.siemens.com/reference/api/courses?number=1&size=1'
             first:
               type: string
-              example: "https://api.siemens.com/reference/api/courses?number=1&size=1"
+              example: 'https://api.siemens.com/reference/api/courses?number=1&size=1'
             last:
               type: string
-              example: "https://api.siemens.com/reference/api/courses?number=2&size=1"
+              example: 'https://api.siemens.com/reference/api/courses?number=2&size=1'
             next:
               type: string
-              example: "https://api.siemens.com/reference/api/courses?number=2&size=1"
+              example: 'https://api.siemens.com/reference/api/courses?number=2&size=1'
         meta:
           type: object
           required:
             - page
           properties:
             page:
-              $ref: "#/components/schemas/PageIndex"
+              $ref: '#/components/schemas/PageIndex'
     LessonBase:
       type: object
       description: Regularly scheduled occurrence of a course, associated to a room.
@@ -970,24 +970,24 @@ components:
     Lesson:
       allOf:
         - required:
-          - id
+            - id
         - type: object
           properties:
             id:
               type: string
               example: d8272c80-62b1-43b3-ba84-02cbe0aab5a2
-        - $ref: "#/components/schemas/LessonBase"
+        - $ref: '#/components/schemas/LessonBase'
     LessonLink:
       allOf:
-        - $ref: "#/components/schemas/LessonBase"
+        - $ref: '#/components/schemas/LessonBase'
         - type: object
-          properties:            
+          properties:
             links:
               type: object
               properties:
-                self: 
+                self:
                   type: string
-                  example: "https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2"
+                  example: 'https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2'
 
     LessonCreationRequest:
       type: object
@@ -995,18 +995,18 @@ components:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/LessonBase"
+          $ref: '#/components/schemas/LessonBase'
         links:
           type: object
           properties:
             course:
               type: string
-              example: "https://api.siemens.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4"
-              description: "#servers/url"
+              example: 'https://api.siemens.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+              description: '#servers/url'
             room:
               type: string
-              example: "https://api.siemens.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd"
-              description: "#servers/url"
+              example: 'https://api.siemens.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd'
+              description: '#servers/url'
     LessonCreationResponse:
       type: object
       required:
@@ -1014,27 +1014,27 @@ components:
       properties:
         data:
           allOf:
-            - $ref: "#/components/schemas/LessonLink"
+            - $ref: '#/components/schemas/LessonLink'
             - type: object
-              properties:  
+              properties:
                 links:
                   type: object
                   properties:
                     course:
                       type: string
-                      example: "https://api.siemens.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4"
-                      description: "#servers/url"
+                      example: 'https://api.siemens.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                      description: '#servers/url'
                     room:
                       type: string
-                      example: "https://api.siemens.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd"
-                      description: "#servers/url"
+                      example: 'https://api.siemens.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd'
+                      description: '#servers/url'
     LessonUpdateRequest:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/Lesson"
+          $ref: '#/components/schemas/Lesson'
     LessonUpdateResponse:
       type: object
       required:
@@ -1042,20 +1042,20 @@ components:
       properties:
         data:
           allOf:
-            - $ref: "#/components/schemas/LessonLink"
+            - $ref: '#/components/schemas/LessonLink'
             - type: object
-              properties:  
+              properties:
                 links:
                   type: object
                   properties:
                     course:
                       type: string
-                      example: "https://api.siemens.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4"
-                      description: "#servers/url"
+                      example: 'https://api.siemens.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                      description: '#servers/url'
                     room:
                       type: string
-                      example: "https://api.siemens.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd"
-                      description: "#servers/url"
+                      example: 'https://api.siemens.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd'
+                      description: '#servers/url'
     RoomPageCursor:
       type: object
       description: Pagination links for cursor-based pagination.
@@ -1124,7 +1124,7 @@ components:
           type: array
           items:
             allOf:
-              - $ref: "#/components/schemas/PersonBase"
+              - $ref: '#/components/schemas/PersonBase'
               - type: object
                 properties:
                   links:
@@ -1132,37 +1132,37 @@ components:
                     properties:
                       self:
                         type: string
-                        example: "https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032"
-                        description: "#servers/url"
+                        example: 'https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
+                        description: '#servers/url'
                       participantdCourses:
                         type: string
-                        example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
-                        description: "#servers/url"
+                        example: 'https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                        description: '#servers/url'
                       taughtCourses:
                         type: string
-                        example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
+                        example: 'https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
         links:
           type: object
           properties:
             self:
               type: string
-              example: "https://api.siemens.com/reference/api/people?number=1&size=1"
+              example: 'https://api.siemens.com/reference/api/people?number=1&size=1'
             first:
               type: string
-              example: "https://api.siemens.com/reference/api/people?number=1&size=1"
+              example: 'https://api.siemens.com/reference/api/people?number=1&size=1'
             last:
               type: string
-              example: "https://api.siemens.com/reference/api/people?number=2&size=1"
+              example: 'https://api.siemens.com/reference/api/people?number=2&size=1'
             next:
               type: string
-              example: "https://api.siemens.com/reference/api/people?number=2&size=1"
+              example: 'https://api.siemens.com/reference/api/people?number=2&size=1'
         meta:
           type: object
           required:
             - page
           properties:
             page:
-              $ref: "#/components/schemas/PageIndex"
+              $ref: '#/components/schemas/PageIndex'
     PersonBase:
       type: object
       description: A person can participate in or teach courses.
@@ -1178,38 +1178,38 @@ components:
     Person:
       allOf:
         - required:
-          - id
+            - id
         - type: object
           properties:
             id:
               type: string
               example: 54293c17-a305-4349-81d5-83001e9e4032
-        - $ref: "#/components/schemas/PersonBase"
+        - $ref: '#/components/schemas/PersonBase'
     PersonLink:
       allOf:
-        - $ref: "#/components/schemas/PersonBase"
+        - $ref: '#/components/schemas/PersonBase'
         - type: object
-          properties:            
+          properties:
             links:
               type: object
               properties:
-                self: 
+                self:
                   type: string
-                  example: "https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032"
+                  example: 'https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
     PersonCreationRequest:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/PersonBase"
+          $ref: '#/components/schemas/PersonBase'
     PersonCreationResponse:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/PersonLink"
+          $ref: '#/components/schemas/PersonLink'
     PersonReadResponse:
       type: object
       required:
@@ -1217,7 +1217,7 @@ components:
       properties:
         data:
           allOf:
-            - $ref: "#/components/schemas/PersonBase"
+            - $ref: '#/components/schemas/PersonBase'
             - type: object
               properties:
                 links:
@@ -1225,43 +1225,43 @@ components:
                   properties:
                     self:
                       type: string
-                      example: "https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032"
+                      example: 'https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
                     participantdCourses:
                       type: string
-                      example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
-                      description: "#servers/url"
+                      example: 'https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                      description: '#servers/url'
                     taughtCourses:
                       type: string
-                      example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
-                      description: "#servers/url"
+                      example: 'https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                      description: '#servers/url'
     PersonRelatedParticipatedCoursesResponse:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/CourseLink"
+          $ref: '#/components/schemas/CourseLink'
     PersonRelatedTaughtCoursesResponse:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/CourseLink"
+          $ref: '#/components/schemas/CourseLink'
     PersonUpdateRequest:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/PersonLink"
+          $ref: '#/components/schemas/PersonLink'
     PersonUpdateResponse:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/PersonLink"
+          $ref: '#/components/schemas/PersonLink'
     RoomBase:
       type: object
       description: Place where course lessons take place.
@@ -1282,42 +1282,42 @@ components:
               example: Garching b. München
             zip:
               type: string
-              example: "85748"
+              example: '85748'
     Room:
       allOf:
         - required:
-          - id
+            - id
         - type: object
           properties:
             id:
               type: string
               example: 846650de-20fd-4197-867b-00ac7606cffd
-        - $ref: "#/components/schemas/RoomBase"
+        - $ref: '#/components/schemas/RoomBase'
     RoomLink:
       allOf:
-        - $ref: "#/components/schemas/RoomBase"
+        - $ref: '#/components/schemas/RoomBase'
         - type: object
-          properties:            
+          properties:
             links:
               type: object
               properties:
-                self: 
+                self:
                   type: string
-                  example: "https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd"
+                  example: 'https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'
     RoomCreationRequest:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/RoomBase"
+          $ref: '#/components/schemas/RoomBase'
     RoomCreationResponse:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/RoomLink"
+          $ref: '#/components/schemas/RoomLink'
     RoomReadResponse:
       type: object
       required:
@@ -1325,19 +1325,19 @@ components:
       properties:
         data:
           allOf:
-            - $ref: "#/components/schemas/RoomBase"
+            - $ref: '#/components/schemas/RoomBase'
             - type: object
               properties:
                 links:
                   type: object
                   properties:
-                    self: 
+                    self:
                       type: string
-                      example: "https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd"
+                      example: 'https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'
                     lessons:
                       type: string
-                      example: "https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2"
-                      description: "#servers/url"
+                      example: 'https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2'
+                      description: '#servers/url'
     RoomRelatedLessonsResponse:
       type: object
       required:
@@ -1345,23 +1345,23 @@ components:
         - meta
       properties:
         data:
-          $ref: "#/components/schemas/Lesson"
+          $ref: '#/components/schemas/Lesson'
         links:
-          $ref: "#/components/schemas/LessonPageCursor"
+          $ref: '#/components/schemas/LessonPageCursor'
     RoomUpdateRequest:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/Room"
+          $ref: '#/components/schemas/Room'
     RoomUpdateResponse:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/RoomLink"
+          $ref: '#/components/schemas/RoomLink'
     RoomsReadResponse:
       type: object
       required:
@@ -1372,7 +1372,7 @@ components:
           type: array
           items:
             allOf:
-              - $ref: "#/components/schemas/RoomBase"
+              - $ref: '#/components/schemas/RoomBase'
               - type: object
                 properties:
                   links:
@@ -1380,21 +1380,21 @@ components:
                     properties:
                       self:
                         type: string
-                        example: "https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd"
-                        description: "#servers/url"
+                        example: 'https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'
+                        description: '#servers/url'
                       lessons:
                         type: string
-                        example: "https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2"
-                        description: "#servers/url"
+                        example: 'https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2'
+                        description: '#servers/url'
         links:
-          $ref: "#/components/schemas/RoomPageCursor"
+          $ref: '#/components/schemas/RoomPageCursor'
         meta:
           type: object
           required:
             - page
           properties:
             page:
-              $ref: "#/components/schemas/PageIndex"
+              $ref: '#/components/schemas/PageIndex'
     Errors:
       type: object
       required:
@@ -1413,7 +1413,7 @@ components:
               status:
                 type: string
                 description: HTTP status code applicable to this error.
-                example: "404"
+                example: '404'
               code:
                 type: string
                 description: Unique identifier for this type of error.
@@ -1432,31 +1432,31 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Errors"
+            $ref: '#/components/schemas/Errors'
           examples:
             Forbidden:
-              $ref: "#/components/examples/Forbidden"
+              $ref: '#/components/examples/Forbidden'
             InternalError:
-              $ref: "#/components/examples/InternalError"
+              $ref: '#/components/examples/InternalError'
             InvalidBodyProperty:
-              $ref: "#/components/examples/InvalidBodyProperty"
+              $ref: '#/components/examples/InvalidBodyProperty'
             InvalidBodyPropertyValue:
-              $ref: "#/components/examples/InvalidBodyPropertyValue"
+              $ref: '#/components/examples/InvalidBodyPropertyValue'
             InvalidParameter:
-              $ref: "#/components/examples/InvalidParameter"
+              $ref: '#/components/examples/InvalidParameter'
             InvalidParameterValue:
-              $ref: "#/components/examples/InvalidParameterValue"
+              $ref: '#/components/examples/InvalidParameterValue'
             TooManyRequests:
-              $ref: "#/components/examples/TooManyRequests"
+              $ref: '#/components/examples/TooManyRequests'
             Unauthorized:
-              $ref: "#/components/examples/Unauthorized"
+              $ref: '#/components/examples/Unauthorized'
   examples:
     Forbidden:
       summary: forbidden
       value:
         errors:
           - id: 5fa91094-7caf-4ce7-85f5-25f7d883a7d4
-            status: "403"
+            status: '403'
             code: forbidden
             title: Forbidden
             detail: The provided authorization means did not contain suitable permissions.
@@ -1465,7 +1465,7 @@ components:
       value:
         errors:
           - id: a373b344-3e5c-4e2b-b282-c3808d455501
-            status: "500"
+            status: '500'
             code: internalError
             title: Internal error
             detail: An internal error has occurred.
@@ -1474,7 +1474,7 @@ components:
       value:
         errors:
           - id: eeb556b9-68be-48a6-b131-c9d744684084
-            status: "400"
+            status: '400'
             code: invalidBodyProperty
             title: Invalid request body property
             detail: Provided request body property '{property}' is invalid.
@@ -1483,7 +1483,7 @@ components:
       value:
         errors:
           - id: d2755b4b-7397-43d5-a348-0ec1e8b1e31a
-            status: "400"
+            status: '400'
             code: invalidBodyPropertyValue
             title: Invalid request body property value
             detail: Provided value '{value}' of request body property '{property}' is invalid.
@@ -1492,7 +1492,7 @@ components:
       value:
         errors:
           - id: 18d1d99b-5658-4b27-95b5-890973d4a8f1
-            status: "400"
+            status: '400'
             code: invalidParameter
             title: Invalid request parameter
             detail: Provided request parameter '{parameter}' is invalid.
@@ -1501,7 +1501,7 @@ components:
       value:
         errors:
           - id: 9fffd3aa-6916-43ad-94f3-42f96775a4cc
-            status: "400"
+            status: '400'
             code: invalidParameterValue
             title: Invalid request parameter value
             detail: Provided value '{value}' of request parameter '{parameter}' is invalid.
@@ -1510,7 +1510,7 @@ components:
       value:
         errors:
           - id: f774e735-9135-456c-ac4a-00cc2128f19f
-            status: "429"
+            status: '429'
             code: tooManyRequests
             title: Too many requests
             detail: The server is temporarily throttling requests from the client.
@@ -1519,7 +1519,7 @@ components:
       value:
         errors:
           - id: dcfe5037-3380-4719-89d0-1a613d8a229c
-            status: "401"
+            status: '401'
             code: unauthorized
             title: Unauthorized request
             detail: No valid authorization means was provided in the request.

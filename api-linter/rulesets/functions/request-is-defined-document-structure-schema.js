@@ -1,10 +1,9 @@
 'use strict';
 
-const assertObjectSchema = (schema) => {
+const assertObjectSchema = schema => {
   var exist = false;
-  for(var key in schema.properties)
-  {
-    if (key === "data"){
+  for (var key in schema.properties) {
+    if (key === 'data') {
       exist = true;
       break;
     }
@@ -14,8 +13,12 @@ const assertObjectSchema = (schema) => {
   }
 };
 
-const check = (schema) => {
-  const combinedSchemas = [...(schema.anyOf || []), ...(schema.oneOf || []), ...(schema.allOf || [])];
+const check = schema => {
+  const combinedSchemas = [
+    ...(schema.anyOf || []),
+    ...(schema.oneOf || []),
+    ...(schema.allOf || [])
+  ];
   if (combinedSchemas.length > 0) {
     combinedSchemas.filter(s => typeof s === 'object' && s !== null).forEach(check);
   } else {
@@ -23,15 +26,15 @@ const check = (schema) => {
   }
 };
 
-export default (targetValue) => {
+export default targetValue => {
   if (typeof targetValue !== 'object' || targetValue == null) return;
   try {
     check(targetValue);
   } catch (ex) {
     return [
       {
-        message: ex,
-      },
+        message: ex
+      }
     ];
   }
 };

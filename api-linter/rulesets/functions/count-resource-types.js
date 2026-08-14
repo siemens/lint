@@ -1,6 +1,6 @@
 'use strict';
 
-const extractResourceTypeFromPath = (path) => {
+const extractResourceTypeFromPath = path => {
   return path.split('/')[path.startsWith('/') ? 1 : 0];
 };
 
@@ -13,7 +13,7 @@ export default (targetValue, { max }) => {
 
   return [
     {
-      message: `More than ${max} resource types found`,
-    },
+      message: `More than ${max} resource types found`
+    }
   ];
 };

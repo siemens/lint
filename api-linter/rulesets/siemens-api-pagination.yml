@@ -4,7 +4,6 @@ functions:
   - get-resources-has-pagination-strategies-meta
 
 rules:
-
   Siemens-API-[600]-1:
     message: '{{error}}'
     description: A server MAY provide links to traverse a paginated data set
@@ -24,7 +23,7 @@ rules:
     then:
       function: get-resources-has-pagination
       functionOptions: B
-  
+
   Siemens-API-[600]-3:
     message: '{{error}}'
     description: Naming convention MUST be used for pagination keys
@@ -34,7 +33,7 @@ rules:
     then:
       function: get-resources-has-pagination
       functionOptions: D
-  
+
   Siemens-API-[601]:
     message: '{{error}}'
     description: Pagination SHOULD be implemented using query parameters
@@ -43,7 +42,7 @@ rules:
     given: $.paths..get
     then:
       function: get-resources-has-pagination-strategies
-  
+
   Siemens-API-[601.1.1]:
     message: '{{error}}'
     description: Server MAY provide pagination meta information to the client
@@ -53,7 +52,7 @@ rules:
     then:
       function: get-resources-has-pagination-strategies-meta
       functionOptions: cursor
-  
+
   Siemens-API-[601.2.1]:
     message: '{{error}}'
     description: Server MAY provide pagination meta information to the client
@@ -63,7 +62,7 @@ rules:
     then:
       function: get-resources-has-pagination-strategies-meta
       functionOptions: offset
-  
+
   Siemens-API-[601.3.1]-1:
     message: '{{error}}'
     description: Server MAY provide pagination meta information to the client

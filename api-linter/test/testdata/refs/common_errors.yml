@@ -33,7 +33,7 @@ components:
               status:
                 type: string
                 description: HTTP status code applicable to this error.
-                example: "99"
+                example: '99'
               code:
                 type: string
                 description: Unique identifier for this type of error.

@@ -17,7 +17,7 @@ tags:
       Rooms describe the locations where lessons take place. A room can only be
       deleted when there are no related lessons.
 paths:
-  "/rooms/{id}":
+  '/rooms/{id}':
     parameters:
       - name: id
         in: path
@@ -42,14 +42,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RoomUpdateRequest"
+              $ref: '#/components/schemas/RoomUpdateRequest'
       responses:
-        "201":
+        '201':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RoomUpdateResponse"
+                $ref: '#/components/schemas/RoomUpdateResponse'
 components:
   schemas:
     RoomUpdateRequest:
@@ -58,24 +58,24 @@ components:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/Room"
+          $ref: '#/components/schemas/Room'
     RoomUpdateResponse:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/RoomLink"
+          $ref: '#/components/schemas/RoomLink'
     Room:
       allOf:
         - required:
-          - id
+            - id
         - type: object
           properties:
             id:
               type: string
               example: 846650de-20fd-4197-867b-00ac7606cffd
-        - $ref: "#/components/schemas/RoomBase"
+        - $ref: '#/components/schemas/RoomBase'
     RoomBase:
       type: object
       description: Place where course lessons take place.
@@ -96,16 +96,15 @@ components:
               example: Garching b. München
             zip:
               type: string
-              example: "85748"
+              example: '85748'
     RoomLink:
       allOf:
-        - $ref: "#/components/schemas/RoomBase"
+        - $ref: '#/components/schemas/RoomBase'
         - type: object
-          properties:            
+          properties:
             links:
               type: object
               properties:
-                self: 
+                self:
                   type: string
-                  example: "https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd"
-    
+                  example: 'https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'

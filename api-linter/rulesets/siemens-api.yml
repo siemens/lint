@@ -8,4 +8,4 @@ extends:
   - ./siemens-api-sorting.yml
   - ./siemens-api-common-operation.yml
   - ./siemens-api-security.yml
-  - "spectral:oas"
+  - 'spectral:oas'

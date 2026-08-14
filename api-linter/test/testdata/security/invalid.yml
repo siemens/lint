@@ -33,7 +33,7 @@ paths:
       operationId: ReadRooms
       tags:
         - Rooms
-      parameters: 
+      parameters:
         - name: number
           in: query
           required: true
@@ -62,14 +62,14 @@ paths:
           schema:
             type: string
       responses:
-        "201":
+        '201':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RoomsReadResponse"
+                $ref: '#/components/schemas/RoomsReadResponse'
           headers:
-            "Api-Version":
+            'Api-Version':
               description: The API semantic-version string
               schema:
                 type: string
@@ -85,7 +85,7 @@ components:
           type: array
           items:
             allOf:
-              - $ref: "#/components/schemas/RoomBase"
+              - $ref: '#/components/schemas/RoomBase'
               - type: object
                 properties:
                   links:
@@ -93,12 +93,12 @@ components:
                     properties:
                       self:
                         type: string
-                        example: "https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd"
-                        description: "#servers/url"
+                        example: 'https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'
+                        description: '#servers/url'
                       lessons:
                         type: string
-                        example: "https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2"
-                        description: "#servers/url"
+                        example: 'https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2'
+                        description: '#servers/url'
     RoomBase:
       type: object
       description: Place where course lessons take place.
@@ -119,4 +119,4 @@ components:
               example: Garching b. München
             zip:
               type: string
-              example: "85748"
+              example: '85748'

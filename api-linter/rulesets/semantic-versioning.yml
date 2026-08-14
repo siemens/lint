@@ -1,5 +1,4 @@
 rules:
-
   Semantic-Versioning-[2.0.0]:
     message: '{{error}}'
     description: Semantic versioning MUST be used to version individual APIs

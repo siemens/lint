@@ -4,14 +4,13 @@ const { Document } = require('@stoplight/spectral-core');
 const Parsers = require('@stoplight/spectral-parsers');
 
 // 👇   RE-ADD setupSpectral here
-const { setupSpectral } =
-  require('@jamietanna/spectral-test-harness');
+const { setupSpectral } = require('@jamietanna/spectral-test-harness');
 
 const { resultsForSeverity } = require('./base.js');
 const { resolver } = require('@stoplight/spectral-ref-resolver');
 const path = require('path');
 
-const rulesetPath  = 'test/testdata/refs/.spectral.yml';
+const rulesetPath = 'test/testdata/refs/.spectral.yml';
 const specFilePath = path.join(__dirname, 'testdata/refs', '300.yml'); // ABSOLUTE
 
 test('API MUST use official HTTP status codes as intended', async () => {
@@ -20,16 +19,13 @@ test('API MUST use official HTTP status codes as intended', async () => {
   const spectral = await setupSpectral(rulesetPath, { resolver });
 
   /* ── Document with correct source (real path!) ── */
-  const raw      = fs.readFileSync(specFilePath, 'utf8');
+  const raw = fs.readFileSync(specFilePath, 'utf8');
   const document = new Document(raw, Parsers.Yaml, specFilePath);
   // … but give it the real filename so $ref resolution works
   document.source = specFilePath;
 
   // ───────────── act ─────────────
-  const results  = await spectral.run(
-    document,
-    { resolve: { external: true } }
-  );
+  const results = await spectral.run(document, { resolve: { external: true } });
 
   // ───────────── assert ─────────────
   const errors = resultsForSeverity(results, 'Error');

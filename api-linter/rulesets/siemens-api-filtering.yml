@@ -2,7 +2,6 @@ functions:
   - query-parameters-length
 
 rules:
-
   Siemens-API-[400]:
     message: '{{error}}'
     description: An API provider SHOULD NOT support more than 4 parameters at once for selecting resources
@@ -11,9 +10,9 @@ rules:
     given: $.paths..get.parameters
     then:
       function: query-parameters-length
-      functionOptions: 
+      functionOptions:
         max: 4
-  
+
   Siemens-API-[401]:
     message: '{{error}}'
     description: The query parameter filter SHOULD be used to filter or query data
@@ -22,8 +21,6 @@ rules:
     given: $.paths..get.parameters
     then:
       function: query-parameters-length
-      functionOptions: 
+      functionOptions:
         max: 4
         nameCheck: filter
-  
-

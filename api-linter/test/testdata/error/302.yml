@@ -26,14 +26,14 @@ paths:
       tags:
         - Rooms
       responses:
-        "200":
+        '200':
           description: Ok
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RoomsReadResponse"
+                $ref: '#/components/schemas/RoomsReadResponse'
         default:
-          $ref: "#/components/responses/DefaultErrors"
+          $ref: '#/components/responses/DefaultErrors'
 components:
   schemas:
     RoomsReadResponse:
@@ -45,7 +45,7 @@ components:
           type: array
           items:
             allOf:
-              - $ref: "#/components/schemas/RoomBase"
+              - $ref: '#/components/schemas/RoomBase'
               - type: object
                 properties:
                   links:
@@ -53,12 +53,12 @@ components:
                     properties:
                       self:
                         type: string
-                        example: "https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd"
-                        description: "#servers/url"
+                        example: 'https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'
+                        description: '#servers/url'
                       lessons:
                         type: string
-                        example: "https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2"
-                        description: "#servers/url"
+                        example: 'https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2'
+                        description: '#servers/url'
     RoomBase:
       type: object
       description: Place where course lessons take place.
@@ -79,7 +79,7 @@ components:
               example: Garching b. München
             zip:
               type: string
-              example: "85748"
+              example: '85748'
     Errors:
       type: object
       required:
@@ -98,7 +98,7 @@ components:
               status:
                 type: string
                 description: HTTP status code applicable to this error.
-                example: "423"
+                example: '423'
               code:
                 type: string
                 description: Unique identifier for this type of error.
@@ -117,17 +117,17 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Errors"
+            $ref: '#/components/schemas/Errors'
           examples:
             Forbidden:
-              $ref: "#/components/examples/Forbidden"
+              $ref: '#/components/examples/Forbidden'
   examples:
     Forbidden:
       summary: forbidden
       value:
         errors:
           - id: 5fa91094-7caf-4ce7-85f5-25f7d883a7d4
-            status: "421"
+            status: '421'
             code: forbidden
             title: Forbidden
             detail: The provided authorization means did not contain suitable permissions.

@@ -29,14 +29,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RoomCreationRequest"
+              $ref: '#/components/schemas/RoomCreationRequest'
       responses:
-        "201":
+        '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RoomCreationResponse"
+                $ref: '#/components/schemas/RoomCreationResponse'
 components:
   schemas:
     RoomCreationRequest:
@@ -45,25 +45,25 @@ components:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/RoomBase"
+          $ref: '#/components/schemas/RoomBase'
     RoomCreationResponse:
       type: object
       required:
         - data
       properties:
         data:
-          $ref: "#/components/schemas/RoomLink"
+          $ref: '#/components/schemas/RoomLink'
     RoomLink:
       allOf:
-        - $ref: "#/components/schemas/RoomBase"
+        - $ref: '#/components/schemas/RoomBase'
         - type: object
-          properties:            
+          properties:
             links:
               type: object
               properties:
-                self: 
+                self:
                   type: string
-                  example: "https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd"
+                  example: 'https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'
     RoomBase:
       type: object
       description: Place where course lessons take place.
@@ -85,4 +85,3 @@ components:
             zip:
               type: double
               example: 85734
-    

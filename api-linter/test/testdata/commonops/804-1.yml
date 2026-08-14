@@ -17,7 +17,7 @@ tags:
       Rooms describe the locations where lessons take place. A room can only be
       deleted when there are no related lessons.
 paths:
-  "/rooms/{id}":
+  '/rooms/{id}':
     parameters:
       - name: id
         in: path
@@ -34,5 +34,5 @@ paths:
       tags:
         - Rooms
       responses:
-        "404":
+        '404':
           description: No content

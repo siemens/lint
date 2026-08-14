@@ -1,13 +1,13 @@
 'use strict';
-const jp = require('jsonpath')
+const jp = require('jsonpath');
 
-const checkSelf = (link) => {
-  if (link["self"] == null){
+const checkSelf = link => {
+  if (link['self'] == null) {
     throw 'self property not found in links object';
   }
-}
+};
 
-const assertLinkSchema = (schema) => {
+const assertLinkSchema = schema => {
   const paths = jp.paths(schema, '$..*..links.properties');
 
   for (const path of paths) {
@@ -19,8 +19,12 @@ const assertLinkSchema = (schema) => {
   }
 };
 
-const check = (schema) => {
-  const combinedSchemas = [...(schema.anyOf || []), ...(schema.oneOf || []), ...(schema.allOf || [])];
+const check = schema => {
+  const combinedSchemas = [
+    ...(schema.anyOf || []),
+    ...(schema.oneOf || []),
+    ...(schema.allOf || [])
+  ];
   if (combinedSchemas.length > 0) {
     combinedSchemas.filter(s => typeof s === 'object' && s !== null).forEach(check);
   } else {
@@ -28,15 +32,15 @@ const check = (schema) => {
   }
 };
 
-export default (targetValue) => {
+export default targetValue => {
   if (typeof targetValue !== 'object' || targetValue == null) return;
   try {
     check(targetValue);
   } catch (ex) {
     return [
       {
-        message: ex,
-      },
+        message: ex
+      }
     ];
   }
 };

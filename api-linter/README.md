@@ -4,6 +4,7 @@ This project implements a linter reporter for the [Stoplight Spectral](https://d
 The ruleset has been created based on the [Siemens Xcelerator API guidelines 2.5.0](https://developer.siemens.com/guidelines/api-guidelines/rest/index.html).
 
 ## Getting started
+
 ### Directory structure
 
 - `example/`: contains a sample API spec file
@@ -13,15 +14,15 @@ The ruleset has been created based on the [Siemens Xcelerator API guidelines 2.5
 
 ### Installation
 
-In order to include the rulesets and provide linting within your project, you can install the package from this project with this `@siemens/api-linter` package. 
+In order to include the rulesets and provide linting within your project, you can install the package from this project with this `@siemens/api-linter` package.
 
 ```json
 {
   "scripts": {
-      "test": "api-linter -s reference-api-specs/openapi.yml -r reference-api-specs/.spectral.yml"
+    "test": "api-linter -s reference-api-specs/openapi.yml -r reference-api-specs/.spectral.yml"
   },
   "devDependencies": {
-      "@siemens/api-linter": "^0.8.4"
+    "@siemens/api-linter": "^0.8.4"
   }
 }
 ```
@@ -35,16 +36,20 @@ In order to trigger the linter on your API specifications, it provides a script 
       "test": "api-linter -s reference-api-specs/openapi.yml -r reference-api-specs/.spectral.yml"
   }
 ```
+
 Developers can change the spec file path with `-s` option, ruleset file path with `-r` option accordingly in the scripts.<br>
 Or just remove them and set them in the command line as:<br>
 
 Script:
+
 ```json
   "scripts": {
       "test": "api-linter"
   }
 ```
+
 Command:
+
 ```groovy
 npm test -s reference-api-specs/openapi.yml -r reference-api-specs/.spectral.yml
 ```
@@ -64,7 +69,7 @@ Options:
   -v, --apiVersioning <api versioning> the api versioning way (choices: "ignore", "url", "header", default: ignore)
   -a, --apiSecurity <authorization security> if enable authorization security (choices: "n/f/no/false/y/t/yes/true" default: n)
   --resolve enables follow external $refs (same as Spectral --resolve) (default is not enabled, i.e. external references are not resolved and ignored)
-  ```
+```
 
 A linter report will be generated according to the execution as:
 
@@ -81,7 +86,7 @@ build:
   script:
     - npm test
   artifacts:
-    name: "api-linter-report"
+    name: 'api-linter-report'
     paths:
       - linter-result.html
     when: always
@@ -94,36 +99,45 @@ build:
 ### Selection of rulesets
 
 The package provides several rulesets according to Siemens REST API guidelines.<br>
+
 > They can be included as needed by providing a project specific `.spectral.yml` file on the projects root directory as follows:
+
 ```yaml
 extends:
-  - "@siemens/api-linter/rulesets/siemens-api-media-type.yml"
-  - "@siemens/api-linter/rulesets/siemens-api-versioning.yml"
-  - "@siemens/api-linter/rulesets/siemens-api-error-reporting.yml"
-  - "@siemens/api-linter/rulesets/siemens-api-filtering.yml"
-  - "@siemens/api-linter/rulesets/siemens-api-sparse-fieldsets.yml"
-  - "@siemens/api-linter/rulesets/siemens-api-pagination.yml"
-  - "@siemens/api-linter/rulesets/siemens-api-sorting.yml"
-  - "@siemens/api-linter/rulesets/siemens-api-common-operation.yml"
-  - "@siemens/api-linter/rulesets/siemens-api-security.yml"
+  - '@siemens/api-linter/rulesets/siemens-api-media-type.yml'
+  - '@siemens/api-linter/rulesets/siemens-api-versioning.yml'
+  - '@siemens/api-linter/rulesets/siemens-api-error-reporting.yml'
+  - '@siemens/api-linter/rulesets/siemens-api-filtering.yml'
+  - '@siemens/api-linter/rulesets/siemens-api-sparse-fieldsets.yml'
+  - '@siemens/api-linter/rulesets/siemens-api-pagination.yml'
+  - '@siemens/api-linter/rulesets/siemens-api-sorting.yml'
+  - '@siemens/api-linter/rulesets/siemens-api-common-operation.yml'
+  - '@siemens/api-linter/rulesets/siemens-api-security.yml'
 ```
+
 > You MAY use as below to achieve this for guideline linting `WITHOUT` `"spectral:oas"`.
+
 ```yaml
 extends:
-  - "@siemens/api-linter/rulesets/siemens-api-express.yml"
+  - '@siemens/api-linter/rulesets/siemens-api-express.yml'
 ```
+
 > `OR` just extends the `ALL-IN-ONE` ruleset which with `"spectral:oas"` enabled.
+
 ```yaml
 extends:
-  - "@siemens/api-linter/rulesets/siemens-api.yml"
+  - '@siemens/api-linter/rulesets/siemens-api.yml'
 ```
+
 ### Disable any Ruleset or Rules
+
 > You can disable any rules/rulesets as you wish by [Stoplight Spectral](https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview).
+
 ```yaml
 #e.g. disable spectral:oas ruleset and disable Siemens-API-[400] rules from the extended ruleset
 extends:
-  - "@siemens/api-linter/rulesets/siemens-api.yml"
-  - ["spectral:oas", "off"]
+  - '@siemens/api-linter/rulesets/siemens-api.yml'
+  - ['spectral:oas', 'off']
 
 rules:
   Siemens-API-[400]: false
@@ -131,41 +145,44 @@ rules:
 ```
 
 ### Define rule dependency relations
+
 > Sometimes, if you don't want to follow a ruleC that under a high level ruleP, which means when ruleP failed, you don't want to check ruleC.
-Then we can define the rules with `"x-dependsOn"` attribute.
+> Then we can define the rules with `"x-dependsOn"` attribute.
+
 ```yaml
 #e.g. Siemens-API-[101.8.1] depends on Siemens-API-[101.8]
 extends:
-  - "@siemens/api-linter/rulesets/siemens-api.yml"
+  - '@siemens/api-linter/rulesets/siemens-api.yml'
 
 rules:
-  Siemens-API-[101.8.1]: 
+  Siemens-API-[101.8.1]:
     x-dependsOn:
       - Siemens-API-[101.8]
 ```
 
 ## Integration Using JavaScript
+
 > In case you want to handle the linting results by yourself
+
 ```javascript
-const {validator} = require('@siemens/api-linter/src/extension');
-const {DiagnosticSeverity} = require('@stoplight/types');
-const path = require("path");
+const { validator } = require('@siemens/api-linter/src/extension');
+const { DiagnosticSeverity } = require('@stoplight/types');
+const path = require('path');
 const validate = validator();
 
-const validateDoc = function(){
-    const ruleSetFilePath = path.resolve(__dirname, 'reference-api-specs/.spectral.yml');
-    const apiSpecFilePath = path.resolve(__dirname, 'reference-api-specs/openapi-prod.yml');
-    validate(apiSpecFilePath, ruleSetFilePath).then(result => {
-        const diagnostics = [];
-        for (let msg of result.results || []){
-            if (msg.severity <= DiagnosticSeverity.Information ){
-                var diagnostic = { value: msg.code, severity: msg.severity, message: msg.message };
-                diagnostics.push(diagnostic);
-            }
-        }
-        // Add your own processes to handle diagnostic array;
-    });
-}
+const validateDoc = function () {
+  const ruleSetFilePath = path.resolve(__dirname, 'reference-api-specs/.spectral.yml');
+  const apiSpecFilePath = path.resolve(__dirname, 'reference-api-specs/openapi-prod.yml');
+  validate(apiSpecFilePath, ruleSetFilePath).then(result => {
+    const diagnostics = [];
+    for (let msg of result.results || []) {
+      if (msg.severity <= DiagnosticSeverity.Information) {
+        var diagnostic = { value: msg.code, severity: msg.severity, message: msg.message };
+        diagnostics.push(diagnostic);
+      }
+    }
+    // Add your own processes to handle diagnostic array;
+  });
+};
 validateDoc();
 ```
-

@@ -12,16 +12,16 @@ export default (targetValue, { wellUnderstood }, context) => {
       if (!(code in wellUnderstood)) {
         result.push({
           message: `${code} is not a well-understood HTTP status code`,
-          path: [...context.path, verb, 'responses', code],
+          path: [...context.path, verb, 'responses', code]
         });
         continue;
       }
-      const allowedVerbs = wellUnderstood[code].map((verb) => verb.toUpperCase());
+      const allowedVerbs = wellUnderstood[code].map(verb => verb.toUpperCase());
       const upperCaseVerb = verb.toUpperCase();
       if (!allowedVerbs.includes('ALL') && !allowedVerbs.includes(upperCaseVerb)) {
         result.push({
           message: `${code} is not a well-understood HTTP status code for ${upperCaseVerb}`,
-          path: [...context.path, verb, 'responses', code],
+          path: [...context.path, verb, 'responses', code]
         });
         continue;
       }
