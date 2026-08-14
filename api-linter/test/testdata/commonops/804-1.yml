@@ -1,0 +1,38 @@
+openapi: 3.0.1
+info:
+  title: Reference OpenAPI Specification
+  version: 2.0.0
+  contact:
+    name: API Guidance Team
+    url: https://api.siemens.com
+    email: noreply@siemens.com
+  description: |
+    This is an example API specification serving as reference for designing and
+    specifying APIs according to the API guidelines.
+servers:
+  - url: https://api.siemens.com/reference/api/v1
+tags:
+  - name: Rooms
+    description: |
+      Rooms describe the locations where lessons take place. A room can only be
+      deleted when there are no related lessons.
+paths:
+  "/rooms/{id}":
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identifier of a Room resource.
+        schema:
+          type: string
+          example: 7eeea381-872c-4b83-a228-31878e5b8de8
+    delete:
+      summary: Deletes a Room
+      description: |
+        Delete the specified Room according to the id parameter by this delete action.
+      operationId: DeleteRoom
+      tags:
+        - Rooms
+      responses:
+        "404":
+          description: No content

@@ -1,0 +1,1525 @@
+openapi: 3.0.1
+info:
+  title: Reference OpenAPI Specification
+  version: 2.0.0
+  contact:
+    name: API Guidance Team
+    url: https://api.siemens.com
+    email: noreply@siemens.com
+  description: |
+    This is an example API specification serving as reference for designing and
+    specifying APIs according to the API guidelines.
+
+    The API models an educational system. It allows to manage courses, their
+    individual lessons, the rooms where lessons take place as well as people
+    acting as teachers and/or participants of courses. 
+
+    **Feature Guide**
+
+    Different parts in this API illustrate different aspects and complexities of the API guidelines:
+
+    * Complexity: Courses endpoints try to showcase the full capabilities of REST API. However, also
+      simple APIs can be modeled with REST API as shown with the Rooms endpoints.
+    * Pagination approaches: Courses and and People resource collections use index-based
+      pagination. Rooms use cursor-based pagination. Messages use offset-based pagination.
+    * Added API version either in URI path or custom request header are supported.
+    * Added self links example for hypermedia controls following Maturity Model.
+    * Removed all REST-specific rules which were based on the JSON:API guidelines from this version.
+servers:
+  - url: https://api.siemens.com/reference/api
+tags:
+  - name: Rooms
+    description: |
+      Rooms describe the locations where lessons take place. A room can only be
+      deleted when there are no related lessons.
+  - name: Courses
+    description: |
+      Courses consist of lessons and have participants and teachers assigned.
+      Participants can be assigned and de-assigned from a course in batch by using
+      the relationships endpoint. Teachers can be added or removed from a course
+      only via the course's update method.
+  - name: Lessons
+    description: |
+      Lessons describe the concrete occurrences of the lectures of a course. Each
+      lesson is part of a course and gets deleted when that course is deleted.
+      A lesson describes one regular time slot for a course and relates to the
+      corresponding room. Lessons can be retrieved as included relationships of
+      courses or rooms.
+  - name: People
+    description: |
+      People can participate or teach courses. The assignment as participant or
+      teacher is done at the corresponding course resource.
+paths:
+  /courses:
+    post:
+      summary: Creates a Course
+      description: |
+        Create a Course with the request content by this post action.
+      operationId: CreateCourse
+      tags:
+        - Courses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CourseCreationRequest"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CourseCreationResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+    get:
+      summary: Queries Courses
+      description: |
+        Query a collection of Courses with the request by this get action.
+      operationId: ReadCourses
+      tags:
+        - Courses
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CoursesReadResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+      parameters:
+        - name: fields
+          in: query
+          description: Returns only provided fields (attributes or relationships) for resource Course.
+          required: false
+          schema:
+            type: string
+            default: id,name
+        - name: number
+          in: query
+          description: Page number, starting with index 0.
+          schema:
+            type: integer
+            default: 0
+        - name: size
+          in: query
+          description: Desired number of elements to be returned per page. A server may return less elements.
+          schema:
+            type: integer
+            default: 1
+        - name: sort
+          in: query
+          description: Sorts resources returned in response according to values of provided attribute.  Default direction is ascending. Descending direction is denoted by prepending a - to the attribute name.
+          required: false
+          schema:
+            type: string
+            enum:
+              - id
+              - name
+  "/courses/{id}":
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identifier of a Course resource.
+        schema:
+          type: string
+          example: 302492f2-7a65-4b90-b2b4-065d4e25d4d2
+    get:
+      summary: Returns a Course
+      description: |
+        Query the specified Course according to the id parameter by this get action.
+      operationId: ReadCourse
+      tags:
+        - Courses
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CourseReadResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+      parameters:
+        - name: fields
+          in: query
+          description: Returns only provided fields (attributes or relationships) for resource Course.
+          required: false
+          schema:
+            type: string
+            default: id,name,startDate,endDate
+    patch:
+      summary: Updates a Course
+      description: |
+        Update the specified Course according to the id parameter by this patch action.
+      operationId: UpdateCourse
+      tags:
+        - Courses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CourseUpdateRequest"
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CourseUpdateResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+    delete:
+      summary: Deletes a Course
+      description: |
+        Delete the specified Course according to the id parameter by this delete action.
+      operationId: DeleteCourse
+      tags:
+        - Courses
+      responses:
+        "204":
+          description: No content
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+  "/courses/{id}/lessons":
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identifier of a Course resource.
+        schema:
+          type: string
+          example: 541edcc2-f21a-4328-8ca4-c2d56823635c
+    get:
+      summary: Returns the Lessons of the Course
+      description: |
+        Query the related Lessons of the specified Course according to the id parameter by this get action.
+      operationId: ReadCourseRelatedLessons
+      tags:
+        - Courses
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CourseRelatedLessonsResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+  "/courses/{id}/participants":
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identifier of a Course resource.
+        schema:
+          type: string
+          example: ce249dd4-2215-45bb-8f52-e447192ef3a7
+    post:
+      summary: Adds a Person to the Course
+      description: |
+        Add People with the participant relation to the specified Course according to the id parameter by this post action.
+      operationId: AddCourseParticipants
+      tags:
+        - Courses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CourseParticipantsRequest"
+      responses:
+        "204":
+          description: No content
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+    get:
+      summary: Returns the Person from the Course
+      description: |
+        Query the People with participant relation of the specified Course according to the id parameter by this get action.
+      operationId: ReadCourseParticipants
+      tags:
+        - Courses
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CourseParticipantsResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+      parameters:
+        - name: number
+          in: query
+          description: Page number, starting with index 0.
+          schema:
+            type: integer
+            default: 1
+        - name: size
+          in: query
+          description: Desired number of elements to be returned per page. A server may return less elements.
+          schema:
+            type: integer
+            default: 1
+        - name: fields
+          in: query
+          description: Returns only provided fields (attributes or relationships) for resource Course.
+          required: false
+          schema:
+            type: string
+            default: id,name,email
+        - name: sort
+          in: query
+          description: Sorts resources returned in response according to values of provided attribute.  Default direction is ascending. Descending direction is denoted by prepending a - to the attribute name.
+          required: false
+          schema:
+            type: string
+            enum:
+              - id
+              - name
+              - email
+    delete:
+      summary: Removes the Person from the Course
+      description: |
+        Remove the People with participant relation of the specified Course according to the id parameter by this delete action.
+      operationId: RemoveCourseParticipants
+      tags:
+        - Courses
+      responses:
+        "204":
+          description: No content
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+  "/courses/{id}/teacher":
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identifier of a Course resource.
+        schema:
+          type: string
+          example: 275bd2a1-e6cb-4ec3-80f3-22167c6bcaab
+    get:
+      summary: Returns the Teacher of the Course
+      description: |
+        Query the People with teacher relation of the specified Course according to the id parameter by this get action.
+      operationId: ReadCourseTeacher
+      tags:
+        - Courses
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CourseRelatedTeacherResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+    post:
+      summary: Adds a Teacher to the Course
+      description: |
+        Add People with the teacher relation to the specified Course according to the id parameter by this post action.
+      operationId: AddCourseTeacher
+      tags:
+        - Courses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CourseRelatedTeacherRequest"
+      responses:
+        "204":
+          description: No content
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+  /lessons:
+    post:
+      summary: Creates a Lesson
+      description: |
+        Create a Lesson with the request content by this post action.
+      operationId: CreateLesson
+      tags:
+        - Lessons
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LessonCreationRequest"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LessonCreationResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+  "/lessons/{id}":
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identifier of a Lesson resource.
+        schema:
+          type: string
+          example: c7cafbb8-f4f3-4cb7-818e-389395abf815
+    patch:
+      summary: Updates a Lesson
+      description: |
+        Update a Lesson with the request content by this patch action.
+      operationId: UpdateLesson
+      tags:
+        - Lessons
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LessonUpdateRequest"
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LessonUpdateResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+  /people:
+    post:
+      summary: Creates a Person
+      description: |
+        Create a Person with the request content by this post action.
+      operationId: CreatePerson
+      tags:
+        - People
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PersonCreationRequest"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PersonCreationResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+    get:
+      summary: Queries People
+      description: |
+        Query a collection of People with the request by this get action.
+      operationId: ReadPeople
+      tags:
+        - People
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PeopleReadResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+      parameters:
+        - name: fields
+          in: query
+          description: Returns only provided fields (attributes or relationships) for resource Course.
+          required: false
+          schema:
+            type: string
+            default: id,name,email
+        - name: number
+          in: query
+          description: Page number, starting with index 0.
+          schema:
+            type: integer
+            default: 0
+        - name: size
+          in: query
+          description: Desired number of elements to be returned per page. A server may return less elements.
+          schema:
+            type: integer
+            default: 1
+        - name: sort
+          in: query
+          description: Sorts resources returned in response according to values of provided attribute.  Default direction is ascending. Descending direction is denoted by prepending a - to the attribute name.
+          required: false
+          schema:
+            type: string
+            enum:
+              - id
+              - name
+              - email
+  "/people/{id}":
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identifier of a Person resource.
+        schema:
+          type: string
+          example: 21ee45c0-ea33-4a81-affc-4e211cc1c6c0
+    get:
+      summary: Returns a Person
+      description: |
+        Query the specified Person according to the id parameter by this get action.
+      operationId: ReadPerson
+      tags:
+        - People
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PersonReadResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+      parameters:
+        - name: fields
+          in: query
+          description: Returns only provided fields (attributes or relationships) for resource Course.
+          required: false
+          schema:
+            type: string
+            default: id,name,email
+    patch:
+      summary: Updates a Person
+      description: |
+        Update the specified Person according to the id parameter by this patch action.
+      operationId: UpdatePerson
+      tags:
+        - People
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PersonUpdateRequest"
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PersonUpdateResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+    delete:
+      summary: Deletes a Person
+      description: |
+        Delete the specified Person according to the id parameter by this delete action.
+      operationId: DeletePerson
+      tags:
+        - People
+      responses:
+        "204":
+          description: No content
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+  "/people/{id}/participated-courses":
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identifier of a Person resource.
+        schema:
+          type: string
+          example: 5428aa10-95ff-478e-b72c-83496c2df4d9
+    get:
+      summary: Returns related Courses
+      description: |
+        Query the Courses particifated by the specified Person according to the id parameter by this get action.
+      operationId: ReadPersonRelatedParticipatedCourses
+      tags:
+        - People
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PersonRelatedParticipatedCoursesResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+  "/people/{id}/taught-courses":
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identifier of a Person resource.
+        schema:
+          type: string
+          example: 0cb649e5-2d08-4e12-9fef-53968b716df5
+    get:
+      summary: Returns related Courses
+      description: |
+        Query the Courses taught by the specified Person according to the id parameter by this get action.
+      operationId: ReadPersonRelatedTaughtCourses
+      tags:
+        - People
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PersonRelatedTaughtCoursesResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+  /rooms:
+    post:
+      summary: Creates a Room
+      description: |
+        Create a Room with the request content by this post action.
+      operationId: CreateRoom
+      tags:
+        - Rooms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RoomCreationRequest"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomCreationResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+    get:
+      summary: Queries Rooms
+      description: |
+        Query a collection of Rooms with the request by this get action.
+      operationId: ReadRooms
+      tags:
+        - Rooms
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomsReadResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+      parameters:
+        - name: fields
+          in: query
+          description: Returns only provided fields (attributes or relationships) for resource Course.
+          required: false
+          schema:
+            type: string
+            default: id,code,creationDate
+        - name: number
+          in: query
+          description: Opaque cursor to fetch specific page
+          schema:
+            type: integer
+            default: 1
+        - name: size
+          in: query
+          description: Desired maximum number of elements to be returned. A server may return less elements.
+          schema:
+            type: integer
+            default: 1
+        - name: sort
+          in: query
+          description: Sorts resources returned in response according to values of provided attribute.  Default direction is ascending. Descending direction is denoted by prepending a - to the attribute name.
+          required: false
+          schema:
+            type: string
+            enum:
+              - id
+              - code
+              - creationDate
+  "/rooms/{id}":
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identifier of a Room resource.
+        schema:
+          type: string
+          example: 7eeea381-872c-4b83-a228-31878e5b8de8
+    get:
+      summary: Returns a Room
+      description: |
+        Query the specified Room according to the id parameter by this get action.
+      operationId: ReadRoom
+      tags:
+        - Rooms
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomReadResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+    patch:
+      summary: Updates a Room
+      description: |
+        Update the specified Room according to the id parameter by this patch action.
+      operationId: UpdateRoom
+      tags:
+        - Rooms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RoomUpdateRequest"
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomUpdateResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+    delete:
+      summary: Deletes a Room
+      description: |
+        Delete the specified Room according to the id parameter by this delete action.
+      operationId: DeleteRoom
+      tags:
+        - Rooms
+      responses:
+        "204":
+          description: No content
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+  "/rooms/{id}/lessons":
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identifier of a Room resource.
+        schema:
+          type: string
+          example: d884dcae-fdff-4992-bc0b-22573a5ae4a5
+    get:
+      summary: Returns related Lessons
+      description: |
+        Query the related Lessons of the specified Room according to the id parameter by this get action.
+      operationId: ReadRoomRelatedLessons
+      tags:
+        - Rooms
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomRelatedLessonsResponse"
+        default:
+          $ref: "#/components/responses/DefaultErrors"
+      parameters:
+        - name: cursor
+          in: query
+          description: Opaque cursor to fetch specific page
+          schema:
+            type: string
+            default: opaque identifier
+        - name: limit
+          in: query
+          description: Desired maximum number of elements to be returned. A server may return less elements.
+          schema:
+            type: integer
+            default: 1
+components:
+  schemas:
+    CourseBase:
+      type: object
+      description: |
+        A course represents a scheduled set of lessons, participants, and a teacher related to a specific learning topic.
+      properties:
+        name:
+          type: string
+          example: Numerical Mathematics I
+          description: Name of the course. May be not unique.
+        startDate:
+          type: string
+          format: date
+          example: 2022-02-02
+          description: Date when first lesson takes place
+        endDate:
+          type: string
+          format: date
+          example: 2022-07-27
+          description: Date when last lesson takes place
+    Course:
+      allOf:
+        - required:
+          - id
+        - type: object
+          properties:
+            id:
+              type: string
+              example: 822a6549-4fd8-478a-b5ed-73bef7a066f4
+        - $ref: "#/components/schemas/CourseBase"
+    CourseLink:
+      allOf:
+        - $ref: "#/components/schemas/CourseBase"
+        - type: object
+          properties:
+            links:
+              type: object
+              properties:
+                self: 
+                  type: string
+                  example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
+    CourseCreationRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/CourseBase"
+    CourseCreationResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/CourseLink"
+    CourseReadResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          allOf:
+            - $ref: "#/components/schemas/CourseBase"
+            - type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
+                    participants:
+                      type: string
+                      example: "https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032"
+                      description: "#servers/url"
+                    teacher:
+                      type: string
+                      example: "https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032"
+                      description: "#servers/url"
+    CourseRelatedLessonsResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/LessonLink"
+    CourseRelatedTeacherRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/PersonLink"
+    CourseRelatedTeacherResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/PersonLink"
+    CourseParticipantsRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Person"
+    CourseParticipantsResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/PersonLink"
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              example: "https://api.siemens.com/reference/api/courses/1/participants?number=1&size=1"
+            first:
+              type: string
+              example: "https://api.siemens.com/reference/api/courses/1/participants?number=1&size=1"
+            last:
+              type: string
+              example: "https://api.siemens.com/reference/api/courses/1/participants?number=2&size=1"
+            next:
+              type: string
+              example: "https://api.siemens.com/reference/api/courses/1/participants?page=2&size=1"
+        meta:
+          type: object
+          required:
+            - page
+          properties:
+            page:
+              $ref: "#/components/schemas/PageIndex"
+    CourseUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/Course"
+    CourseUpdateResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/CourseLink"
+    CoursesReadResponse:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: array
+          items:
+             allOf:
+              - $ref: "#/components/schemas/CourseBase"
+              - type: object
+                properties:
+                  links:
+                    type: object
+                    properties:
+                      self:
+                        type: string
+                        example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
+                        description: "#servers/url"
+                      participants:
+                        type: string
+                        example: "https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032"
+                        description: "#servers/url"
+                      teacher:
+                        type: string
+                        example: "https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032"
+                        description: "#servers/url"
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              example: "https://api.siemens.com/reference/api/courses?number=1&size=1"
+            first:
+              type: string
+              example: "https://api.siemens.com/reference/api/courses?number=1&size=1"
+            last:
+              type: string
+              example: "https://api.siemens.com/reference/api/courses?number=2&size=1"
+            next:
+              type: string
+              example: "https://api.siemens.com/reference/api/courses?number=2&size=1"
+        meta:
+          type: object
+          required:
+            - page
+          properties:
+            page:
+              $ref: "#/components/schemas/PageIndex"
+    LessonBase:
+      type: object
+      description: Regularly scheduled occurrence of a course, associated to a room.
+      properties:
+        weekday:
+          type: integer
+          format: date-wday
+          pattern: '^[1-7]$'
+          example: 1
+          description: |
+            Weekday where the lesson takes place, according to [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#appendix-A).
+        frequency:
+          type: string
+          enum:
+            - Weekly
+            - Bi-Weekly
+            - Monthly
+          description: How often the lesson takes place
+        begin:
+          type: string
+          format: date
+          example: 2022-02-07
+          description: First time the lesson takes place, according to [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339).
+        duration:
+          type: string
+          format: duration
+          example: PT1H
+          description: Duration of the lesson, according to [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#appendix-A).
+    Lesson:
+      allOf:
+        - required:
+          - id
+        - type: object
+          properties:
+            id:
+              type: string
+              example: d8272c80-62b1-43b3-ba84-02cbe0aab5a2
+        - $ref: "#/components/schemas/LessonBase"
+    LessonLink:
+      allOf:
+        - $ref: "#/components/schemas/LessonBase"
+        - type: object
+          properties:            
+            links:
+              type: object
+              properties:
+                self: 
+                  type: string
+                  example: "https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2"
+
+    LessonCreationRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/LessonBase"
+        links:
+          type: object
+          properties:
+            course:
+              type: string
+              example: "https://api.siemens.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4"
+              description: "#servers/url"
+            room:
+              type: string
+              example: "https://api.siemens.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd"
+              description: "#servers/url"
+    LessonCreationResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          allOf:
+            - $ref: "#/components/schemas/LessonLink"
+            - type: object
+              properties:  
+                links:
+                  type: object
+                  properties:
+                    course:
+                      type: string
+                      example: "https://api.siemens.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4"
+                      description: "#servers/url"
+                    room:
+                      type: string
+                      example: "https://api.siemens.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd"
+                      description: "#servers/url"
+    LessonUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/Lesson"
+    LessonUpdateResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          allOf:
+            - $ref: "#/components/schemas/LessonLink"
+            - type: object
+              properties:  
+                links:
+                  type: object
+                  properties:
+                    course:
+                      type: string
+                      example: "https://api.siemens.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4"
+                      description: "#servers/url"
+                    room:
+                      type: string
+                      example: "https://api.siemens.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd"
+                      description: "#servers/url"
+    RoomPageCursor:
+      type: object
+      description: Pagination links for cursor-based pagination.
+      properties:
+        self:
+          type: string
+          example: https://api.siemens.com/reference/api/rooms?number=1&size=1
+        first:
+          type: string
+          example: https://api.siemens.com/reference/api/rooms?number=1&size=1
+        last:
+          type: string
+          example: https://api.siemens.com/reference/api/rooms?number=1&size=1
+        next:
+          type: string
+          example: https://api.siemens.com/reference/api/rooms?number=1&size=1
+    LessonPageCursor:
+      type: object
+      description: Pagination links for cursor-based pagination.
+      properties:
+        self:
+          type: string
+          example: https://api.siemens.com/reference/api/lessons?limit=1
+          description: |
+            Opaque cursor to fetch next elements. To be used as value of query parameter cursor.
+            Is only added if more elements are present.
+        next:
+          type: string
+          example: https://api.siemens.com/reference/api/lessons?cursor=cXdlcnR5&limit=1
+          description: Returned the next elements after the cursor.
+    PageIndex:
+      type: object
+      description: Pagination metadata for index-based pagination.
+      required:
+        - number
+        - size
+        - totalPages
+      properties:
+        number:
+          type: integer
+          example: 1
+          description: Current page number, starting from 1.
+        size:
+          type: integer
+          example: 1
+          description: Returned number of elements.
+        totalPages:
+          type: integer
+          example: 100
+          description: Total amount of pages available.
+        elements:
+          type: integer
+          example: 100
+          description: Amount of elements available.
+        totalElements:
+          type: integer
+          example: 100
+          description: Total amount of elements available.
+    PeopleReadResponse:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: array
+          items:
+            allOf:
+              - $ref: "#/components/schemas/PersonBase"
+              - type: object
+                properties:
+                  links:
+                    type: object
+                    properties:
+                      self:
+                        type: string
+                        example: "https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032"
+                        description: "#servers/url"
+                      participantdCourses:
+                        type: string
+                        example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
+                        description: "#servers/url"
+                      taughtCourses:
+                        type: string
+                        example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              example: "https://api.siemens.com/reference/api/people?number=1&size=1"
+            first:
+              type: string
+              example: "https://api.siemens.com/reference/api/people?number=1&size=1"
+            last:
+              type: string
+              example: "https://api.siemens.com/reference/api/people?number=2&size=1"
+            next:
+              type: string
+              example: "https://api.siemens.com/reference/api/people?number=2&size=1"
+        meta:
+          type: object
+          required:
+            - page
+          properties:
+            page:
+              $ref: "#/components/schemas/PageIndex"
+    PersonBase:
+      type: object
+      description: A person can participate in or teach courses.
+      properties:
+        name:
+          type: string
+          example: Jane Doe
+          description: Full name of the person
+        email:
+          type: string
+          example: jane.doe@xcelerator.com
+          description: Email context of the person
+    Person:
+      allOf:
+        - required:
+          - id
+        - type: object
+          properties:
+            id:
+              type: string
+              example: 54293c17-a305-4349-81d5-83001e9e4032
+        - $ref: "#/components/schemas/PersonBase"
+    PersonLink:
+      allOf:
+        - $ref: "#/components/schemas/PersonBase"
+        - type: object
+          properties:            
+            links:
+              type: object
+              properties:
+                self: 
+                  type: string
+                  example: "https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032"
+    PersonCreationRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/PersonBase"
+    PersonCreationResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/PersonLink"
+    PersonReadResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          allOf:
+            - $ref: "#/components/schemas/PersonBase"
+            - type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                      example: "https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032"
+                    participantdCourses:
+                      type: string
+                      example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
+                      description: "#servers/url"
+                    taughtCourses:
+                      type: string
+                      example: "https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4"
+                      description: "#servers/url"
+    PersonRelatedParticipatedCoursesResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/CourseLink"
+    PersonRelatedTaughtCoursesResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/CourseLink"
+    PersonUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/PersonLink"
+    PersonUpdateResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/PersonLink"
+    RoomBase:
+      type: object
+      description: Place where course lessons take place.
+      properties:
+        code:
+          type: string
+          description: Code of the room in a building or site.
+          example: MI 07.02.013
+        address:
+          type: object
+          description: Address of the room.
+          properties:
+            street:
+              type: string
+              example: Boltzmannstr. 3
+            city:
+              type: string
+              example: Garching b. München
+            zip:
+              type: string
+              example: "85748"
+    Room:
+      allOf:
+        - required:
+          - id
+        - type: object
+          properties:
+            id:
+              type: string
+              example: 846650de-20fd-4197-867b-00ac7606cffd
+        - $ref: "#/components/schemas/RoomBase"
+    RoomLink:
+      allOf:
+        - $ref: "#/components/schemas/RoomBase"
+        - type: object
+          properties:            
+            links:
+              type: object
+              properties:
+                self: 
+                  type: string
+                  example: "https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd"
+    RoomCreationRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/RoomBase"
+    RoomCreationResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/RoomLink"
+    RoomReadResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          allOf:
+            - $ref: "#/components/schemas/RoomBase"
+            - type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    self: 
+                      type: string
+                      example: "https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd"
+                    lessons:
+                      type: string
+                      example: "https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2"
+                      description: "#servers/url"
+    RoomRelatedLessonsResponse:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          $ref: "#/components/schemas/Lesson"
+        links:
+          $ref: "#/components/schemas/LessonPageCursor"
+    RoomUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/Room"
+    RoomUpdateResponse:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/RoomLink"
+    RoomsReadResponse:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: array
+          items:
+            allOf:
+              - $ref: "#/components/schemas/RoomBase"
+              - type: object
+                properties:
+                  links:
+                    type: object
+                    properties:
+                      self:
+                        type: string
+                        example: "https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd"
+                        description: "#servers/url"
+                      lessons:
+                        type: string
+                        example: "https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2"
+                        description: "#servers/url"
+        links:
+          $ref: "#/components/schemas/RoomPageCursor"
+        meta:
+          type: object
+          required:
+            - page
+          properties:
+            page:
+              $ref: "#/components/schemas/PageIndex"
+    Errors:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          items:
+            title: Error
+            type: object
+            properties:
+              id:
+                type: string
+                description: Unique identifier for this particular occurrence of the error.
+                example: df873142-804e-4146-8956-02682c20d23d
+              status:
+                type: string
+                description: HTTP status code applicable to this error.
+                example: "404"
+              code:
+                type: string
+                description: Unique identifier for this type of error.
+                example: exampleError
+              title:
+                type: string
+                description: Short, human-readable summary of the problem associated to exactly one error code. May be localized.
+                example: Example error
+              detail:
+                type: string
+                description: Human-readable explanation specific to this occurrence of the error. May be localized.
+                example: This is an example error which occured for resource of type example.
+  responses:
+    DefaultErrors:
+      description: Standard errors
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Errors"
+          examples:
+            Forbidden:
+              $ref: "#/components/examples/Forbidden"
+            InternalError:
+              $ref: "#/components/examples/InternalError"
+            InvalidBodyProperty:
+              $ref: "#/components/examples/InvalidBodyProperty"
+            InvalidBodyPropertyValue:
+              $ref: "#/components/examples/InvalidBodyPropertyValue"
+            InvalidParameter:
+              $ref: "#/components/examples/InvalidParameter"
+            InvalidParameterValue:
+              $ref: "#/components/examples/InvalidParameterValue"
+            TooManyRequests:
+              $ref: "#/components/examples/TooManyRequests"
+            Unauthorized:
+              $ref: "#/components/examples/Unauthorized"
+  examples:
+    Forbidden:
+      summary: forbidden
+      value:
+        errors:
+          - id: 5fa91094-7caf-4ce7-85f5-25f7d883a7d4
+            status: "403"
+            code: forbidden
+            title: Forbidden
+            detail: The provided authorization means did not contain suitable permissions.
+    InternalError:
+      summary: internalError
+      value:
+        errors:
+          - id: a373b344-3e5c-4e2b-b282-c3808d455501
+            status: "500"
+            code: internalError
+            title: Internal error
+            detail: An internal error has occurred.
+    InvalidBodyProperty:
+      summary: invalidBodyProperty
+      value:
+        errors:
+          - id: eeb556b9-68be-48a6-b131-c9d744684084
+            status: "400"
+            code: invalidBodyProperty
+            title: Invalid request body property
+            detail: Provided request body property '{property}' is invalid.
+    InvalidBodyPropertyValue:
+      summary: invalidBodyPropertyValue
+      value:
+        errors:
+          - id: d2755b4b-7397-43d5-a348-0ec1e8b1e31a
+            status: "400"
+            code: invalidBodyPropertyValue
+            title: Invalid request body property value
+            detail: Provided value '{value}' of request body property '{property}' is invalid.
+    InvalidParameter:
+      summary: invalidParameter
+      value:
+        errors:
+          - id: 18d1d99b-5658-4b27-95b5-890973d4a8f1
+            status: "400"
+            code: invalidParameter
+            title: Invalid request parameter
+            detail: Provided request parameter '{parameter}' is invalid.
+    InvalidParameterValue:
+      summary: invalidParameterValue
+      value:
+        errors:
+          - id: 9fffd3aa-6916-43ad-94f3-42f96775a4cc
+            status: "400"
+            code: invalidParameterValue
+            title: Invalid request parameter value
+            detail: Provided value '{value}' of request parameter '{parameter}' is invalid.
+    TooManyRequests:
+      summary: tooManyRequests
+      value:
+        errors:
+          - id: f774e735-9135-456c-ac4a-00cc2128f19f
+            status: "429"
+            code: tooManyRequests
+            title: Too many requests
+            detail: The server is temporarily throttling requests from the client.
+    Unauthorized:
+      summary: unauthorized
+      value:
+        errors:
+          - id: dcfe5037-3380-4719-89d0-1a613d8a229c
+            status: "401"
+            code: unauthorized
+            title: Unauthorized request
+            detail: No valid authorization means was provided in the request.
