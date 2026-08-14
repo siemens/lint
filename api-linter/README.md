@@ -27,7 +27,7 @@ In order to include the rulesets and provide linting within your project, you ca
 }
 ```
 
-The `@siemens/api-linter` package includes the new Siemens REST API linter tool with html report capability.
+The `@siemens/api-linter` package includes the new Siemens REST API linter tool with HTML report capability.
 
 In order to trigger the linter on your API specifications, it provides a script to execute the linter within the `package.json` specification.
 
