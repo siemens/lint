@@ -1,14 +1,14 @@
 # Siemens API Linter
 
 This project implements a linter reporter for the [Stoplight Spectral](https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview) for API specifications.
-The ruleset has been created based on the [Siemens Xcelerator API guidelines 2.5.0](https://developer.siemens.com/guidelines/api-guidelines/rest/index.html).
+The ruleset has been created based on the [Siemens REST API guidelines](https://developer.siemens.com/guidelines/api-guidelines/rest/index.html).
 
 ## Getting started
 
 ### Directory structure
 
 - `example/`: contains a sample API spec file
-- `rulesets/`: contains the ruleset files those follow the Siemens Xcelerator API guidelines
+- `rulesets/`: contains the ruleset files those follow the Siemens REST API guidelines
 - `src/`: contains the source files for creating the linter report
 - `test/`: jest test cases for different rules in the rulesets
 
