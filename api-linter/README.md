@@ -22,7 +22,7 @@ In order to include the rulesets and provide linting within your project, you ca
     "test": "api-linter -s reference-api-specs/openapi.yml -r reference-api-specs/.spectral.yml"
   },
   "devDependencies": {
-    "@siemens/api-linter": "^0.8.4"
+    "@siemens/api-linter": "^0.8.6"
   }
 }
 ```
