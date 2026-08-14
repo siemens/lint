@@ -6,8 +6,6 @@ const { retrieveDocument, setupSpectral } = require('@jamietanna/spectral-test-h
 const {
   resultsForSeverity,
   getSpecFilePath,
-  assertOnlyErrors,
-  assertOnlyWarnings,
   assertOnlyInfos,
   assertOnlyHints
 } = require('./base.js');
