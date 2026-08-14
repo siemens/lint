@@ -1,3 +1,7 @@
+/**
+ * Copyright Siemens 2026.
+ * SPDX-License-Identifier: MIT
+ */
 var apiSecurity = global.apiSecurity;
 const hasHeaderWithPropertyValue = (targetVal, options) => {
   const results = [];

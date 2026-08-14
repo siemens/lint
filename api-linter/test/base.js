@@ -1,3 +1,7 @@
+/**
+ * Copyright Siemens 2026.
+ * SPDX-License-Identifier: MIT
+ */
 const { DiagnosticSeverity } = require('@stoplight/types');
 
 function resultsForSeverity(results, severity) {

@@ -1,3 +1,7 @@
+/**
+ * Copyright Siemens 2026.
+ * SPDX-License-Identifier: MIT
+ */
 const { pattern } = require('@stoplight/spectral-functions');
 
 const apiVersioning = global.apiVersioning;

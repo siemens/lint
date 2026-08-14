@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+/**
+ * Copyright Siemens 2026.
+ * SPDX-License-Identifier: MIT
+ */
 const fs = require('fs');
 const spectralCore = require('@stoplight/spectral-core');
 const Parsers = require('@stoplight/spectral-parsers');

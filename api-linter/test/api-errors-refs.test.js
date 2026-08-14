@@ -1,4 +1,7 @@
-// test/api-errors-refs.test.js
+/**
+ * Copyright Siemens 2026.
+ * SPDX-License-Identifier: MIT
+ */
 const fs = require('fs');
 const { Document } = require('@stoplight/spectral-core');
 const Parsers = require('@stoplight/spectral-parsers');

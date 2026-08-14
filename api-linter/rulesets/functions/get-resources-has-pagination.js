@@ -1,3 +1,7 @@
+/**
+ * Copyright Siemens 2026.
+ * SPDX-License-Identifier: MIT
+ */
 const jp = require('jsonpath');
 
 const isCollectionResponse = schema => {

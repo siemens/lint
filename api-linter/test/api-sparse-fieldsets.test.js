@@ -1,3 +1,7 @@
+/**
+ * Copyright Siemens 2026.
+ * SPDX-License-Identifier: MIT
+ */
 const { retrieveDocument, setupSpectral } = require('@jamietanna/spectral-test-harness');
 const { resultsForSeverity, getSpecFilePath, assertOnlyInfos } = require('./base.js');
 

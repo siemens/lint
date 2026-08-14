@@ -1,3 +1,7 @@
+/**
+ * Copyright Siemens 2026.
+ * SPDX-License-Identifier: MIT
+ */
 export default (targetValue, options) => {
   if (targetValue == null) return;
   var checkField = options.nameCheck != null;
