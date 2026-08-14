@@ -76,7 +76,7 @@ export default (targetValue, options) => {
         if (isCollectionResponse(responseSchema) && !hasTopLink(responseSchema)) {
           return [{ message: 'A server MAY provide links to traverse a paginated data set' }];
         } else if (isCollectionResponse(responseSchema) && hasTopLink(responseSchema)) {
-          var linkProps = jp.query(responseSchema, '$.properties.links.properties');
+          const linkProps = jp.query(responseSchema, '$.properties.links.properties');
           if (linkProps.filter(prob => hasPageLinkKeys(prob)).length == 0) {
             return [{ message: 'A server MAY provide links to traverse a paginated data set' }];
           }
@@ -84,7 +84,7 @@ export default (targetValue, options) => {
       }
       if (options == 'B') {
         if (isCollectionResponse(responseSchema) && hasTopLink(responseSchema)) {
-          var linkProps = jp.query(responseSchema, '$.properties.links.properties..properties');
+          const linkProps = jp.query(responseSchema, '$.properties.links.properties..properties');
           if (linkProps.filter(prob => hasPageLinkKeys(prob)).length > 0) {
             return [{ message: 'Pagination links SHOULD appear in the top-level links object.' }];
           }
@@ -92,7 +92,7 @@ export default (targetValue, options) => {
       }
       if (options == 'D') {
         if (isCollectionResponse(responseSchema) && hasTopLink(responseSchema)) {
-          var linkProps = jp.query(responseSchema, '$.properties.links.properties');
+          const linkProps = jp.query(responseSchema, '$.properties.links.properties');
           if (linkProps.filter(prob => hasPageLinkKeys(prob)).length > 0) {
             if (linkProps.filter(prob => notInPageKeys(prob)).length > 0) {
               return [{ message: 'Naming convention MUST be used for pagination keys.' }];
