@@ -52,8 +52,8 @@ switch (apiVersioning) {
         then: {
           function: pattern,
           functionOptions: {
-            match: '/[\\.|\\/|](v)?[0-9]+/i',
-            notMatch: '/[\\.|\\/|](v)?[0-9]+\\.[0-9]+/i'
+            match: /\/(v)?\d+(\/|$)/i,
+            notMatch: /\/(v)?\d+\.\d+(\/|$)/i
           }
         }
       }
