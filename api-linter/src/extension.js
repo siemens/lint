@@ -16,7 +16,7 @@ const linter = async (specFilePath, rulesetFilepath) => {
   const myDocument = new Document(
     fs.readFileSync(specFilePath, 'utf-8').trim(),
     Parsers.Yaml,
-    'openapi.yml'
+    specFilePath
   );
   const spectral = new Spectral();
   var rules = await bundleAndLoadRuleset(rulesetFilepath, { fs, fetch });
