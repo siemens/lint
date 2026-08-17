@@ -49,6 +49,8 @@
     "lint:fix": "eslint --fix",
     "lint:commit": "commitlint --from=origin/main",
     "plugin:test": "tsx --import ./eslint-plugin-defaultvalue/tests/setup-node.js --test ./eslint-plugin-defaultvalue/tests/*.test.ts",
+    "api-linter:test": "npm run test --prefix api-linter",
+    "api-linter:report": "npm run dev --prefix api-linter",
     "release": "semantic-release",
     "prepare": "husky; exit 0"
   },
