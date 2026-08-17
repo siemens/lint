@@ -1,18 +1,17 @@
 openapi: 3.0.1
 info:
-  title: Reference OpenAPI Specification
-  version: 2.0.0
+  title: API Linter OpenAPI Specification
+  version: 1.0.0
   contact:
-    name: API Guidance Team
-    url: https://api.siemens.com
-    email: noreply@siemens.com
+    name: Siemens API Guidance Team
+    email: opensource@siemens.com
   description: |
     This is an example API specification serving as reference for designing and
     specifying APIs according to the API guidelines.
 
     The API models an educational system. It allows to manage courses, their
     individual lessons, the rooms where lessons take place as well as people
-    acting as teachers and/or participants of courses. 
+    acting as teachers and/or participants of courses.
 
     **Feature Guide**
 
@@ -26,7 +25,7 @@ info:
     * Added self links example for hypermedia controls following Maturity Model.
     * Removed all REST-specific rules which were based on the JSON:API guidelines from this version.
 servers:
-  - url: https://api.siemens.com/reference/api
+  - url: https://example.com/reference/api
 tags:
   - name: Rooms
     description: |
@@ -775,7 +774,7 @@ components:
               properties:
                 self:
                   type: string
-                  example: 'https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                  example: 'https://example.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
     CourseCreationRequest:
       type: object
       required:
@@ -805,14 +804,14 @@ components:
                   properties:
                     self:
                       type: string
-                      example: 'https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                      example: 'https://example.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
                     participants:
                       type: string
-                      example: 'https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
+                      example: 'https://example.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
                       description: '#servers/url'
                     teacher:
                       type: string
-                      example: 'https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
+                      example: 'https://example.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
                       description: '#servers/url'
     CourseRelatedLessonsResponse:
       type: object
@@ -858,16 +857,16 @@ components:
           properties:
             self:
               type: string
-              example: 'https://api.siemens.com/reference/api/courses/1/participants?number=1&size=1'
+              example: 'https://example.com/reference/api/courses/1/participants?number=1&size=1'
             first:
               type: string
-              example: 'https://api.siemens.com/reference/api/courses/1/participants?number=1&size=1'
+              example: 'https://example.com/reference/api/courses/1/participants?number=1&size=1'
             last:
               type: string
-              example: 'https://api.siemens.com/reference/api/courses/1/participants?number=2&size=1'
+              example: 'https://example.com/reference/api/courses/1/participants?number=2&size=1'
             next:
               type: string
-              example: 'https://api.siemens.com/reference/api/courses/1/participants?page=2&size=1'
+              example: 'https://example.com/reference/api/courses/1/participants?page=2&size=1'
         meta:
           type: object
           required:
@@ -907,31 +906,31 @@ components:
                     properties:
                       self:
                         type: string
-                        example: 'https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                        example: 'https://example.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
                         description: '#servers/url'
                       participants:
                         type: string
-                        example: 'https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
+                        example: 'https://example.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
                         description: '#servers/url'
                       teacher:
                         type: string
-                        example: 'https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
+                        example: 'https://example.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
                         description: '#servers/url'
         links:
           type: object
           properties:
             self:
               type: string
-              example: 'https://api.siemens.com/reference/api/courses?number=1&size=1'
+              example: 'https://example.com/reference/api/courses?number=1&size=1'
             first:
               type: string
-              example: 'https://api.siemens.com/reference/api/courses?number=1&size=1'
+              example: 'https://example.com/reference/api/courses?number=1&size=1'
             last:
               type: string
-              example: 'https://api.siemens.com/reference/api/courses?number=2&size=1'
+              example: 'https://example.com/reference/api/courses?number=2&size=1'
             next:
               type: string
-              example: 'https://api.siemens.com/reference/api/courses?number=2&size=1'
+              example: 'https://example.com/reference/api/courses?number=2&size=1'
         meta:
           type: object
           required:
@@ -987,7 +986,7 @@ components:
               properties:
                 self:
                   type: string
-                  example: 'https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2'
+                  example: 'https://example.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2'
 
     LessonCreationRequest:
       type: object
@@ -1001,11 +1000,11 @@ components:
           properties:
             course:
               type: string
-              example: 'https://api.siemens.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+              example: 'https://example.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4'
               description: '#servers/url'
             room:
               type: string
-              example: 'https://api.siemens.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd'
+              example: 'https://example.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd'
               description: '#servers/url'
     LessonCreationResponse:
       type: object
@@ -1022,11 +1021,11 @@ components:
                   properties:
                     course:
                       type: string
-                      example: 'https://api.siemens.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                      example: 'https://example.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4'
                       description: '#servers/url'
                     room:
                       type: string
-                      example: 'https://api.siemens.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd'
+                      example: 'https://example.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd'
                       description: '#servers/url'
     LessonUpdateRequest:
       type: object
@@ -1050,11 +1049,11 @@ components:
                   properties:
                     course:
                       type: string
-                      example: 'https://api.siemens.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                      example: 'https://example.com/reference/api/class/822a6549-4fd8-478a-b5ed-73bef7a066f4'
                       description: '#servers/url'
                     room:
                       type: string
-                      example: 'https://api.siemens.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd'
+                      example: 'https://example.com/reference/api/room/846650de-20fd-4197-867b-00ac7606cffd'
                       description: '#servers/url'
     RoomPageCursor:
       type: object
@@ -1062,29 +1061,29 @@ components:
       properties:
         self:
           type: string
-          example: https://api.siemens.com/reference/api/rooms?number=1&size=1
+          example: https://example.com/reference/api/rooms?number=1&size=1
         first:
           type: string
-          example: https://api.siemens.com/reference/api/rooms?number=1&size=1
+          example: https://example.com/reference/api/rooms?number=1&size=1
         last:
           type: string
-          example: https://api.siemens.com/reference/api/rooms?number=1&size=1
+          example: https://example.com/reference/api/rooms?number=1&size=1
         next:
           type: string
-          example: https://api.siemens.com/reference/api/rooms?number=1&size=1
+          example: https://example.com/reference/api/rooms?number=1&size=1
     LessonPageCursor:
       type: object
       description: Pagination links for cursor-based pagination.
       properties:
         self:
           type: string
-          example: https://api.siemens.com/reference/api/lessons?limit=1
+          example: https://example.com/reference/api/lessons?limit=1
           description: |
             Opaque cursor to fetch next elements. To be used as value of query parameter cursor.
             Is only added if more elements are present.
         next:
           type: string
-          example: https://api.siemens.com/reference/api/lessons?cursor=cXdlcnR5&limit=1
+          example: https://example.com/reference/api/lessons?cursor=cXdlcnR5&limit=1
           description: Returned the next elements after the cursor.
     PageIndex:
       type: object
@@ -1132,30 +1131,30 @@ components:
                     properties:
                       self:
                         type: string
-                        example: 'https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
+                        example: 'https://example.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
                         description: '#servers/url'
                       participantdCourses:
                         type: string
-                        example: 'https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                        example: 'https://example.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
                         description: '#servers/url'
                       taughtCourses:
                         type: string
-                        example: 'https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                        example: 'https://example.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
         links:
           type: object
           properties:
             self:
               type: string
-              example: 'https://api.siemens.com/reference/api/people?number=1&size=1'
+              example: 'https://example.com/reference/api/people?number=1&size=1'
             first:
               type: string
-              example: 'https://api.siemens.com/reference/api/people?number=1&size=1'
+              example: 'https://example.com/reference/api/people?number=1&size=1'
             last:
               type: string
-              example: 'https://api.siemens.com/reference/api/people?number=2&size=1'
+              example: 'https://example.com/reference/api/people?number=2&size=1'
             next:
               type: string
-              example: 'https://api.siemens.com/reference/api/people?number=2&size=1'
+              example: 'https://example.com/reference/api/people?number=2&size=1'
         meta:
           type: object
           required:
@@ -1195,7 +1194,7 @@ components:
               properties:
                 self:
                   type: string
-                  example: 'https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
+                  example: 'https://example.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
     PersonCreationRequest:
       type: object
       required:
@@ -1225,14 +1224,14 @@ components:
                   properties:
                     self:
                       type: string
-                      example: 'https://api.siemens.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
+                      example: 'https://example.com/reference/api/people/54293c17-a305-4349-81d5-83001e9e4032'
                     participantdCourses:
                       type: string
-                      example: 'https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                      example: 'https://example.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
                       description: '#servers/url'
                     taughtCourses:
                       type: string
-                      example: 'https://api.siemens.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
+                      example: 'https://example.com/reference/api/courses/822a6549-4fd8-478a-b5ed-73bef7a066f4'
                       description: '#servers/url'
     PersonRelatedParticipatedCoursesResponse:
       type: object
@@ -1303,7 +1302,7 @@ components:
               properties:
                 self:
                   type: string
-                  example: 'https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'
+                  example: 'https://example.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'
     RoomCreationRequest:
       type: object
       required:
@@ -1333,10 +1332,10 @@ components:
                   properties:
                     self:
                       type: string
-                      example: 'https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'
+                      example: 'https://example.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'
                     lessons:
                       type: string
-                      example: 'https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2'
+                      example: 'https://example.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2'
                       description: '#servers/url'
     RoomRelatedLessonsResponse:
       type: object
@@ -1380,11 +1379,11 @@ components:
                     properties:
                       self:
                         type: string
-                        example: 'https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'
+                        example: 'https://example.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'
                         description: '#servers/url'
                       lessons:
                         type: string
-                        example: 'https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2'
+                        example: 'https://example.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2'
                         description: '#servers/url'
         links:
           $ref: '#/components/schemas/RoomPageCursor'
