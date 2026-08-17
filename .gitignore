@@ -17,3 +17,4 @@ Thumbs.db
 
 # api linter
 spectral_result.json
+linter-result.html

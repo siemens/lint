@@ -25,7 +25,7 @@
   },
   "scripts": {
     "test": "jest",
-    "dev": "node src/index.js"
+    "dev": "node src/index.js -s example/openapi.yml -r rulesets/siemens-api.yml"
   },
   "dependencies": {
     "@stoplight/spectral-core": "^1.15.1",
