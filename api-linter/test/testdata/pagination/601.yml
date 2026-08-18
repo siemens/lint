@@ -4,13 +4,13 @@ info:
   version: 2.0.0
   contact:
     name: API Guidance Team
-    url: https://api.siemens.com
-    email: noreply@siemens.com
+    url: https://example.com
+    email: opensource@siemens.com
   description: |
     This is an example API specification serving as reference for designing and
     specifying APIs according to the API guidelines.
 servers:
-  - url: https://api.siemens.com/reference/api/v1
+  - url: https://example.com/reference/api/v1
 tags:
   - name: Rooms
     description: |
@@ -65,27 +65,27 @@ components:
                     properties:
                       self:
                         type: string
-                        example: 'https://api.siemens.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'
+                        example: 'https://example.com/reference/api/rooms/846650de-20fd-4197-867b-00ac7606cffd'
                         description: '#servers/url'
                       lessons:
                         type: string
-                        example: 'https://api.siemens.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2'
+                        example: 'https://example.com/reference/api/lessons/d8272c80-62b1-43b3-ba84-02cbe0aab5a2'
                         description: '#servers/url'
         links:
           type: object
           properties:
             self:
               type: string
-              example: 'https://api.siemens.com/reference/api/courses?number=1&size=1'
+              example: 'https://example.com/reference/api/courses?number=1&size=1'
             first:
               type: string
-              example: 'https://api.siemens.com/reference/api/courses?number=1&size=1'
+              example: 'https://example.com/reference/api/courses?number=1&size=1'
             last:
               type: string
-              example: 'https://api.siemens.com/reference/api/courses?number=2&size=1'
+              example: 'https://example.com/reference/api/courses?number=2&size=1'
             next:
               type: string
-              example: 'https://api.siemens.com/reference/api/courses?number=2&size=1'
+              example: 'https://example.com/reference/api/courses?number=2&size=1'
     RoomBase:
       type: object
       description: Place where course lessons take place.
