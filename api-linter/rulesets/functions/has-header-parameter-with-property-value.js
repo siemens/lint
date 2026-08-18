@@ -10,17 +10,23 @@ export default (targetVal, options) => {
     results.push({ message: 'No parameters provided.' });
     return results;
   }
-  var params = targetVal.parameters;
-  var exist = false;
+
+  const params = targetVal.parameters;
+  const required = new Set(options.map(o => o.value));
+
   for (const param of params) {
+    if (param.in !== 'header') continue;
     for (const ops of options) {
-      if (param[ops['property']] === ops['value'] && param['in'] === 'header') {
-        exist = true;
+      if (param[ops.property] === ops.value) {
+        required.delete(ops.value);
       }
     }
   }
-  if (!exist) {
-    results.push({ message: 'No header parameter provided in the options' });
+
+  if (required.size > 0) {
+    results.push({
+      message: `Missing required header parameter(s): ${Array.from(required).join(', ')}`
+    });
   }
   return results;
 };
