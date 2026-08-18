@@ -7,26 +7,22 @@
 const jp = require('jsonpath');
 
 const checkIsTypeOfOption = (schema, options) => {
-  var props = jp.query(schema, '$..*..data');
-  if (Array.isArray(props) && props.length > 0) {
-    if (
-      options == 'individual' &&
-      ((props[0] != null && props[0].type == 'object') ||
-        (props[0].allOf != null && props[0].allOf[0].type == 'object'))
-    ) {
-      return true;
-    } else if (options == 'collection' && props[0].type == 'array') {
-      return true;
-    }
-    return false;
-  } else {
-    if ((options == 'individual') & (props.type == 'object')) {
-      return true;
-    } else if (options == 'collection' && props.type == 'array') {
-      return true;
-    }
+  const props = jp.query(schema, '$..*..data');
+  if (!Array.isArray(props) || props.length === 0) {
     return false;
   }
+
+  if (
+    options === 'individual' &&
+    ((props[0] != null && props[0].type === 'object') ||
+      (props[0].allOf != null && props[0].allOf[0].type === 'object'))
+  ) {
+    return true;
+  }
+  if (options === 'collection' && props[0].type === 'array') {
+    return true;
+  }
+  return false;
 };
 
 const checkOption = (object, options) => {
