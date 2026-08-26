@@ -28,6 +28,7 @@
     "eslint-plugin-perfectionist": "5.10.1",
     "eslint-plugin-prefer-arrow": "1.2.3",
     "eslint-plugin-tsdoc": "0.5.2",
+    "globals": "17.11.0",
     "husky": "9.1.7",
     "postcss-scss": "4.0.9",
     "prettier": "3.9.6",
@@ -48,6 +49,8 @@
     "lint:fix": "eslint --fix",
     "lint:commit": "commitlint --from=origin/main",
     "plugin:test": "tsx --import ./eslint-plugin-defaultvalue/tests/setup-node.js --test ./eslint-plugin-defaultvalue/tests/*.test.ts",
+    "api-linter:test": "npm run test --prefix api-linter",
+    "api-linter:report": "npm run dev --prefix api-linter",
     "release": "semantic-release",
     "prepare": "husky; exit 0"
   },
@@ -63,6 +66,7 @@
     "eslint-config-typescript",
     "eslint-plugin-defaultvalue",
     "prettier-config",
-    "stylelint-config-scss"
+    "stylelint-config-scss",
+    "api-linter"
   ]
 }

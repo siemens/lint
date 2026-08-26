@@ -51,6 +51,12 @@
       }
     ],
     [
+      "@semantic-release/npm",
+      {
+        "pkgRoot": "dist/api-linter"
+      }
+    ],
+    [
       "@semantic-release/github",
       {
         "successComment": false

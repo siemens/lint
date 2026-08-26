@@ -20,3 +20,5 @@ jobs:
       - run: npm run lint:commit
       - run: npm run lint
       - run: npm run plugin:test
+      - run: npm run api-linter:test
+      - run: npm run api-linter:report

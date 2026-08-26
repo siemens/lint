@@ -21,6 +21,11 @@ this repo for various other programming languages and frameworks.
   for [typescript-eslint](https://typescript-eslint.io/) to automatically
   annotate the `@defaultValue` TSDoc tag
 
+**Tools**
+
+- [api-linter](api-linter/README.md) for OpenAPI specifications to check for Siemens API
+  guidelines and best practices.
+
 ## Installation
 
 Install `@siemens/*-config*` and their peer dependencies in your project (whichever you need):

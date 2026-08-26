@@ -14,3 +14,7 @@ yarn-error.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# api linter
+spectral_result.json
+linter-result.html
