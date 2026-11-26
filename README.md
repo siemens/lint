@@ -26,11 +26,13 @@ this repo for various other programming languages and frameworks.
 Install `@siemens/*-config*` and their peer dependencies in your project (whichever you need):
 
 ```bash
-npm install @siemens/stylelint-config-scss --save-dev --save-exact
+npm install @siemens/stylelint-config-scss stylelint-use-logical-spec --save-dev --save-exact
 npm install @siemens/commitlint-config --save-dev --save-exact
 npm install @siemens/prettier-config --save-dev --save-exact
-npm install @siemens/eslint-config-typescript --save-dev --save-exact
-npm install @siemens/eslint-config-angular --save-dev --save-exact
+# It is recommended to install the package with typescript-eslint since npm will show a version conflict if the dependency is not directly listed under devDependencies
+npm install @siemens/eslint-config-typescript typescript-eslint --save-dev --save-exact
+# It is recommended to install the package with typescript-eslint and angular-eslint since npm will show a version conflict if the dependency is not directly listed under devDependencies
+npm install @siemens/eslint-config-angular typescript-eslint angular-eslint --save-dev --save-exact
 ```
 
 **_Note_** _You should specify the exact versions of the packages above and
